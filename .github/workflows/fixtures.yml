@@ -71,7 +71,9 @@ jobs:
       - name: Publish durable fixture preview
         run: |
           tag="demo-${GITHUB_SHA:0:12}"
-          gh release create "$tag" package/presentation.zip package/gallery-verification.json \
+          assets=(package/presentation.zip package/gallery-verification.json package/gallery-verified.png)
+          if test -f package/presentation-package/combined-reel.mp4; then assets+=(package/presentation-package/combined-reel.mp4); fi
+          gh release create "$tag" "${assets[@]}" \
             --target "$GITHUB_SHA" --prerelease \
             --title "Verified fixture presentation ${GITHUB_SHA:0:7}" \
-            --notes "Actual browser fixture recordings, fault recovery, evaluation approval/rollback, gallery playback and independent evidence. Download presentation.zip, extract and open index.html. Synthetic data and conceptual interface only; upstream Runspindle does not execute and comparative savings are untested. Check repository STATUS.md for child-publication limits. Verified CI: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            --notes "Actual browser fixture recordings, fault recovery, evaluation approval/rollback, gallery playback and independent evidence. Download presentation.zip, extract and open index.html. Synthetic data and conceptual interface only; upstream Runspindle does not execute and comparative savings are untested. See repository docs/STATUS.md for verification scope. Verified CI: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"

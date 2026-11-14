@@ -55,3 +55,9 @@
 [submodule "workflows/subcontractor-invoices"]
 	path = workflows/subcontractor-invoices
 	url = https://github.com/newdarwindev/runspindle-demo-subcontractor-invoices.git
+[submodule "workflows/vintage-returns"]
+	path = workflows/vintage-returns
+	url = https://github.com/newdarwindev/runspindle-demo-vintage-returns.git
+[submodule "workflows/produce-packing"]
+	path = workflows/produce-packing
+	url = https://github.com/newdarwindev/runspindle-demo-produce-packing.git
