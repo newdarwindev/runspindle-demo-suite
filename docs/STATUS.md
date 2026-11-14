@@ -13,7 +13,7 @@
 
 The released ZIP has 22 runs, no missing media, and a 110.96-second combined reel. Independent download verification passed ZIP integrity and all 452 file checksums. ZIP SHA256: `ecc8a34b8f67e6950266ea57b7f68fe7e211e35e0723e12b076ace61d729bad4`.
 
-All 21 child repositories are published and pinned as real Git submodules. A fresh recursive checkout of the 19-pin release passed all 50 tests. The final two pins contain the identical workflow source already verified in that release; final recursive-checkout and CI results are published in the repository Actions tab.
+All 21 child repositories are published and pinned as real Git submodules. A fresh recursive checkout of final 21-pin commit `b6479f31c50e649048764371532fa78912952611` passed all 50 tests. [Final full CI run 43634950337](https://github.com/newdarwindev/runspindle-demo-suite/actions/runs/43634950337) passed verification and publication. Its [21-pin release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-b6479f31c50e) adds directly downloadable combined-reel MP4 and gallery screenshot alongside the ZIP and verification JSON.
 
 ## Publication
 
