@@ -43,6 +43,9 @@ jobs:
       - name: Assemble package with all outcomes
         if: always()
         run: python3 tools/presentation.py --reel
+      - name: Open gallery and play recorded clips
+        if: always()
+        run: node tools/verify-gallery.cjs
       - name: Upload presentation and evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
