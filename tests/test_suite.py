@@ -101,4 +101,13 @@ class RichWorkflowTests(unittest.TestCase):
  def test_source_links_saved_with_invoice_status(self):
   reset('subcontractor-invoices');token=signin('subcontractor-invoices','mock-excel')['token'];links={'C-104':'http://localhost:4310/?record=C-104','C-112':'http://localhost:4310/?record=C-112'};request('subcontractor-invoices','mock-excel','save-workbook',{'result':fixture('subcontractor-invoices')['expected'],'sourceLinks':links,'operationId':'invoices'},token);self.assertEqual(load('subcontractor-invoices')['workbook']['rows'][0]['sourceLinks'],links)
 
+
+
+class PresentationRegressionTests(unittest.TestCase):
+ def test_bank_expiry_does_not_challenge_workbook(self):
+  reset('bookkeeper-deposit','expired');self.assertEqual(signin('bookkeeper-deposit','mock-bank')['status'],'challenge');self.assertEqual(signin('bookkeeper-deposit','mock-excel')['status'],'signed-in')
+ def test_primary_table_and_collapsed_evidence(self):
+  from server import render_ui
+  ui=render_ui('mock-excel');self.assertEqual(ui.count('id="sheet-view"'),1);self.assertIn('<summary>Raw record evidence</summary>',ui);self.assertIn('position:sticky',ui);self.assertIn('Verified totals:',ui)
+
 if __name__=='__main__':unittest.main()

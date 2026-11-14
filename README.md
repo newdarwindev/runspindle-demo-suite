@@ -39,11 +39,13 @@ See [commands](docs/COMMANDS.md), [evidence boundary](docs/EVIDENCE.md), and [pi
 
 - [x] Publish initial parent repository.
 - [ ] Publish app/workflow repositories and exact submodule pins.
-- [ ] Bakery normal run and bookkeeper sign-in recovery with actual recordings.
-- [ ] Seven independently verified normal workflows.
+- [x] Bakery normal run and bookkeeper sign-in recovery with actual recordings.
+- [x] Seven independently verified normal workflows.
 - [ ] Session, authorization, missing-data, recovery, lost-ack and exact-artifact fault matrix.
 - [ ] Locked-version bakery evaluation, approval and rollback demo.
 - [ ] Gallery, clips, cues and evidence package.
 - [ ] Fresh recursive checkout, final CI and published package verification.
 
 No persistent demo services, schedules or agents are provisioned by this project. All accounts are fictional; worker access is limited to controlled fixture apps.
+
+See [current status and remaining blockers](docs/STATUS.md).
