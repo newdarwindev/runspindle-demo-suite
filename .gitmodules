@@ -1,3 +1,6 @@
+[submodule "apps/mock-applicant-portal"]
+	path = apps/mock-applicant-portal
+	url = https://github.com/newdarwindev/runspindle-demo-mock-applicant-portal.git
 [submodule "apps/mock-bank"]
 	path = apps/mock-bank
 	url = https://github.com/newdarwindev/runspindle-demo-mock-bank.git
@@ -7,6 +10,15 @@
 [submodule "apps/mock-excel"]
 	path = apps/mock-excel
 	url = https://github.com/newdarwindev/runspindle-demo-mock-excel.git
+[submodule "apps/mock-interview-room"]
+	path = apps/mock-interview-room
+	url = https://github.com/newdarwindev/runspindle-demo-mock-interview-room.git
+[submodule "apps/mock-job-board"]
+	path = apps/mock-job-board
+	url = https://github.com/newdarwindev/runspindle-demo-mock-job-board.git
+[submodule "apps/mock-mail"]
+	path = apps/mock-mail
+	url = https://github.com/newdarwindev/runspindle-demo-mock-mail.git
 [submodule "workflows/bakery-prep"]
 	path = workflows/bakery-prep
 	url = https://github.com/newdarwindev/runspindle-demo-bakery-prep.git

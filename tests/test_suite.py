@@ -32,7 +32,7 @@ class ContractTests(unittest.TestCase):
  def test_missing_reference_not_empty_valid_match(self):
   reset('bookkeeper-deposit','missing');self.assertFalse(any(r['reference']=='invoice-107' for r in load('bookkeeper-deposit')['rows']))
  def test_lost_ack_reconciles_single_submission(self):
-  reset('consultancy-contract','lost-ack');token=signin('consultancy-contract','mock-applicant-portal')['token'];data={'operationId':'application-47'}
+  reset('consultancy-contract','lost-ack');board=signin('consultancy-contract','mock-job-board')['token'];request('consultancy-contract','mock-job-board','choose-job',{'role':'operator','listing':'job-5'},board);app=signin('consultancy-contract','mock-applicant-portal')['token'];request('consultancy-contract','mock-applicant-portal','register',{'name':'Fixture','listing':'job-5'},app);token=signin('consultancy-contract','mock-applicant-portal')['token'];data={'operationId':'application-47'}
   status,v=request('consultancy-contract','mock-applicant-portal','submit',data,token);self.assertEqual(status,503);self.assertEqual(v['status'],'unknown');self.assertEqual(request('consultancy-contract','mock-applicant-portal','reconcile',data,token)[1]['status'],'verified');request('consultancy-contract','mock-applicant-portal','submit',data,token);self.assertEqual(len(load('consultancy-contract')['operations']),1)
  def test_unresolved_ack_remains_unknown(self):
   reset('consultancy-contract','unresolved');token=signin('consultancy-contract','mock-applicant-portal')['token'];self.assertEqual(request('consultancy-contract','mock-applicant-portal','reconcile',{'operationId':'x'},token)[1]['status'],'unknown')
@@ -55,7 +55,6 @@ class EvaluationTests(unittest.TestCase):
   finally:
    if previous is None:STATE.unlink(missing_ok=True)
    else:STATE.write_bytes(previous)
-if __name__=='__main__':unittest.main()
 
 class RecoveryTests(unittest.TestCase):
  def test_tenant_sessions_cannot_cross_scope_or_project(self):
@@ -83,3 +82,23 @@ class RecoveryTests(unittest.TestCase):
   from server import scoped_rows
   reset('subcontractor-invoices');s=load('subcontractor-invoices');self.assertEqual(len(scoped_rows('subcontractor-invoices','GC-North/school',s['rows'])),1)
   with self.assertRaises(ValueError):scoped_rows('subcontractor-invoices','GC-North/other',s['rows'])
+
+
+
+class RichWorkflowTests(unittest.TestCase):
+ def test_workbook_cells_csv_totals_revisions_preserve_notes(self):
+  reset('bakery-prep');token=signin('bakery-prep','mock-excel')['token'];request('bakery-prep','mock-excel','save-workbook',{'result':{'loaves':3,'rolls':16},'operationId':'one'},token)
+  request('bakery-prep','mock-excel','edit-cell',{'sheet':'Results','table':'ResultsTable','key':'loaves','value':'4'},token)
+  w=load('bakery-prep')['workbook'];self.assertEqual(w['sheets']['Results']['totals']['loaves'],4);self.assertEqual(len(w['history']),2);self.assertEqual(w['history'][0]['sheets']['Results']['totals']['loaves'],3)
+  exported=request('bakery-prep','mock-excel','export-csv',token=token)[1]['csv'];self.assertIn('loaves,4',exported);request('bakery-prep','mock-excel','import-csv',{'csv':exported.replace('loaves,4','loaves,3')},token);self.assertTrue(verify('bakery-prep')['passed']);self.assertEqual(load('bakery-prep')['workbook']['sheets']['Notes']['cells']['B1'],'=SUM(A1:A3)')
+  self.assertEqual(request('bakery-prep','mock-excel','edit-cell',{'sheet':'Notes','table':'ResultsTable','key':'loaves','value':'0'},token)[0],403)
+ def test_registration_needs_owner_listing(self):
+  reset('consultancy-contract');app=signin('consultancy-contract','mock-applicant-portal')['token'];self.assertEqual(request('consultancy-contract','mock-applicant-portal','register',{'name':'Fixture','listing':'job-5'},app)[0],409)
+  board=signin('consultancy-contract','mock-job-board')['token'];request('consultancy-contract','mock-job-board','choose-job',{'role':'operator','listing':'job-5'},board);self.assertEqual(request('consultancy-contract','mock-applicant-portal','register',{'name':'Fixture','listing':'job-5'},app)[0],200)
+ def test_assessment_requires_exact_revision_review(self):
+  reset('consultancy-contract');token=signin('consultancy-contract','mock-coderpad')['token'];code='sum(status == "open" for status in jobs)';request('consultancy-contract','mock-coderpad','coderpad',{'code':code},token)
+  self.assertEqual(request('consultancy-contract','mock-coderpad','submit-assessment',{'code':code},token)[0],409);request('consultancy-contract','mock-coderpad','review-assessment',{'code':code,'role':'operator'},token);self.assertEqual(request('consultancy-contract','mock-coderpad','submit-assessment',{'code':code+' '},token)[0],409);self.assertTrue(request('consultancy-contract','mock-coderpad','submit-assessment',{'code':code},token)[1]['submitted'])
+ def test_source_links_saved_with_invoice_status(self):
+  reset('subcontractor-invoices');token=signin('subcontractor-invoices','mock-excel')['token'];links={'C-104':'http://localhost:4310/?record=C-104','C-112':'http://localhost:4310/?record=C-112'};request('subcontractor-invoices','mock-excel','save-workbook',{'result':fixture('subcontractor-invoices')['expected'],'sourceLinks':links,'operationId':'invoices'},token);self.assertEqual(load('subcontractor-invoices')['workbook']['rows'][0]['sourceLinks'],links)
+
+if __name__=='__main__':unittest.main()

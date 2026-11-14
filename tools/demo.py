@@ -2,7 +2,7 @@
 """Orchestrator and independent observer: worker never receives harness/state capabilities."""
 import argparse,hashlib,json,os,shutil,subprocess,sys,time,uuid,zipfile,html
 from pathlib import Path
-from server import ROOT,APPS,fixture,load,reset,serve,scoped_rows
+from server import ROOT,APPS,fixture,load,save,reset,serve,scoped_rows
 CASES=json.loads((ROOT/'contracts/cases.json').read_text())
 def sha(path):
  if not (path/'.git').exists():return None
@@ -17,7 +17,7 @@ def artifact_handoff(out,result,interrupt=False):
   meta=json.loads(meta_path.read_text());b=(out/'accepted.csv').read_bytes()
   if hashlib.sha256(b).hexdigest()!=meta['sha256']:raise ValueError('Accepted artifact changed; delivery blocked')
  else:
-  b=('item,quantity\n'+''.join(f'{k},{result[k]}\n' for k in sorted(result))).encode();(out/'produced.csv').write_bytes(b)
+  b=(out/'workbook-export.csv').read_bytes() if (out/'workbook-export.csv').exists() else ('item,quantity\n'+''.join(f'{k},{result[k]}\n' for k in sorted(result))).encode();(out/'produced.csv').write_bytes(b)
   meta={'producedAt':time.time(),'acceptedAt':time.time(),'acceptedBy':'fixture operator','sha256':hashlib.sha256(b).hexdigest(),'destination':'presentation/accepted.csv','events':['produced','accepted']};(out/'accepted.csv').write_bytes(b);meta_path.write_text(json.dumps(meta,indent=2))
   if interrupt:return {**meta,'status':'interrupted-after-acceptance'}
  (out/'delivered.csv').write_bytes(b);meta.update(deliveredAt=time.time(),storedCopyVerified=(out/'delivered.csv').read_bytes()==b,status='verified');meta['events'].append('delivered');meta_path.write_text(json.dumps(meta,indent=2));return meta
@@ -29,7 +29,7 @@ def run(case,fault='normal',resume=None):
   if checkpoint['case']!=case:raise ValueError('Checkpoint case mismatch')
   fault=checkpoint['fault'];checkpoint['attempts']+=1
  else:
-  runid=f'{case}-{uuid.uuid4().hex[:12]}';out=ROOT/'artifacts'/runid;out.mkdir(parents=True);reset(case,fault)
+  runid=f'{case}-{uuid.uuid4().hex[:12]}';out=ROOT/'artifacts'/runid;out.mkdir(parents=True);reset(case,fault);state=load(case);state['runId']=runid;save(case,state)
   checkpoint={'runId':runid,'case':case,'fault':fault,'attempts':1,'app':fixture(case)['source'],'account':fixture(case)['accounts'][fixture(case)['source']],'record':None,'lastIndependentResult':None,'status':'started'}
  start=time.time();(out/'checkpoint.json').write_text(json.dumps(checkpoint,indent=2))
  if fault=='offline' and not resume:
@@ -45,17 +45,18 @@ def run(case,fault='normal',resume=None):
     except OSError:pass
     if time.time()>deadline:raise RuntimeError('Selected target remains offline: '+target)
     time.sleep(.25)
-  p=subprocess.run(['node',str(ROOT/'tools/worker.cjs'),case,str(out),fault],cwd=ROOT,capture_output=True,text=True)
+  p=subprocess.run(['node',str(ROOT/'tools/worker.cjs'),case,str(out),fault],cwd=ROOT,capture_output=True,text=True,env={k:v for k,v in os.environ.items() if k!='DEMO_HARNESS_KEY'})
   if not (out/'worker.json').exists():(out/'worker.json').write_text(json.dumps({'status':'blocked','reason':p.stderr[-2500:]}))
  worker=json.loads((out/'worker.json').read_text());verdict=verify(case)
  progress_path=out/'worker-checkpoint.json'
  if progress_path.exists():
   progress=json.loads(progress_path.read_text());source=load(case);observations=progress.get('completedScopes',{});valid=all(rows==scoped_rows(case,scope,source['rows']) for scope,rows in observations.items());progress['sourceIndependentVerified']=valid;progress_path.write_text(json.dumps(progress,indent=2));verdict['checks']['checkpoint_source_readback']=valid;verdict['passed']=verdict['passed'] and valid;checkpoint['record']=progress.get('recordIds');checkpoint['lastIndependentSourceResult']={'verified':valid,'scopes':list(observations)}
- (out/'verification.json').write_text(json.dumps(verdict,indent=2));checkpoint.update(status='verified' if verdict['passed'] else checkpoint.get('status','blocked'),lastIndependentResult=verdict)
+ (out/'verification.json').write_text(json.dumps(verdict,indent=2));checkpoint.update(status='verified' if verdict['passed'] else ('waiting-for-selected-host' if checkpoint.get('status')=='waiting-for-selected-host' else 'blocked'),lastIndependentResult=verdict)
  if case=='bakery-prep' and verdict['passed']:
   artifact=artifact_handoff(out,verdict['result'],fault=='artifact-interruption' and not resume)
+  verdict['checks']['exact_artifact_delivery']=artifact['status']=='verified'
   if artifact['status']!='verified':worker={'status':'blocked','reason':'Accepted bytes preserved. Resume run to deliver exact artifact.'};verdict['passed']=False;checkpoint['status']='accepted-awaiting-delivery'
- (out/'checkpoint.json').write_text(json.dumps(checkpoint,indent=2))
+ (out/'checkpoint.json').write_text(json.dumps(checkpoint,indent=2));(out/'verification.json').write_text(json.dumps(verdict,indent=2));(out/'worker.json').write_text(json.dumps(worker,indent=2))
  manifest={'runId':runid,'case':case,'fault':fault,'seed':107,'parentCommit':sha(ROOT),'childCommits':{str(p.relative_to(ROOT)):sha(p) for top in ['apps','workflows'] for p in (ROOT/top).iterdir() if p.is_dir()},'adapter':'deterministic-browser-fixture','executionMode':'fixture','upstreamExecuted':False,'outcome':'verified' if verdict['passed'] else worker['status'],'startedAt':start,'finishedAt':time.time(),'metrics':{'verifiedCompletions':int(verdict['passed']),'elapsedSeconds':time.time()-start,'operatorMinutes':None,'operatorTimingNote':'Not instrumented; do not interpret as zero.'},'checks':verdict['checks'],'media':{'clips':[p.name for p in out.glob('*.webm')],'screenshots':[p.name for p in out.glob('*.png')]},'evidence':['verification.json','worker.json','checkpoint.json'],'limitations':['Fixture only; upstream Runspindle does not execute.','Comparative staff-time savings untested.']}
  (out/'manifest.json').write_text(json.dumps(manifest,indent=2));print(json.dumps(manifest));return verdict['passed']
 def assemble():
