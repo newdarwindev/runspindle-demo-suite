@@ -1,0 +1,6 @@
+{
+  "id": "mock-timesheet-portal",
+  "port": 4311,
+  "title": "Timesheet Portal",
+  "fictional": true
+}

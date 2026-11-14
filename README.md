@@ -11,7 +11,19 @@ git clone --recurse-submodules https://github.com/newdarwindev/runspindle-demo-s
 cd runspindle-demo-suite
 ```
 
-Implementation is in progress. Commands and verification evidence will land incrementally; no runnable demo or recording is claimed yet.
+Implementation is in progress. The first app/workflow repositories are pinned below; additional child repositories are being split out. Browser execution is required before a demo is called verified.
+
+```sh
+python3 tools/demo.py bootstrap
+python3 tools/demo.py up
+# In another terminal:
+python3 tools/demo.py record bakery-prep
+python3 tools/demo.py record bookkeeper-deposit --fault expired
+python3 tools/demo.py assemble
+python3 tools/demo.py test
+```
+
+See [commands](docs/COMMANDS.md), [evidence boundary](docs/EVIDENCE.md), and [pinned sources](docs/SOURCES.md).
 
 ## Intended layout
 

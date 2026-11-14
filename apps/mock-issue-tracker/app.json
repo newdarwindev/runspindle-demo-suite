@@ -1,0 +1,6 @@
+{
+  "id": "mock-issue-tracker",
+  "port": 4307,
+  "title": "Issue Tracker",
+  "fictional": true
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Bill approved hours, flag the rest",
+  "accounts": {
+    "mock-timesheet-portal": "coordinator",
+    "mock-excel": "staffing"
+  },
+  "source": "mock-timesheet-portal",
+  "rows": [
+    {
+      "id": "T1",
+      "client": "A",
+      "worker": "worker-17",
+      "name": "Alex Lee",
+      "week": "2026-W46",
+      "hours": 36,
+      "status": "Approved"
+    },
+    {
+      "id": "T2",
+      "client": "B",
+      "worker": "worker-17",
+      "name": "Alex Lee",
+      "week": "2026-W46",
+      "hours": 4,
+      "status": "Pending"
+    },
+    {
+      "id": "T3",
+      "client": "A",
+      "worker": "worker-99",
+      "name": "Alex Lee",
+      "week": "2026-W46",
+      "hours": 80,
+      "status": "Approved"
+    }
+  ],
+  "expected": {
+    "approved": 36,
+    "pending": 4
+  },
+  "exception": "Client sign-in prompt requires fresh client/worker/week verification.",
+  "id": "staffing-billing",
+  "seed": 107,
+  "clock": "2026-11-14T12:00:00Z"
+}

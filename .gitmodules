@@ -1,0 +1,15 @@
+[submodule "apps/mock-bank"]
+	path = apps/mock-bank
+	url = https://github.com/newdarwindev/runspindle-demo-mock-bank.git
+[submodule "apps/mock-counterorders"]
+	path = apps/mock-counterorders
+	url = https://github.com/newdarwindev/runspindle-demo-mock-counterorders.git
+[submodule "apps/mock-excel"]
+	path = apps/mock-excel
+	url = https://github.com/newdarwindev/runspindle-demo-mock-excel.git
+[submodule "workflows/bakery-prep"]
+	path = workflows/bakery-prep
+	url = https://github.com/newdarwindev/runspindle-demo-bakery-prep.git
+[submodule "workflows/bookkeeper-deposit"]
+	path = workflows/bookkeeper-deposit
+	url = https://github.com/newdarwindev/runspindle-demo-bookkeeper-deposit.git

@@ -1,0 +1,33 @@
+{
+  "title": "Pack confirmed orders, surface gaps",
+  "accounts": {
+    "mock-supplier-portal": "produce-supplier",
+    "mock-excel": "produce"
+  },
+  "source": "mock-supplier-portal",
+  "rows": [
+    {
+      "id": "P1",
+      "restaurant": "Garden",
+      "date": "2026-11-15",
+      "item": "tomatoes",
+      "cases": 6,
+      "confirmed": true
+    },
+    {
+      "id": "P2",
+      "restaurant": "Bistro",
+      "date": "2026-11-15",
+      "item": "tomatoes",
+      "cases": 8,
+      "confirmed": false
+    }
+  ],
+  "expected": {
+    "tomatoes": 6
+  },
+  "exception": "Expired Bistro access becomes Unavailable / incomplete, not zero, until restored.",
+  "id": "produce-packing",
+  "seed": 107,
+  "clock": "2026-11-14T12:00:00Z"
+}

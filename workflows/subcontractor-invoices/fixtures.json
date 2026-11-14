@@ -1,0 +1,36 @@
+{
+  "title": "Know which invoice needs attention",
+  "accounts": {
+    "mock-vendor-portal": "electric-company",
+    "mock-excel": "electric"
+  },
+  "source": "mock-vendor-portal",
+  "rows": [
+    {
+      "id": "C-104",
+      "tenant": "GC-North",
+      "project": "school",
+      "status": "Missing signed work ticket"
+    },
+    {
+      "id": "C-112",
+      "tenant": "GC-South",
+      "project": "library",
+      "status": "Approved"
+    },
+    {
+      "id": "C-104",
+      "tenant": "GC-North",
+      "project": "other",
+      "status": "Disputed"
+    }
+  ],
+  "expected": {
+    "C-104": "Missing signed work ticket",
+    "C-112": "Approved"
+  },
+  "exception": "GC-South expires after GC-North check; resume library/C-112 and retain verified C-104.",
+  "id": "subcontractor-invoices",
+  "seed": 107,
+  "clock": "2026-11-14T12:00:00Z"
+}

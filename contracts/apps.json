@@ -1,0 +1,16 @@
+[
+  "mock-excel",
+  "mock-mail",
+  "mock-counterorders",
+  "mock-job-board",
+  "mock-applicant-portal",
+  "mock-interview-room",
+  "mock-coderpad",
+  "mock-issue-tracker",
+  "mock-code-workspace",
+  "mock-bank",
+  "mock-vendor-portal",
+  "mock-timesheet-portal",
+  "mock-marketplace",
+  "mock-supplier-portal"
+]

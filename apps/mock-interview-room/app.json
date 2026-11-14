@@ -1,0 +1,6 @@
+{
+  "id": "mock-interview-room",
+  "port": 4305,
+  "title": "Interview Room",
+  "fictional": true
+}

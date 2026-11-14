@@ -1,0 +1,6 @@
+{
+  "id": "mock-supplier-portal",
+  "port": 4313,
+  "title": "Supplier Portal",
+  "fictional": true
+}

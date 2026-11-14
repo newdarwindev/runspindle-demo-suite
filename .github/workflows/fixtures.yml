@@ -1,0 +1,49 @@
+name: Fixture verification and presentation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Verify exact submodule checkout
+        run: |
+          test -z "$(git submodule status --recursive | grep -E '^[+-U]' || true)"
+          git submodule foreach --recursive 'test -z "$(git status --porcelain)"'
+      - name: Install locked browser dependency
+        run: npm ci
+      - name: Install pinned browser
+        run: npx playwright install --with-deps chromium
+      - name: Contract tests
+        run: python3 tools/demo.py test
+      - name: Start controlled fixture apps
+        run: |
+          python3 tools/demo.py up > /tmp/fixture-server.log 2>&1 &
+          for attempt in $(seq 1 30); do curl --fail http://localhost:4300/health && break; sleep 1; done
+      - name: Seven normal recordings
+        run: python3 tools/demo.py record-all
+      - name: Sign-in and identity recovery recordings
+        if: always()
+        run: |
+          python3 tools/demo.py record bookkeeper-deposit --fault expired
+          python3 tools/demo.py record vintage-returns --fault wrong-account
+          python3 tools/demo.py record consultancy-contract --fault lost-ack
+      - name: Assemble package with all outcomes
+        if: always()
+        run: python3 tools/demo.py assemble
+      - name: Upload presentation and evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: runspindle-presentation-${{ github.sha }}
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 30
