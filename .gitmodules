@@ -4,6 +4,12 @@
 [submodule "apps/mock-bank"]
 	path = apps/mock-bank
 	url = https://github.com/newdarwindev/runspindle-demo-mock-bank.git
+[submodule "apps/mock-code-workspace"]
+	path = apps/mock-code-workspace
+	url = https://github.com/newdarwindev/runspindle-demo-mock-code-workspace.git
+[submodule "apps/mock-coderpad"]
+	path = apps/mock-coderpad
+	url = https://github.com/newdarwindev/runspindle-demo-mock-coderpad.git
 [submodule "apps/mock-counterorders"]
 	path = apps/mock-counterorders
 	url = https://github.com/newdarwindev/runspindle-demo-mock-counterorders.git
@@ -13,15 +19,39 @@
 [submodule "apps/mock-interview-room"]
 	path = apps/mock-interview-room
 	url = https://github.com/newdarwindev/runspindle-demo-mock-interview-room.git
+[submodule "apps/mock-issue-tracker"]
+	path = apps/mock-issue-tracker
+	url = https://github.com/newdarwindev/runspindle-demo-mock-issue-tracker.git
 [submodule "apps/mock-job-board"]
 	path = apps/mock-job-board
 	url = https://github.com/newdarwindev/runspindle-demo-mock-job-board.git
 [submodule "apps/mock-mail"]
 	path = apps/mock-mail
 	url = https://github.com/newdarwindev/runspindle-demo-mock-mail.git
+[submodule "apps/mock-marketplace"]
+	path = apps/mock-marketplace
+	url = https://github.com/newdarwindev/runspindle-demo-mock-marketplace.git
+[submodule "apps/mock-supplier-portal"]
+	path = apps/mock-supplier-portal
+	url = https://github.com/newdarwindev/runspindle-demo-mock-supplier-portal.git
+[submodule "apps/mock-timesheet-portal"]
+	path = apps/mock-timesheet-portal
+	url = https://github.com/newdarwindev/runspindle-demo-mock-timesheet-portal.git
+[submodule "apps/mock-vendor-portal"]
+	path = apps/mock-vendor-portal
+	url = https://github.com/newdarwindev/runspindle-demo-mock-vendor-portal.git
 [submodule "workflows/bakery-prep"]
 	path = workflows/bakery-prep
 	url = https://github.com/newdarwindev/runspindle-demo-bakery-prep.git
 [submodule "workflows/bookkeeper-deposit"]
 	path = workflows/bookkeeper-deposit
 	url = https://github.com/newdarwindev/runspindle-demo-bookkeeper-deposit.git
+[submodule "workflows/consultancy-contract"]
+	path = workflows/consultancy-contract
+	url = https://github.com/newdarwindev/runspindle-demo-consultancy-contract.git
+[submodule "workflows/staffing-billing"]
+	path = workflows/staffing-billing
+	url = https://github.com/newdarwindev/runspindle-demo-staffing-billing.git
+[submodule "workflows/subcontractor-invoices"]
+	path = workflows/subcontractor-invoices
+	url = https://github.com/newdarwindev/runspindle-demo-subcontractor-invoices.git

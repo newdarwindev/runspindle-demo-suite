@@ -67,3 +67,53 @@ class AuditRegressionTests(unittest.TestCase):
   s=IndependentEvidenceTests().state();s['workbook']['sheets']['Results']['tables']['UnrelatedTable'][0]['amount']=999
   with patch.object(demo,'load',return_value=s):self.assertFalse(demo.verify('bakery-prep')['checks']['unrelated_table_rows_preserved'])
 if __name__=='__main__':unittest.main()
+
+class AppFidelityTests(unittest.TestCase):
+ def setUp(self):
+  from server import reset
+  reset('consultancy-contract')
+ def call(self,app,action,data=None):
+  from test_suite import request,signin
+  return request('consultancy-contract',app,action,data,signin('consultancy-contract',app)['token'])
+ def invite(self):
+  self.call('mock-job-board','choose-job',{'role':'operator','listing':'job-5'})
+  self.call('mock-applicant-portal','register',{'name':'Fixture','listing':'job-5'})
+ def test_mail_inbox_thread_and_draft_crud(self):
+  self.assertEqual(self.call('mock-mail','read')[1]['messages'],[])
+  self.invite();self.invite()
+  inbox=self.call('mock-mail','read')[1];self.assertEqual(len(inbox['messages']),1)
+  self.assertEqual(self.call('mock-mail','mail-thread',{'thread':'application-47'})[1]['messages'],inbox['messages'])
+  self.assertEqual(self.call('mock-mail','mail-thread',{'thread':'unknown'})[0],404)
+  d={'id':'d1','thread':'application-47','text':'Initial reply'}
+  self.assertEqual(self.call('mock-mail','draft-save',d)[1]['status'],'Draft')
+  d['text']='Edited reply';self.call('mock-mail','draft-save',d)
+  self.assertEqual(self.call('mock-mail','draft-read',{'id':'d1'})[1]['text'],'Edited reply')
+  self.call('mock-mail','draft-delete',{'id':'d1'})
+  self.assertEqual(self.call('mock-mail','draft-read',{'id':'d1'})[0],404)
+ def test_mail_excludes_private_challenges_and_cannot_send(self):
+  self.invite()
+  self.assertEqual(self.call('mock-mail','private-challenge')[0],400)
+  self.assertEqual(self.call('mock-mail','draft-send',{'id':'d1'})[0],400)
+  self.assertEqual(self.call('mock-mail','draft-save',{'id':'d1','thread':'private-challenge','text':'x'})[0],400)
+  self.assertNotIn('token',str(self.call('mock-mail','read')[1]))
+ def test_search_and_saved_list_lifecycle(self):
+  self.assertEqual(self.call('mock-job-board','search-jobs',{'query':'SCHEDULING'})[1]['rows'][0]['id'],'job-5')
+  self.assertEqual(self.call('mock-job-board','search-jobs',{'query':'nonexistent'})[1]['rows'],[])
+  for _ in range(2):self.call('mock-job-board','save-job',{'listing':'job-5'})
+  self.assertEqual(len(self.call('mock-job-board','saved-jobs')[1]['rows']),1)
+  self.assertEqual(self.call('mock-job-board','save-job',{'listing':'private-job'})[0],404)
+  self.call('mock-job-board','unsave-job',{'listing':'job-5'})
+  self.assertEqual(self.call('mock-job-board','saved-jobs')[1]['rows'],[])
+ def test_assessment_visible_policy_and_human_handoff(self):
+  from server import reset,load
+  r=self.call('mock-coderpad','read')[1];self.assertTrue(r['starter']);self.assertIn('Expected: 2',r['instructions']);self.assertEqual(r['assistance'],'permitted')
+  reset('consultancy-contract','forbidden')
+  r=self.call('mock-coderpad','read')[1];self.assertEqual(r['assistance'],'forbidden');self.assertIn('Human-only',r['policy'])
+  self.assertEqual(self.call('mock-coderpad','assessment-handoff')[1]['status'],'awaiting-human')
+  for action in ['coderpad','review-assessment','submit-assessment']:
+   self.assertEqual(self.call('mock-coderpad',action,{'role':'operator','code':'sum(status == "open" for status in jobs)'})[0],403)
+  self.assertIsNone(load('consultancy-contract')['assessment'])
+ def test_rendered_ui_exposes_app_capabilities(self):
+  from server import render_ui
+  for app,ids in {'mock-mail':['mail-thread','draft-save','draft-read','draft-delete'],'mock-job-board':['search-jobs','save-job','unsave-job','saved-jobs'],'mock-coderpad':['assessment-policy','assessment-instructions','assessment-handoff']}.items():
+   for id in ids:self.assertIn('id="'+id+'"',render_ui(app))

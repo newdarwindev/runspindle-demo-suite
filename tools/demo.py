@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Orchestrator and independent observer: worker never receives harness/state capabilities."""
-import argparse,hashlib,json,os,shutil,subprocess,sys,time,uuid,zipfile,html
+import argparse,hashlib,json,os,shutil,subprocess,sys,time,uuid,zipfile,html,math
 from pathlib import Path
 from server import ROOT,APPS,fixture,load,save,reset,serve,scoped_rows,UNRELATED_ROWS
 CASES=json.loads((ROOT/'contracts/cases.json').read_text())
 def sha(path):
  if not (path/'.git').exists():return None
  p=subprocess.run(['git','-C',str(path),'rev-parse','HEAD'],capture_output=True,text=True);return p.stdout.strip() if p.returncode==0 else None
+def operator_metrics(events):
+ durations=[e.get('durationMilliseconds') for e in events if e.get('kind')=='scripted-operator-duration' and e.get('actor')=='fixture operator']
+ durations=[d for d in durations if isinstance(d,(int,float)) and not isinstance(d,bool) and math.isfinite(d) and d>=0]
+ return {'operatorMinutes':None,'scriptedOperatorMinutes':sum(durations)/60000 if durations else None,'scriptedOperatorActions':len(durations),'operatorTimingNote':'Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings.'}
 def verify(case):
  s=load(case);f=fixture(case);expected=f['expected'];w=s.get('workbook',{});sheets=w.get('sheets',{});results=sheets.get('Results',{});table=results.get('tables',{}).get('ResultsTable',[]);notes={'A1':'Do not change','B1':'=SUM(A1:A3)'}
  table_values={r.get('key'):r.get('value') for r in table if isinstance(r,dict)}
@@ -82,7 +86,7 @@ def run(case,fault='normal',resume=None):
   if artifact['status']!='verified':worker={'status':'blocked','reason':'Accepted bytes preserved. Resume run to deliver exact artifact.'};verdict['passed']=False;checkpoint['status']='accepted-awaiting-delivery'
  checkpoint['attemptHistory'][-1].update(finishedAt=time.time(),outcome='verified' if verdict['passed'] else worker['status'],clips=[p.name for p in out.glob('*.webm') if p.name not in media_before])
  (out/'checkpoint.json').write_text(json.dumps(checkpoint,indent=2));(out/'verification.json').write_text(json.dumps(verdict,indent=2));(out/'worker.json').write_text(json.dumps(worker,indent=2))
- manifest={'runId':runid,'case':case,'fault':fault,'seed':107,'parentCommit':checkpoint['provenance']['parentCommit'],'childCommits':checkpoint['provenance']['childCommits'],'attempts':checkpoint['attemptHistory'],'adapter':'deterministic-browser-fixture','executionMode':'fixture','upstreamExecuted':False,'outcome':'verified' if verdict['passed'] else worker['status'],'startedAt':checkpoint['startedAt'],'finishedAt':time.time(),'metrics':{'verifiedCompletions':int(verdict['passed']),'elapsedSeconds':time.time()-checkpoint['startedAt'],'attemptElapsedSeconds':time.time()-start,'operatorMinutes':None,'operatorTimingNote':'Not instrumented; do not interpret as zero.'},'checks':verdict['checks'],'media':{'clips':[p.name for p in out.glob('*.webm')],'screenshots':[p.name for p in out.glob('*.png')]},'evidence':['verification.json','worker.json','checkpoint.json']+(['browser-verification.json'] if (out/'browser-verification.json').exists() else []),'limitations':['Fixture only; upstream Runspindle does not execute.','Comparative staff-time savings untested.']}
+ manifest={'runId':runid,'case':case,'fault':fault,'seed':107,'parentCommit':checkpoint['provenance']['parentCommit'],'childCommits':checkpoint['provenance']['childCommits'],'attempts':checkpoint['attemptHistory'],'adapter':'deterministic-browser-fixture','executionMode':'fixture','upstreamExecuted':False,'outcome':'verified' if verdict['passed'] else worker['status'],'startedAt':checkpoint['startedAt'],'finishedAt':time.time(),'metrics':{'verifiedCompletions':int(verdict['passed']),'elapsedSeconds':time.time()-checkpoint['startedAt'],'attemptElapsedSeconds':time.time()-start,**operator_metrics(json.loads((out/'events.json').read_text()) if (out/'events.json').exists() else [])},'checks':verdict['checks'],'media':{'clips':[p.name for p in out.glob('*.webm')],'screenshots':[p.name for p in out.glob('*.png')]},'evidence':['verification.json','worker.json','checkpoint.json']+(['events.json'] if (out/'events.json').exists() else [])+(['browser-verification.json'] if (out/'browser-verification.json').exists() else []),'limitations':['Fixture only; upstream Runspindle does not execute.','Comparative staff-time savings untested.']}
  (out/'manifest.json').write_text(json.dumps(manifest,indent=2));print(json.dumps(manifest));return verdict['passed']
 def assemble():
  dest=ROOT/'artifacts/package';dest.mkdir(parents=True,exist_ok=True);cards=[];notes=['# Runspindle demo suite\n\nFictional fixtures. Conceptual interface. No upstream integration claim.\n']
