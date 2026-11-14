@@ -32,15 +32,15 @@ jobs:
           for attempt in $(seq 1 30); do curl --fail http://localhost:4300/health && break; sleep 1; done
       - name: Seven normal recordings
         run: python3 tools/demo.py record-all
-      - name: Sign-in and identity recovery recordings
+      - name: Fault and fresh-process recovery recordings
         if: always()
-        run: |
-          python3 tools/demo.py record bookkeeper-deposit --fault expired
-          python3 tools/demo.py record vintage-returns --fault wrong-account
-          python3 tools/demo.py record consultancy-contract --fault lost-ack
+        run: python3 tools/demo.py fault-matrix
+      - name: Record locked-version evaluation and rollback
+        if: always()
+        run: node tools/evaluation-browser.cjs
       - name: Assemble package with all outcomes
         if: always()
-        run: python3 tools/demo.py assemble
+        run: python3 tools/presentation.py --reel
       - name: Upload presentation and evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -79,10 +79,18 @@ def main():
  elif a.command=='record-all':sys.exit(0 if all([run(c) for c in CASES]) else 1)
  elif a.command=='fault-matrix':
   matrix=[]
-  for case,fault in [('bookkeeper-deposit','expired'),('vintage-returns','wrong-account'),('bookkeeper-deposit','denied'),('bookkeeper-deposit','missing'),('bakery-prep','crash'),('consultancy-contract','lost-ack'),('consultancy-contract','forbidden'),('bakery-prep','artifact-interruption'),('bakery-prep','ambiguous'),('produce-packing','tenant-expired'),('subcontractor-invoices','tenant-expired'),('bakery-prep','offline')]:
-   passed=run(case,fault);matrix.append({'case':case,'fault':fault,'verifiedCompletion':passed})
-  (ROOT/'artifacts/fault-matrix.json').write_text(json.dumps(matrix,indent=2));print(json.dumps(matrix,indent=2))
- elif a.command=='assemble':assemble()
+  scenarios=[('bookkeeper-deposit','expired'),('vintage-returns','wrong-account'),('bookkeeper-deposit','denied'),('bookkeeper-deposit','missing'),('bakery-prep','crash'),('consultancy-contract','lost-ack'),('consultancy-contract','forbidden'),('bakery-prep','artifact-interruption'),('bakery-prep','ambiguous'),('produce-packing','tenant-expired'),('subcontractor-invoices','tenant-expired'),('bakery-prep','offline')]
+  for case,fault in scenarios:
+   passed=run(case,fault);manifest_path=max((ROOT/'artifacts').glob('*/manifest.json'),key=lambda p:p.stat().st_mtime);m=json.loads(manifest_path.read_text());worker=json.loads((manifest_path.parent/'worker.json').read_text());first=m['outcome'];resumed=False
+   if fault in ['crash','artifact-interruption','offline'] and not passed:
+    passed=run(case,resume=m['runId']);resumed=True
+   expected_block={'denied':'Access denied','missing':'Missing or ambiguous','forbidden':'Agent assistance forbidden'}
+   matched=(not passed and expected_block[fault] in worker.get('reason','') and bool(m['media']['clips'])) if fault in expected_block else passed
+   matrix.append({'case':case,'fault':fault,'runId':m['runId'],'initialOutcome':first,'resumed':resumed,'verifiedCompletion':passed,'expectedBehaviorVerified':matched})
+  (ROOT/'artifacts/fault-matrix.json').write_text(json.dumps(matrix,indent=2));print(json.dumps(matrix,indent=2));sys.exit(0 if all(x['expectedBehaviorVerified'] for x in matrix) else 1)
+ elif a.command=='assemble':
+  from presentation import assemble as build_presentation
+  print(json.dumps(build_presentation(ROOT),indent=2))
  elif a.command=='verify':print(json.dumps(verify(a.case),indent=2))
  elif a.command=='test':subprocess.run([sys.executable,'-m','unittest','discover','-s','tests','-v'],cwd=ROOT,check=True)
 if __name__=='__main__':main()

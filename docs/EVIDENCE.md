@@ -14,6 +14,10 @@ All generated media and state remain outside Git. CI publishes artifact bundles,
 
 Session tokens stay in disposable browser session storage and server state, outside published evidence. Do not enable Playwright traces containing raw network bodies. Screenshots hide token values, and no real credentials are collected. Loopback listeners are development-only and are not a hosted multi-user security boundary.
 
-## Remaining work at initial implementation
+## Current verification
 
-Browser verification/recording, fresh-process checkpoint resumption, scoped tenant instances, specific recovery UI for every case, fixture evaluation approval/rollback, release publication and hosted gallery remain unverified or incomplete until their evidence is added. A checklist item must not be checked merely because code exists.
+GitHub Actions run [43628194461](https://github.com/newdarwindev/runspindle-demo-suite/actions/runs/43628194461) verified all seven normal browser workflows plus expired bank-session recovery, buyer-to-seller account recovery, and lost-ack reconciliation at parent commit e080edf11cd7166576d93caa67547ef1fa95f67b. The preinstalled official Chrome channel ran with its sandbox enabled. Actual clips were retained in its artifact. A fresh recursive GitHub clone verified nine exact child pins and passed 25 contract tests.
+
+Twelve child repositories remain ordinary source directories temporarily because GitHub rejected further repository creation with a cooldown message. Their code is included so the default branch runs; completion requires creating those repositories and replacing the directories with exact gitlinks. No rate-limit bypass is used.
+
+Full fault-matrix recordings and evaluation/presentation verification are tracked separately in the latest CI. Passing unit tests alone does not prove these paths.
