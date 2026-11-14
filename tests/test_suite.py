@@ -5,7 +5,9 @@ from server import Handler,reset,load,fixture,APPS
 from demo import verify
 
 def request(case,app,action,data=None,token='',path='/ui',headers=None):
- body=json.dumps({'case':case,'action':action,'data':data or {},'token':token}).encode();h=object.__new__(Handler);h.rfile=io.BytesIO(body);h.headers={'Content-Length':str(len(body)),**(headers or {})};h.path=path;h.server=types.SimpleNamespace(app=app);result=[];h.send=lambda obj,status=200,kind=None:result.append((status,obj));h.do_POST();return result[0]
+ data=dict(data or {});
+ if case=='bookkeeper-deposit' and app=='mock-bank':data.setdefault('scope','invoice-107')
+ body=json.dumps({'case':case,'action':action,'data':data,'token':token}).encode();h=object.__new__(Handler);h.rfile=io.BytesIO(body);h.headers={'Content-Length':str(len(body)),**(headers or {})};h.path=path;h.server=types.SimpleNamespace(app=app);result=[];h.send=lambda obj,status=200,kind=None:result.append((status,obj));h.do_POST();return result[0]
 def signin(case,app,account=None,challenge=False):return request(case,app,'signin',{'account':account or fixture(case)['accounts'][app],'role':'operator','challengeComplete':challenge})[1]
 class ContractTests(unittest.TestCase):
  def setUp(self):reset('bookkeeper-deposit');reset('consultancy-contract');reset('bakery-prep')
@@ -108,6 +110,6 @@ class PresentationRegressionTests(unittest.TestCase):
   reset('bookkeeper-deposit','expired');self.assertEqual(signin('bookkeeper-deposit','mock-bank')['status'],'challenge');self.assertEqual(signin('bookkeeper-deposit','mock-excel')['status'],'signed-in')
  def test_primary_table_and_collapsed_evidence(self):
   from server import render_ui
-  ui=render_ui('mock-excel');self.assertEqual(ui.count('id="sheet-view"'),1);self.assertIn('<summary>Raw record evidence</summary>',ui);self.assertIn('position:sticky',ui);self.assertIn('Verified totals:',ui)
+  ui=render_ui('mock-excel');self.assertEqual(ui.count('id="sheet-view"'),1);self.assertIn('<summary>Raw record evidence</summary>',ui);self.assertIn('position:sticky',ui);self.assertIn('Saved totals:',ui)
 
 if __name__=='__main__':unittest.main()

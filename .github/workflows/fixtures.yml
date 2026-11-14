@@ -54,3 +54,24 @@ jobs:
           path: artifacts/
           if-no-files-found: error
           retention-days: 30
+  publish-presentation:
+    needs: verify
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Download verified presentation artifact
+        run: gh run download "$GITHUB_RUN_ID" --name "runspindle-presentation-$GITHUB_SHA" --dir package
+      - name: Publish durable fixture preview
+        run: |
+          tag="demo-${GITHUB_SHA:0:12}"
+          gh release create "$tag" package/presentation.zip package/gallery-verification.json \
+            --target "$GITHUB_SHA" --prerelease \
+            --title "Verified fixture presentation ${GITHUB_SHA:0:7}" \
+            --notes "Actual browser fixture recordings, fault recovery, evaluation approval/rollback, gallery playback and independent evidence. Download presentation.zip, extract and open index.html. Synthetic data and conceptual interface only; upstream Runspindle does not execute and comparative savings are untested. Check repository STATUS.md for child-publication limits. Verified CI: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
