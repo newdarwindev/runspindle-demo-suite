@@ -1,16 +1,20 @@
 name: Fixture verification and presentation
 on:
   push:
-  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: runspindle-demo-local
+  cancel-in-progress: false
 jobs:
   verify:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    runs-on: [self-hosted, linux, x64, runspindle-isolated, strix]
+    timeout-minutes: 14
     env:
-      BROWSER_CHANNEL: chrome
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/runspindle-demo-browsers
+      npm_config_cache: ${{ runner.temp }}/runspindle-demo-npm
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -20,18 +24,24 @@ jobs:
         run: |
           test -z "$(git submodule status --recursive | grep -E '^[+-U]' || true)"
           git submodule foreach --recursive 'test -z "$(git status --porcelain)"'
+      - name: Check provisioned local-runner tools
+        run: |
+          for tool in python3 node npm git ffmpeg ffprobe; do command -v "$tool" || exit 1; done
+          test "$(uname -s)" = Linux
+          test "$(uname -m)" = x86_64
+          echo "Using the provisioned disposable local runner; no host or image changes."
       - name: Install locked browser dependency
         run: npm ci
       - name: Install pinned browser
-        run: npx playwright install --with-deps chromium
-      - name: Install presentation renderer
-        run: sudo apt-get install -y ffmpeg
+        run: npx playwright install chromium
       - name: Contract tests
         run: python3 tools/demo.py test
       - name: Start controlled fixture apps
         run: |
-          python3 tools/demo.py up > /tmp/fixture-server.log 2>&1 &
+          python3 tools/demo.py up > "$RUNNER_TEMP/fixture-server.log" 2>&1 &
+          echo "$!" > "$RUNNER_TEMP/fixture-server.pid"
           for attempt in $(seq 1 30); do curl --fail http://localhost:4300/health && break; sleep 1; done
+          curl --fail http://localhost:4300/health
       - name: Manual handoff browser contract
         run: |
           python3 tools/demo.py reset bookkeeper-deposit --fault expired
@@ -50,6 +60,13 @@ jobs:
       - name: Open gallery and play recorded clips
         if: always()
         run: node tools/verify-gallery.cjs
+      - name: Stop this job's fixture server
+        if: always()
+        run: |
+          if test -f "$RUNNER_TEMP/fixture-server.pid"; then
+            pid=$(cat "$RUNNER_TEMP/fixture-server.pid")
+            if test -r "/proc/$pid/cmdline" && tr "\0" " " < "/proc/$pid/cmdline" | grep -Fq "tools/demo.py up"; then kill "$pid"; fi
+          fi
       - name: Upload presentation and evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -60,8 +77,8 @@ jobs:
           retention-days: 30
   publish-presentation:
     needs: verify
-    if: github.event_name != 'pull_request'
-    runs-on: ubuntu-24.04
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, linux, x64, runspindle-isolated, strix]
     timeout-minutes: 10
     permissions:
       actions: read
@@ -70,6 +87,8 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
     steps:
+      - name: Check provisioned release tool
+        run: command -v gh
       - name: Download verified presentation artifact
         run: gh run download "$GITHUB_RUN_ID" --name "runspindle-presentation-$GITHUB_SHA" --dir package
       - name: Publish durable fixture preview
