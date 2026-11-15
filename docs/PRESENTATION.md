@@ -30,3 +30,5 @@ Open `http://localhost:4320`, compare versions, approve feedback for the display
 Timings are fixture elapsed time. Human operator minutes remain unknown unless actually measured. Future competitive cost comparisons must include setup, maintenance, review and recovery per verified completion against supported alternatives.
 
 The package includes executed `fault-matrix.json` and `fault-matrix.md`, linked from the gallery and evidence index. Each row must match an exported run identity, case, fault and final verdict. Missing matrix input is visibly unavailable. Expected blocked or unknown behavior is not reported as a completed business task.
+
+The combined reel includes VP8 WebM and H.264 MP4 versions. The gallery offers WebM first so pinned Chromium builds without proprietary H.264 codecs can play it; downloadable MP4 remains available. Both versions derive from the same actual fixture clips. This packaging change does not turn short page captures into complete product execution.
