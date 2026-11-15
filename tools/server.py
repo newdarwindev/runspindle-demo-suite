@@ -3,7 +3,10 @@ import hashlib,json,os,secrets,threading,time,csv,io,copy,subprocess,sys
 from pathlib import Path
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 ROOT=Path(__file__).resolve().parents[1]; STATE=ROOT/'.state'; LOCK=threading.RLock()
-APPS=json.loads((ROOT/'contracts/apps.json').read_text()); PORTS={a:4300+i for i,a in enumerate(APPS)}
+APPS=json.loads((ROOT/'contracts/apps.json').read_text())
+APP_DEFAULTS={a:json.loads((ROOT/'apps'/a/'defaults.json').read_text()) for a in APPS}
+PORTS={a:APP_DEFAULTS[a]['port'] for a in APPS}
+KNOWN_ACTIONS={action for config in APP_DEFAULTS.values() for action in config['allowedActions']}
 
 UNRELATED_ROWS=[{'invoice':'historic-99','amount':75,'status':'Paid'}]
 OBSERVATION_TTL=300
@@ -43,6 +46,7 @@ def workbook_commit(s,case,result,sources=None):
 
 def render_ui(app):
  content=(ROOT/'apps'/app/'ui.html').read_text().replace('__APP__',app).replace('Verified response','Response received')
+ content=content.replace("$('title').textContent=APP","$('title').textContent="+json.dumps(APP_DEFAULTS[app]['title'],ensure_ascii=False))
  content=content.replace('<style>', '<style>header{position:sticky;top:0;z-index:5}header h1{font-size:24px;margin:8px 0}header p{margin:4px 0}table{width:100%;border-collapse:collapse;margin:12px 0}td,th{padding:12px;text-align:left;border-bottom:1px solid #4c657a}summary{cursor:pointer;color:#a1f0d5}#sheet-view{scroll-margin-top:170px}#sheet-view h3{margin:10px 0}details{margin:10px 0}#result{max-height:260px;overflow:auto}')
  content=content.replace('<pre id="records">No records read.</pre>', '<details><summary>Raw record evidence</summary><pre id="records">No records read.</pre></details>')
  content=content.replace('<pre id="result"></pre>', '<details><summary>Raw operation evidence</summary><pre id="result"></pre></details>')
@@ -121,6 +125,7 @@ class Handler(BaseHTTPRequestHandler):
       s['sessions']={k:{**v,'status':'expired'} if v['app']==data.get('app',app) else v for k,v in s['sessions'].items()};save(case,s);return self.send({'ok':True})
      return self.send({'error':'unknown harness action'},400)
     if self.path!='/ui':return self.send({'error':'not found'},404)
+    if action in KNOWN_ACTIONS and action not in APP_DEFAULTS[app]['allowedActions']:return self.send({'error':'Operation outside app-owned allowed actions'},403)
     if action=='signin':
      account=data['account'];expected=f['accounts'].get(app);scope=data.get('scope','')
      if app==f['source'] and case in SCOPES and scope not in SCOPES[case]:return self.send({'error':'Select authorized tenant / record scope'},403)

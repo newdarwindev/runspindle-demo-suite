@@ -32,6 +32,10 @@ jobs:
         run: |
           python3 tools/demo.py up > /tmp/fixture-server.log 2>&1 &
           for attempt in $(seq 1 30); do curl --fail http://localhost:4300/health && break; sleep 1; done
+      - name: Manual handoff browser contract
+        run: |
+          python3 tools/demo.py reset bookkeeper-deposit --fault expired
+          node tools/check-manual-handoff.cjs
       - name: Seven normal recordings
         run: python3 tools/demo.py record-all
       - name: Fault and fresh-process recovery recordings
