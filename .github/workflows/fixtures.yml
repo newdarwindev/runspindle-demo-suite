@@ -35,6 +35,8 @@ jobs:
         run: npx playwright install chromium
       - name: Contract tests
         run: python3 tools/demo.py test
+      - name: Distinct branding desktop and mobile gate
+        run: node tools/check-branding.cjs
       - name: Start controlled fixture apps
         run: |
           python3 tools/demo.py up > "$RUNNER_TEMP/fixture-server.log" 2>&1 &

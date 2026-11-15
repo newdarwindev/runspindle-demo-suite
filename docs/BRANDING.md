@@ -33,7 +33,11 @@ Every mock software product must have its own branding, visual style, color sche
 
 2026-11-15: all 68 Python suite tests passed, including three new branding tests across all 14 apps. These enforce identity uniqueness, implementation wiring, preserved selectors, offline assets, responsive/focus rules and palette contrast. They are not visual approval.
 
-`node tools/check-branding.cjs` is the bounded browser gate. It writes screenshots and `artifacts/branding/verification.json`. Use the installed Playwright browser, `BROWSER_CHANNEL=chrome`, or a supported `BROWSER_EXECUTABLE`. Chromium sandboxing stays enabled. The current execution host blocked Chromium process socket creation (`Operation not permitted`), including a bounded elevated attempt, so this gate and human visual review remain pending. Do not disable sandboxing to make it pass.
+`node tools/check-branding.cjs` is the bounded browser gate. It writes screenshots and `artifacts/branding/verification.json`. Use the installed Playwright browser, `BROWSER_CHANNEL=chrome`, or a supported `BROWSER_EXECUTABLE`. Chromium sandboxing stays enabled.
+
+2026-11-15: a fresh recursive checkout of `fb916a855fca470454d88a3d363d74ba695e8e5b` on the connected Linux qualification host passed all 68 tests and the sandboxed Chrome desktop/mobile gate: 14 apps, 28 screenshots, no horizontal overflow, no JavaScript errors, visible keyboard focus and correct displayed identities. Desktop/mobile contact sheets were visually reviewed for distinct palettes, mastheads, typography treatments and card motifs. [Desktop contact sheet](branding/desktop.png), [mobile contact sheet](branding/mobile.png), [machine-readable evidence](branding/verification.json).
+
+The initial cloud host could not create Chromium process sockets; qualification instead used a supported connected host without disabling sandboxing. This verifies the initial signed-out layouts, not every populated or interrupted workflow state. Refreshed full workflow recordings/package verification remain a separate gate.
 
 The original release recordings and static portfolio remain historical evidence of the prior interface. No new recordings, full browser workflow pass or visual acceptance is claimed by this change. No persistent jobs, services or agents are installed.
 

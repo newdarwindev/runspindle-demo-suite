@@ -29,4 +29,4 @@ No upstream Runspindle code executes. All identities/data are fictional and inte
 
 ## Additional branding milestone
 
-[Milestone 6](BRANDING.md) is in progress: 14 independent fictional brands implemented and 68 Python tests passed. Sandboxed desktop/mobile visual QA is blocked by the execution host's process-socket restriction. Visual review and refreshed recordings remain pending. This does not change the verified original-release checkpoint above or claim its recordings show the new designs.
+[Milestone 6](BRANDING.md) is in progress: 14 independent fictional brands implemented and 68 Python tests passed. Sandboxed desktop/mobile checks and contact-sheet visual review passed on a supported connected Linux host (14 apps, 28 screenshots). Refreshed full workflow recordings remain pending. This does not change the verified original-release checkpoint above or claim its recordings show the new designs.
