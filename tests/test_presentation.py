@@ -2,7 +2,7 @@ import json,sys,tempfile,unittest,zipfile
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from presentation import assemble,safe_file,validate_links,stamp
+from presentation import assemble,safe_file,validate_links,stamp,export_fault_matrix
 import evaluate
 class PresentationTests(unittest.TestCase):
  def test_blocked_package_is_truthful_and_zip_verified(self):
@@ -15,6 +15,19 @@ class PresentationTests(unittest.TestCase):
    p=Path(tmp);(p/'cookies.json').write_text('{}')
    with self.assertRaises(ValueError):safe_file(p,'../outside.json')
    with self.assertRaises(ValueError):safe_file(p,'cookies.json')
+ def test_fault_matrix_export_and_identity_validation(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);art=root/'artifacts';dest=root/'package';art.mkdir();(dest/'run-1').mkdir(parents=True)
+   entry={'runId':'run-1','case':'bookkeeper-deposit','outcome':'blocked'}
+   (dest/'run-1/manifest.json').write_text(json.dumps({'fault':'denied'}))
+   row={'runId':'run-1','case':'bookkeeper-deposit','fault':'denied','initialOutcome':'blocked','resumed':False,'verifiedCompletion':False,'expectedBehaviorVerified':True,'privateExtra':'must not export'}
+   (art/'fault-matrix.json').write_text(json.dumps([row]));r=export_fault_matrix(art,dest,[entry]);self.assertEqual(r['status'],'verified');self.assertNotIn('privateExtra',(dest/'fault-matrix.json').read_text());self.assertIn('run-1/manifest.json',(dest/'fault-matrix.md').read_text())
+   for changes in [{'runId':'absent'},{'case':'wrong'},{'fault':'missing'},{'verifiedCompletion':True},{'resumed':'false'}]:
+    (art/'fault-matrix.json').write_text(json.dumps([{**row,**changes}]))
+    with self.assertRaises(ValueError):export_fault_matrix(art,dest,[entry])
+ def test_fault_matrix_absence_is_explicit(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);self.assertEqual(export_fault_matrix(root,root,[])['status'],'unavailable')
  def test_timestamps(self):self.assertEqual(stamp(65.25),'00:01:05.250')
  def test_feedback_bound_to_exact_output(self):
   with tempfile.TemporaryDirectory() as tmp,patch.object(evaluate,'STATE',Path(tmp)/'state.json'):

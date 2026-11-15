@@ -28,3 +28,5 @@ python3 tools/evaluate.py serve
 Open `http://localhost:4320`, compare versions, approve feedback for the displayed output hash, then copy the displayed v2 revision into the explicit approval field. Activation is rejected without that approval. Rollback restores the prior version. State defaults to `.state/evaluation.json`; the recording command uses a separate run-specific state file.
 
 Timings are fixture elapsed time. Human operator minutes remain unknown unless actually measured. Future competitive cost comparisons must include setup, maintenance, review and recovery per verified completion against supported alternatives.
+
+The package includes executed `fault-matrix.json` and `fault-matrix.md`, linked from the gallery and evidence index. Each row must match an exported run identity, case, fault and final verdict. Missing matrix input is visibly unavailable. Expected blocked or unknown behavior is not reported as a completed business task.

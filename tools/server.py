@@ -47,9 +47,9 @@ def render_ui(app):
  content=content.replace('<pre id="records">No records read.</pre>', '<details><summary>Raw record evidence</summary><pre id="records">No records read.</pre></details>')
  content=content.replace('<pre id="result"></pre>', '<details><summary>Raw operation evidence</summary><pre id="result"></pre></details>')
  content=content.replace('<label>Account ', '<label>Tenant / record scope <select id="scope"><option value="">Default</option></select></label><label>Account ')
- content=content.replace('data,token','data:{...data,scope:$("scope").value},token').replace("return APP+':'+$('case').value", "return APP+':'+$('case').value+':'+$('scope').value")
- content=content.replace('<button id="read">', '<button id="decide">Operator: defer ambiguous pickup to Saturday</button><button id="freshness">Check observation freshness</button><button id="read">')
- extra="const scopes="+json.dumps(SCOPES)+";function setScopes(){const el=$('scope');el.innerHTML='<option value=\"\">Default</option>';if(APP!== 'mock-excel')for(const s of Object.keys(scopes[$('case').value]||{}))el.add(new Option(s,s));}setScopes();$('scope').onchange=restore;$('case').onchange=()=>{setScopes();restore()};$('decide').hidden=APP!=='mock-counterorders';$('decide').onclick=()=>call('decide-pickup',{role:'operator',date:'2026-11-21'});"
+ content=content.replace('data,token','data:{...data,scope:$("scope").value,record:new URLSearchParams(location.search).get("record")||undefined,fixtureOperator:new URLSearchParams(location.search).get("operator")!=="manual"},token').replace("return APP+':'+$('case').value", "return APP+':'+$('case').value+':'+$('scope').value")
+ content=content.replace('<button id="read">', '<label id="pickup-choice">Owner pickup date <select id="pickup-date"><option value="2026-11-21">Saturday, November 21</option><option value="2026-11-15">Tomorrow, November 15</option></select></label><button id="decide">Operator: confirm pickup date</button><button id="freshness">Check observation freshness</button><button id="read">')
+ extra="const scopes="+json.dumps(SCOPES)+";function setScopes(){const el=$('scope');el.innerHTML='<option value=\"\">Default</option>';if(APP!== 'mock-excel')for(const s of Object.keys(scopes[$('case').value]||{}))el.add(new Option(s,s));}setScopes();$('scope').onchange=restore;$('case').onchange=()=>{setScopes();restore()};$('decide').hidden=APP!=='mock-counterorders';$('pickup-choice').hidden=APP!=='mock-counterorders';$('decide').onclick=()=>call('decide-pickup',{role:'operator',date:$('pickup-date').value});"
  controls='<section id="rich-controls"><h2>Workbook and operator decisions</h2><label>Named table cell key <input id="cell-key" value="loaves"></label><label>Cell value <input id="cell-value" value="3"></label><button id="cell-edit">Save named-table cell</button><button id="csv-export">Export ResultsTable CSV</button><button id="csv-import">Import CSV from work payload</button><button id="choose-job">Owner chooses job-5</button><button id="register">Register fictional consultancy</button><button id="review-assessment">Consultant approves exact assessment revision</button><button id="submit-assessment">Submit reviewed assessment</button></section>'
  content=content.replace('<h2>Selected account records</h2>', '<h2>Selected account records</h2><div id="sheet-view"></div>')
  content=content.replace('<section id="editor">',controls+'<section id="editor"><label>Source links JSON <textarea id="source-links">{}</textarea></label>')
@@ -70,11 +70,17 @@ def render_ui(app):
   content=content.replace('<section id="rich-controls">','<section><h2>Inbox, threads and drafts</h2><p>Operator invitations only. Authentication challenges are excluded from this mailbox.</p><label>Thread <input id="mail-thread-id" value="application-47"></label><button id="mail-thread">Open thread</button><label>Draft ID <input id="draft-id" value="reply-1"></label><textarea id="draft-text" aria-label="Draft reply">Thank you. The consultants will attend the fictional interview.</textarea><button id="draft-save">Save draft</button><button id="draft-read">Read draft</button><button id="draft-delete">Delete draft</button><pre id="mail-view"></pre></section><section id="rich-controls">')
   extra+="for(const action of ['mail-thread','draft-save','draft-read','draft-delete'])$(action).onclick=async()=>{$('mail-view').textContent=JSON.stringify(await call(action,{thread:$('mail-thread-id').value,id:$('draft-id').value,text:$('draft-text').value}),null,2)};"
  if app=='mock-job-board':
-  content=content.replace('<section id="rich-controls">','<section><h2>Search and saved listings</h2><label>Search <input id="job-query" value="scheduling"></label><button id="search-jobs">Search listings</button><label>Listing <input id="job-id" value="job-5"></label><button id="save-job">Save listing</button><button id="unsave-job">Remove saved listing</button><button id="saved-jobs">View saved listings</button><pre id="job-view"></pre></section><section id="rich-controls">')
+  content=content.replace('<section id="rich-controls">','<section><h2>Search and saved listings</h2><a href="http://localhost:4304/?case=consultancy-contract&amp;account=consultant">Open fictional hiring portal</a><label>Search <input id="job-query" value="scheduling"></label><button id="search-jobs">Search listings</button><label>Listing <input id="job-id" value="job-5"></label><button id="save-job">Save listing</button><button id="unsave-job">Remove saved listing</button><button id="saved-jobs">View saved listings</button><pre id="job-view"></pre></section><section id="rich-controls">')
   extra+="for(const action of ['search-jobs','save-job','unsave-job','saved-jobs'])$(action).onclick=async()=>{$('job-view').textContent=JSON.stringify(await call(action,{query:$('job-query').value,listing:$('job-id').value}),null,2)};"
  if app=='mock-coderpad':
   content=content.replace('<section id="rich-controls">','<section><h2>Assessment instructions and assistance policy</h2><p id="assessment-policy">Read the assessment before writing code. Assistance policy is not yet observed.</p><pre id="assessment-instructions"></pre><button id="assessment-handoff">Hand off assessment to human</button></section><section id="rich-controls">')
   extra+="$('read').onclick=async()=>{const r=await call('read');$('records').textContent=JSON.stringify(r,null,2);$('assessment-policy').textContent=r.policy;$('assessment-instructions').textContent=r.instructions+' Starter: '+r.starter;if(r.starter)$('payload').value=r.starter;for(const id of ['exercise','review-assessment','submit-assessment'])$(id).disabled=r.assistance!=='permitted';};$('assessment-handoff').onclick=()=>call('assessment-handoff');"
+ content=content.replace("fixtureOperator:true", "fixtureOperator:new URLSearchParams(location.search).get('operator')!=='manual'")
+ extra+="const targetScope=new URLSearchParams(location.search).get('scope');if(targetScope&&[...$('scope').options].some(o=>o.value===targetScope)){$('scope').value=targetScope;restore()};"
+ extra+="function linkify(){for(const el of document.querySelectorAll('#sheet-view td,#mail-view,#result')){if(el.querySelector('a'))continue;const text=el.textContent;const rx=/http:\\/\\/localhost:43[0-9]{2}[^\\s\"<>]*/g;let match,last=0;const frag=document.createDocumentFragment();while((match=rx.exec(text))){frag.append(document.createTextNode(text.slice(last,match.index)));const a=document.createElement('a');a.href=match[0];a.textContent=match[0];a.target='_blank';a.rel='noopener';frag.append(a);last=rx.lastIndex}if(last){frag.append(document.createTextNode(text.slice(last)));el.replaceChildren(frag)}}}new MutationObserver(linkify).observe(document.querySelector('main'),{childList:true,subtree:true});"
+ if app=='mock-applicant-portal':
+  content=content.replace('<section id="rich-controls">','<section><h2>Application and written screening</h2><label>Availability and maintenance experience<textarea id="application-answer">We are two consultants available five hours weekly.</textarea></label><button id="application-draft">Save application draft</button><button id="written-screening">Complete written screening from submitted answer</button></section><section id="rich-controls">')
+  extra+="$('application-draft').onclick=()=>call('application-draft',{answer:$('application-answer').value});$('written-screening').onclick=()=>call('written-screening');"
  if app=='mock-bank':content=content.replace('Tenant / record scope','Authorized invoice reference')
  return content.replace('</script>',extra+'</script>')
 
@@ -88,6 +94,7 @@ def reset(case,fault='normal'):
  if fault=='missing' and case=='bookkeeper-deposit': rows=[{**r,'reference':''} for r in rows]
  s={'case':case,'fault':fault,'rows':rows,'sessions':{},'workbook':{'rows':[],'unrelated':{'ownerNote':'Do not change','formula':'=SUM(A1:A3)'},'revision':0,'filename':'Morning Prep.xlsx' if case=='bakery-prep' else case+'.xlsx','sheets':{'Results':{'tables':{'ResultsTable':[],'UnrelatedTable':copy.deepcopy(UNRELATED_ROWS)},'totals':{}},'Notes':{'cells':{'A1':'Do not change','B1':'=SUM(A1:A3)'},'tables':{}}},'history':[]},'events':[],'operations':{},'sourceCode':'def export(jobs):\n    return [j for j in jobs if j["status"] == "open"]\n','tests':None,'application':'Draft','round':0,'issueStatus':'Open','comments':[],'pr':None,'lastResult':None,'scopeChallenges':[],'decisions':[],'observations':[],'selectedListing':None,'registration':None,'assessment':None,'assessmentApproval':None,'assessmentSubmitted':False}
  if case=='consultancy-contract':s['codeRepository']=init_code_repository()
+ s['applicationDraft']=None;s['writtenScreening']=None
  s['mail']={'messages':[],'drafts':{}};s['savedListings']=[];s['assessmentHandoff']=None
  save(case,s);return s
 class Handler(BaseHTTPRequestHandler):
@@ -137,13 +144,15 @@ class Handler(BaseHTTPRequestHandler):
     if action=='read':
      event('source-read',account=account,scope=scope)
      result={'rows':scoped_rows(case,scope,s['rows']) if app==f['source'] else [],'account':account,'app':app,'case':case,'observedAt':time.time()}
+     if data.get('record') and app==f['source']:result['rows']=[r for r in result['rows'] if r.get('id')==data['record']]
      if app=='mock-excel':result=s['workbook']
      if app=='mock-mail':result={'messages':s['mail']['messages'],'drafts':list(s['mail']['drafts'].values()),'notice':'Authentication challenges are never delivered to the worker mailbox.'}
      if app=='mock-job-board':result.update({'savedListings':s['savedListings']})
      if app=='mock-coderpad':result={'title':'Count open jobs','instructions':'Return the number of open statuses in jobs. Fixture inputs: open, closed, open. Expected: 2.','starter':'sum(False for status in jobs)','assistance':'forbidden' if s['fault']=='forbidden' else 'permitted','policy':'Human-only assessment. Do not enter, run or submit agent code.' if s['fault']=='forbidden' else 'Agent assistance permitted; consultant must review exact revision before submission.','humanHandoff':s['assessmentHandoff']}
      if app=='mock-code-workspace':result={'code':(code_repository(s)/'exporter.py').read_text(),'tests':s['tests'],'pr':s['pr'],'baseCommit':s['codeRepository']['baseCommit'],'changedFiles':git_fixture(code_repository(s),'diff','--name-only')}
-     if app=='mock-issue-tracker':result={'id':'47','title':'The CSV export leaves out completed jobs.','status':s['issueStatus'],'comments':s['comments']}
-     if app=='mock-applicant-portal':result={'application':s['application'],'round':s['round']}
+     if app=='mock-issue-tracker':result={'id':'47','title':'The CSV export leaves out completed jobs.','status':s['issueStatus'],'comments':s['comments'],'workspace':'customer-maintenance','assignee':'Two-person fixture consultancy','pullRequest':s.get('pr')}
+     if app=='mock-interview-room':result={'title':'Scheduled fictional maintenance-contract interview','expectedActor':'Human consultant and fixture employer','instructions':'The operator completes the live interview, then advances this round.','round':s['round'],'application':s['application']}
+     if app=='mock-applicant-portal':result={'application':s['application'],'round':s['round'],'draft':s['applicationDraft'],'writtenScreening':s['writtenScreening']}
      observed_at=time.time()
      if s['fault']=='stale' and app==f['source'] and not s.get('staleInjected'):
       observed_at-=OBSERVATION_TTL+1;s['staleInjected']=True
@@ -153,7 +162,7 @@ class Handler(BaseHTTPRequestHandler):
      if data.get('role')!='operator' or data.get('date') not in ['2026-11-15','2026-11-21']:return self.send({'error':'Owner date decision required'},403)
      for row in s['rows']:
       if row.get('id')=='223':row['date']=data['date']
-     s['decisions'].append({'order':'223','date':data['date'],'actor':'fixture operator','time':time.time()});save(case,s);return self.send({'status':'verified','decision':s['decisions'][-1]})
+     s['decisions'].append({'order':'223','date':data['date'],'actor':'fixture operator' if data.get('fixtureOperator') else 'human operator','time':time.time()});save(case,s);return self.send({'status':'verified','decision':s['decisions'][-1]})
     if action=='save-workbook' and app=='mock-excel':
      incoming=data['result'];key=data['operationId']
      if key not in s['operations']:
@@ -199,9 +208,17 @@ class Handler(BaseHTTPRequestHandler):
      save(case,s);return self.send({'savedListings':s['savedListings']})
     if app=='mock-coderpad' and action=='assessment-handoff':
      s['assessmentHandoff']={'status':'awaiting-human','reason':'Assessment assistance forbidden' if s['fault']=='forbidden' else 'Consultant review requested','time':time.time()};event('assessment-human-handoff');save(case,s);return self.send(s['assessmentHandoff'])
+    if app=='mock-applicant-portal' and action in ['application-draft','written-screening']:
+     if not s['registration']:return self.send({'error':'Register first'},409)
+     if action=='application-draft':
+      answer=data.get('answer','').strip()
+      if not answer or len(answer)>4000:return self.send({'error':'Enter a bounded application answer'},400)
+      s['applicationDraft']={'answer':answer,'listing':'job-5','savedAt':time.time()};save(case,s);return self.send({'saved':True,'draft':s['applicationDraft']})
+     if s['application']!='Submitted' or not s['applicationDraft']:return self.send({'error':'Submit the application draft first'},409)
+     s['writtenScreening']={'answer':s['applicationDraft']['answer'],'completedAt':time.time()};save(case,s);return self.send({'completed':True,'screening':s['writtenScreening']})
     if action=='choose-job' and app=='mock-job-board':
      if data.get('role')!='operator' or data.get('listing')!='job-5':return self.send({'error':'Owner must choose supported listing'},403)
-     s['selectedListing']='job-5';event('owner-selected-listing',listing='job-5');save(case,s);return self.send({'selected':'job-5'})
+     s['selectedListing']='job-5';event('owner-selected-listing',listing='job-5',actor='fixture operator' if data.get('fixtureOperator') else 'human operator');save(case,s);return self.send({'selected':'job-5'})
     if action=='register' and app=='mock-applicant-portal':
      if s['selectedListing']!='job-5' or data.get('listing')!='job-5':return self.send({'error':'Owner listing choice required before registration'},409)
      s['registration']={'name':data['name'],'listing':'job-5','invitation':'invite-1'}
@@ -213,7 +230,7 @@ class Handler(BaseHTTPRequestHandler):
      if not s['assessment'] or s['assessment']['revision']!=revision:return self.send({'error':'Run the exact assessment revision first'},409)
      if action=='review-assessment':
       if data.get('role')!='operator':return self.send({'error':'Consultant review required'},403)
-      s['assessmentApproval']={'revision':revision,'actor':'fixture consultant','time':time.time()};event('consultant-reviewed-assessment',revision=revision)
+      s['assessmentApproval']={'revision':revision,'actor':'fixture consultant' if data.get('fixtureOperator') else 'human consultant','time':time.time()};event('consultant-reviewed-assessment',revision=revision,actor=s['assessmentApproval']['actor'])
      else:
       if not s['assessmentApproval'] or s['assessmentApproval']['revision']!=revision:return self.send({'error':'Consultant must approve exact revision before submission'},409)
       s['assessmentSubmitted']=True;event('assessment-submitted',revision=revision)
@@ -236,7 +253,7 @@ class Handler(BaseHTTPRequestHandler):
      key=data['operationId']
      if key not in s['operations']:
       if action=='submit':
-       if not s['registration']:return self.send({'error':'Registration required before application submission'},409)
+       if not s['registration'] or not s['applicationDraft']:return self.send({'error':'Registration and saved application draft required before submission'},409)
        s['application']='Submitted'
       if action=='comment':s['comments'].append({'id':key,'text':data['text']});s['issueStatus']='Ready for review'
       if action=='open-pr':
@@ -250,8 +267,10 @@ class Handler(BaseHTTPRequestHandler):
      return self.send({'status':'unknown'} if s['fault']=='unresolved' else {'status':'verified' if data['operationId'] in s['operations'] else 'absent','operation':s['operations'].get(data['operationId'])})
     if action=='advance' and app in ['mock-interview-room','mock-applicant-portal']:
      if data.get('role')!='operator':return self.send({'error':'Human interview / fixture employer action required'},403)
+     if s['round']==0 and not s['writtenScreening']:return self.send({'error':'Written screening must complete before first round advances'},409)
+     if s['round']==1 and app!='mock-interview-room':return self.send({'error':'Human interview room must complete live round'},409)
      if s['round']>=2 and not s['assessmentSubmitted']:return self.send({'error':'Reviewed assessment submission required before hiring'},409)
-     s['round']+=1;s['application']='Hired' if s['round']>=3 else 'Round '+str(s['round']);event('operator-round',actor='fixture employer',round=s['round']);save(case,s);return self.send({'round':s['round'],'application':s['application']})
+     s['round']+=1;s['application']='Hired' if s['round']>=3 else 'Round '+str(s['round']);event('operator-round',actor='fixture employer' if data.get('fixtureOperator') else 'human operator',round=s['round']);save(case,s);return self.send({'round':s['round'],'application':s['application']})
     return self.send({'error':'Unsupported action'},400)
   except (KeyError,ValueError,AssertionError,FileNotFoundError) as e:return self.send({'error':str(e)},400)
 def serve():

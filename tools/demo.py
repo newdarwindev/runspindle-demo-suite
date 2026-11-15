@@ -12,12 +12,25 @@ def operator_metrics(events):
  durations=[d for d in durations if isinstance(d,(int,float)) and not isinstance(d,bool) and math.isfinite(d) and d>=0]
  return {'operatorMinutes':None,'scriptedOperatorMinutes':sum(durations)/60000 if durations else None,'scriptedOperatorActions':len(durations),'operatorTimingNote':'Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings.'}
 def verify(case):
- s=load(case);f=fixture(case);expected=f['expected'];w=s.get('workbook',{});sheets=w.get('sheets',{});results=sheets.get('Results',{});table=results.get('tables',{}).get('ResultsTable',[]);notes={'A1':'Do not change','B1':'=SUM(A1:A3)'}
+ s=load(case);f=fixture(case);expected=dict(f['expected'])
+ if case=='bakery-prep' and s.get('fault')=='ambiguous':
+  decisions=[d for d in s.get('decisions',[]) if d.get('order')=='223']
+  if decisions and decisions[-1].get('date')=='2026-11-15':expected['loaves']+=1
+ w=s.get('workbook',{});sheets=w.get('sheets',{});results=sheets.get('Results',{});table=results.get('tables',{}).get('ResultsTable',[]);notes={'A1':'Do not change','B1':'=SUM(A1:A3)'}
  table_values={r.get('key'):r.get('value') for r in table if isinstance(r,dict)}
  actual_rows=[r for r in w.get('rows',[]) if r.get('case')==case]
  numeric_totals={k:v for k,v in expected.items() if isinstance(v,(int,float)) and not isinstance(v,bool)}
  history=w.get('history',[]);revision=w.get('revision',0)
  checks={'expected_result':s.get('lastResult')==expected,'actual_workbook_row':len(actual_rows)==1 and actual_rows[0].get('result')==expected,'actual_table_cells':len(table)==len(expected) and table_values==expected,'actual_table_totals':results.get('totals')==numeric_totals,'unrelated_table_rows_preserved':results.get('tables',{}).get('UnrelatedTable')==UNRELATED_ROWS and all(h.get('sheets',{}).get('Results',{}).get('tables',{}).get('UnrelatedTable')==UNRELATED_ROWS for h in history),'unrelated_preserved':w.get('unrelated')=={'ownerNote':'Do not change','formula':'=SUM(A1:A3)'} and sheets.get('Notes',{}).get('cells')==notes,'single_case_row':len(actual_rows)==1,'saved_revision_matches':bool(history) and revision==len(history) and [h.get('revision') for h in history]==list(range(1,revision+1)) and history[-1].get('sheets')==sheets,'historical_notes_preserved':bool(history) and all(h.get('sheets',{}).get('Notes',{}).get('cells')==notes for h in history)}
+ if case=='subcontractor-invoices':
+  from urllib.parse import urlsplit,parse_qs
+  scopes={'C-104':'GC-North/school','C-112':'GC-South/library'}
+  def valid_link(value,key):
+   if not isinstance(value,str):return False
+   u=urlsplit(value);q=parse_qs(u.query)
+   return u.scheme=='http' and u.netloc=='localhost:4310' and u.path=='/' and q=={'case':[case],'scope':[scopes[key]],'record':[key]}
+  saved=actual_rows[0].get('sourceLinks',{}) if len(actual_rows)==1 else {}
+  checks['invoice_source_links']=set(saved)==set(scopes) and all(valid_link(saved.get(key),key) for key in scopes) and all(valid_link(row.get('source'),row['key']) for row in table if row.get('key') in scopes)
  if case=='consultancy-contract':checks.update(code_tests=s.get('tests')=={'rows':10,'expected':10,'passed':True},issue=s.get('issueStatus')=='Ready for review',one_comment=len(s.get('comments',[]))==1,hired=s.get('application')=='Hired',pr=s.get('pr') is not None)
  return {'checks':checks,'passed':all(checks.values()),'observedAt':time.time(),'observer':'independent persisted workbook cells, totals, notes and revision readback','result':table_values}
 def validate_resume_ownership(checkpoint,state,case,runid):
@@ -108,7 +121,7 @@ def main():
  elif a.command=='record-all':sys.exit(0 if all([run(c) for c in CASES]) else 1)
  elif a.command=='fault-matrix':
   matrix=[]
-  scenarios=[('bookkeeper-deposit','expired'),('vintage-returns','wrong-account'),('bookkeeper-deposit','denied'),('bookkeeper-deposit','missing'),('bakery-prep','crash'),('consultancy-contract','lost-ack'),('consultancy-contract','unresolved'),('consultancy-contract','forbidden'),('bakery-prep','artifact-interruption'),('bakery-prep','ambiguous'),('produce-packing','tenant-expired'),('subcontractor-invoices','tenant-expired'),('bakery-prep','offline'),('bakery-prep','stale')]
+  scenarios=[('bookkeeper-deposit','expired'),('bookkeeper-deposit','wrong-account'),('staffing-billing','tenant-expired'),('vintage-returns','wrong-account'),('bookkeeper-deposit','denied'),('bookkeeper-deposit','missing'),('bakery-prep','crash'),('consultancy-contract','lost-ack'),('consultancy-contract','unresolved'),('consultancy-contract','forbidden'),('bakery-prep','artifact-interruption'),('bakery-prep','ambiguous'),('produce-packing','tenant-expired'),('subcontractor-invoices','tenant-expired'),('bakery-prep','offline'),('bakery-prep','stale')]
   for case,fault in scenarios:
    passed=run(case,fault);manifest_path=max((ROOT/'artifacts').glob('*/manifest.json'),key=lambda p:p.stat().st_mtime);m=json.loads(manifest_path.read_text());worker=json.loads((manifest_path.parent/'worker.json').read_text());first=m['outcome'];resumed=False
    if fault in ['crash','artifact-interruption','offline'] and not passed:

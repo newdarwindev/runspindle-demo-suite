@@ -49,3 +49,5 @@ See [commands](docs/COMMANDS.md), [evidence boundary](docs/EVIDENCE.md), and [pi
 No persistent demo services, schedules or agents are provisioned by this project. All accounts are fictional; worker access is limited to controlled fixture apps.
 
 See [current status and remaining blockers](docs/STATUS.md).
+
+See [original milestones and follow-up audit](docs/MILESTONES.md) for current requirement-level status.
