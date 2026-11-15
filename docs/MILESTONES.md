@@ -36,3 +36,9 @@ node tools/verify-gallery.cjs
 ```
 
 Use supported sandboxed Chromium; CI uses `BROWSER_CHANNEL=chrome`. Expected blocked/unknown behavior is distinct from business-task completion. Missing evidence is unavailable, never inferred from a green normal run.
+
+## 6. Give each mock software its own visual identity
+
+**In progress.** Every mock software must have its own branding, visual style, color scheme and typography. All 14 child apps now implement independent identities, palettes, type treatments and layout motifs, with child-owned brand manifests. All 68 Python tests pass, including identity uniqueness, implementation wiring and readable-contrast checks. See [branding acceptance gates and product directions](BRANDING.md).
+
+Remaining gates: actual desktop/mobile rendered screenshots and visual review, followed by refreshed workflow recordings and package verification. Sandboxed Chromium cannot start on the current host because process socket creation is blocked; no browser pass is claimed. Earlier release clips and portfolio media retain their original provenance.

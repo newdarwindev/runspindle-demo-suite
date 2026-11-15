@@ -26,3 +26,7 @@ Expected denied, missing-data, forbidden-assessment and unresolved-effect outcom
 ## Limits and optional next validation
 
 No upstream Runspindle code executes. All identities/data are fictional and interfaces conceptual. No competitive savings or active human-time claim is made. No attended human end-to-end manual run has been recorded; use the graphical-host command in [MANUAL.md](MANUAL.md) for that validation. No hosted backend or persistent service is provisioned. There are no blocking implementation or publication failures for the delivered fixture scope.
+
+## Additional branding milestone
+
+[Milestone 6](BRANDING.md) is in progress: 14 independent fictional brands implemented and 68 Python tests passed. Sandboxed desktop/mobile visual QA is blocked by the execution host's process-socket restriction. Visual review and refreshed recordings remain pending. This does not change the verified original-release checkpoint above or claim its recordings show the new designs.
