@@ -33,4 +33,20 @@ class PresentationTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp,patch.object(evaluate,'STATE',Path(tmp)/'state.json'):
    with self.assertRaises(ValueError):evaluate.approve_feedback('wrong','v2','fixture operator')
    revision=evaluate.output_revision(evaluate.compare());result=evaluate.approve_feedback(revision,'v2','fixture operator');self.assertEqual(result['feedback']['outputRevision'],revision);self.assertEqual(result['active'],'v1')
+ def test_portfolio_directory_links_and_source_templates(self):
+  from presentation import validate_links
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);(root/'docs/portfolio/tools').mkdir(parents=True)
+   (root/'docs/SOURCES.md').write_text('# Sources')
+   (root/'docs/index.html').write_text('<a href="portfolio/">Portfolio</a>')
+   (root/'docs/portfolio/index.html').write_text('<p>Real static page</p>')
+   (root/'docs/portfolio/tools/template.html').write_text('<script src="not-rendered.js"></script>')
+   (root/'artifacts').mkdir()
+   result=assemble(root,False)
+   with zipfile.ZipFile(result['archive']) as z:
+    self.assertIn('docs/portfolio/index.html',z.namelist())
+    self.assertNotIn('docs/portfolio/tools/template.html',z.namelist())
+   self.assertFalse(result['brokenLinks'])
+   (root/'docs/portfolio/index.html').unlink()
+   self.assertIn('index.html: portfolio/',validate_links(root/'docs'))
 if __name__=='__main__':unittest.main()
