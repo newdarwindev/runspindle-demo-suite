@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "started",
+    "time": "2026-11-15T07:53:28.964Z",
+    "case": "staffing-billing",
+    "adapter": "deterministic-browser-fixture",
+    "executionMode": "fixture",
+    "upstreamExecuted": false
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:29.166Z",
+    "case": "staffing-billing",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:29.222Z",
+    "case": "staffing-billing",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 56.550028999999995,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:29.274Z",
+    "case": "staffing-billing",
+    "app": "mock-timesheet-portal",
+    "account": "coordinator",
+    "scope": "A/worker-17/2026-W46"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T07:53:29.322Z",
+    "case": "staffing-billing",
+    "app": "mock-timesheet-portal",
+    "account": "coordinator",
+    "scope": "A/worker-17/2026-W46"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:29.422Z",
+    "case": "staffing-billing",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:29.471Z",
+    "case": "staffing-billing",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 49.35200400000008,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:29.523Z",
+    "case": "staffing-billing",
+    "app": "mock-timesheet-portal",
+    "account": "coordinator",
+    "scope": "B/worker-17/2026-W46"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T07:53:29.573Z",
+    "case": "staffing-billing",
+    "app": "mock-timesheet-portal",
+    "account": "coordinator",
+    "scope": "B/worker-17/2026-W46"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:29.648Z",
+    "case": "staffing-billing",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:29.722Z",
+    "case": "staffing-billing",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 73.54606699999988,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:29.774Z",
+    "case": "staffing-billing",
+    "app": "mock-excel",
+    "account": "staffing",
+    "scope": ""
+  },
+  {
+    "kind": "worker-finished",
+    "time": "2026-11-15T07:53:30.009Z",
+    "case": "staffing-billing",
+    "result": {
+      "approved": 36,
+      "pending": 4
+    }
+  }
+]

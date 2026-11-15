@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "expected_result": true,
+    "actual_workbook_row": true,
+    "actual_table_cells": true,
+    "actual_table_totals": true,
+    "unrelated_table_rows_preserved": true,
+    "unrelated_preserved": true,
+    "single_case_row": true,
+    "saved_revision_matches": true,
+    "historical_notes_preserved": true,
+    "invoice_reference_match": true,
+    "independent_browser_readback": true,
+    "checkpoint_source_readback": true
+  },
+  "passed": true,
+  "observedAt": 1794729205.194174,
+  "observer": "independent persisted workbook cells, totals, notes and revision readback",
+  "result": {
+    "invoice": "107",
+    "status": "Paid",
+    "depositId": "deposit-107",
+    "amount": 540
+  }
+}

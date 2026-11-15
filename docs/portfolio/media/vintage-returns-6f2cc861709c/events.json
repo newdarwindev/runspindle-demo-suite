@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "started",
+    "time": "2026-11-15T07:53:31.459Z",
+    "case": "vintage-returns",
+    "adapter": "deterministic-browser-fixture",
+    "executionMode": "fixture",
+    "upstreamExecuted": false
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:31.698Z",
+    "case": "vintage-returns",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:31.760Z",
+    "case": "vintage-returns",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 61.443984,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:31.811Z",
+    "case": "vintage-returns",
+    "app": "mock-marketplace",
+    "account": "seller-vintage",
+    "scope": "A/seller-vintage"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T07:53:31.854Z",
+    "case": "vintage-returns",
+    "app": "mock-marketplace",
+    "account": "seller-vintage",
+    "scope": "A/seller-vintage"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:31.966Z",
+    "case": "vintage-returns",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:32.021Z",
+    "case": "vintage-returns",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 55.27802800000006,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:32.074Z",
+    "case": "vintage-returns",
+    "app": "mock-marketplace",
+    "account": "seller-vintage",
+    "scope": "B/seller-vintage"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T07:53:32.121Z",
+    "case": "vintage-returns",
+    "app": "mock-marketplace",
+    "account": "seller-vintage",
+    "scope": "B/seller-vintage"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:32.201Z",
+    "case": "vintage-returns",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:32.272Z",
+    "case": "vintage-returns",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 70.4812159999999,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:32.325Z",
+    "case": "vintage-returns",
+    "app": "mock-excel",
+    "account": "vintage",
+    "scope": ""
+  },
+  {
+    "kind": "worker-finished",
+    "time": "2026-11-15T07:53:32.559Z",
+    "case": "vintage-returns",
+    "result": {
+      "R1": "In transit",
+      "R2": "Pending"
+    }
+  }
+]

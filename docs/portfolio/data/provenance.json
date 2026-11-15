@@ -1,0 +1,575 @@
+{
+  "fixtureOnly": true,
+  "upstreamExecuted": false,
+  "sourceRelease": "https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-085a776b2328",
+  "sourceArchiveURL": "https://github.com/newdarwindev/runspindle-demo-suite/releases/download/demo-085a776b2328/presentation.zip",
+  "sourceArchiveSHA256": "dee8aebf13e0a9a48326645491ad76d754fd31b7df787ea4a1bf5bd06e78185a",
+  "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+  "selectedScenario": "normal",
+  "selectedRuns": 7,
+  "sourceRuns": 24,
+  "copiedFiles": {
+    "media/bakery-prep-7182c50027f7/1c5024b8e3f00e3b7de439dfeaac547d.vtt": {
+      "archivePath": "bakery-prep-7182c50027f7/1c5024b8e3f00e3b7de439dfeaac547d.vtt",
+      "sha256": "af98fbb906f2f27dffde592df61fef6a45a4b71dd280d174b78cfec6bdc70918"
+    },
+    "media/bakery-prep-7182c50027f7/1c5024b8e3f00e3b7de439dfeaac547d.webm": {
+      "archivePath": "bakery-prep-7182c50027f7/1c5024b8e3f00e3b7de439dfeaac547d.webm",
+      "sha256": "9796748185e612803f6ab3671417784c1beb6ae7a672fffd0b226e643d4d9746"
+    },
+    "media/bakery-prep-7182c50027f7/591b4f53ec62cee4449365e0c266b278.vtt": {
+      "archivePath": "bakery-prep-7182c50027f7/591b4f53ec62cee4449365e0c266b278.vtt",
+      "sha256": "8b2b4f90e5d3c6befa117206ef364406112d5d85ec17a36d9c853e63ead2d88d"
+    },
+    "media/bakery-prep-7182c50027f7/591b4f53ec62cee4449365e0c266b278.webm": {
+      "archivePath": "bakery-prep-7182c50027f7/591b4f53ec62cee4449365e0c266b278.webm",
+      "sha256": "4e68346e8a7ecd37eecf4134c22c595e16b0e9051530daf49c73b725365a53c7"
+    },
+    "media/bakery-prep-7182c50027f7/accepted.csv": {
+      "archivePath": "bakery-prep-7182c50027f7/accepted.csv",
+      "sha256": "c61849582816af80ad620f3779ab958741cd5d37d16c6b1f7ec585a0ff9f99d4"
+    },
+    "media/bakery-prep-7182c50027f7/artifact.json": {
+      "archivePath": "bakery-prep-7182c50027f7/artifact.json",
+      "sha256": "dc6e1bdd07e63038328e01baa940c3754a476a3c1a4e23a77d6af0c1d9902f66"
+    },
+    "media/bakery-prep-7182c50027f7/browser-verification.json": {
+      "archivePath": "bakery-prep-7182c50027f7/browser-verification.json",
+      "sha256": "46727a1857933342b7270d3613b0384e1ea8f40489ca107e405fb17b99ce78ef"
+    },
+    "media/bakery-prep-7182c50027f7/da44ff9bad2de194517a7969cd8d0e29.vtt": {
+      "archivePath": "bakery-prep-7182c50027f7/da44ff9bad2de194517a7969cd8d0e29.vtt",
+      "sha256": "544e08813696e9036e656accf54b307d20b6456c6ee271bcf60e7d131c74fa7a"
+    },
+    "media/bakery-prep-7182c50027f7/da44ff9bad2de194517a7969cd8d0e29.webm": {
+      "archivePath": "bakery-prep-7182c50027f7/da44ff9bad2de194517a7969cd8d0e29.webm",
+      "sha256": "89ad390b0c83be3fd83e78438d3cf9c00650e9fbc750a4ca1ff37395dd82e523"
+    },
+    "media/bakery-prep-7182c50027f7/delivered.csv": {
+      "archivePath": "bakery-prep-7182c50027f7/delivered.csv",
+      "sha256": "c61849582816af80ad620f3779ab958741cd5d37d16c6b1f7ec585a0ff9f99d4"
+    },
+    "media/bakery-prep-7182c50027f7/events.json": {
+      "archivePath": "bakery-prep-7182c50027f7/events.json",
+      "sha256": "19c08f535835ee7f8f8c9e81db471eabfc05801b0421c02e5cbddf5ce97a7316"
+    },
+    "media/bakery-prep-7182c50027f7/independent-observer.png": {
+      "archivePath": "bakery-prep-7182c50027f7/independent-observer.png",
+      "sha256": "783869f205bab4de0af603276969f4f6b9a9d9e79a4c0e6b720f24cbdbc1e3a8"
+    },
+    "media/bakery-prep-7182c50027f7/manifest.json": {
+      "archivePath": "bakery-prep-7182c50027f7/manifest.json",
+      "sha256": "e1420668bf1ea84efcdd84f4b3c6892c9ba835306c7f6c4f46e8d0f4682887d4"
+    },
+    "media/bakery-prep-7182c50027f7/poster-0.jpg": {
+      "archivePath": "bakery-prep-7182c50027f7/poster-0.jpg",
+      "sha256": "76605a330e44b429905b375faafc35885db22bc426af5c40698e63f8ca0cb06e"
+    },
+    "media/bakery-prep-7182c50027f7/poster-1.jpg": {
+      "archivePath": "bakery-prep-7182c50027f7/poster-1.jpg",
+      "sha256": "bfec9770b03e1a5526ea16774ea5e7a0478594154d4a925c97c2ead76a6bf043"
+    },
+    "media/bakery-prep-7182c50027f7/poster-2.jpg": {
+      "archivePath": "bakery-prep-7182c50027f7/poster-2.jpg",
+      "sha256": "261e5c5fa8727d6fca2c331e17a650b803616b14e78458ea22f27cb442fce89a"
+    },
+    "media/bakery-prep-7182c50027f7/result.png": {
+      "archivePath": "bakery-prep-7182c50027f7/result.png",
+      "sha256": "a3f8d882dff2857024c6561286de29448d8ed7863cc736e2eea829c947673b30"
+    },
+    "media/bakery-prep-7182c50027f7/verification.json": {
+      "archivePath": "bakery-prep-7182c50027f7/verification.json",
+      "sha256": "c42c3b54893c3b3d8c3029d3c2a96559478ff833580530228a2296e52ef7e6af"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/08eba708998549a06de3684dbfe45bb6.vtt": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/08eba708998549a06de3684dbfe45bb6.vtt",
+      "sha256": "154b6d4721e40141b4a80bebe0d23880273bafd2b683f381e536ea1351343f6f"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/08eba708998549a06de3684dbfe45bb6.webm": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/08eba708998549a06de3684dbfe45bb6.webm",
+      "sha256": "960816a9c865bf76dfff2f8f9bee075d72be8eda53bb3645bd4356d73c0f1b25"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/1c3000e8168509c8ff1b8a206046b47f.vtt": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/1c3000e8168509c8ff1b8a206046b47f.vtt",
+      "sha256": "74872a92e534d7ace1a50081737d34bf1a64c0f816f00b865cebba39139d5b0e"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/1c3000e8168509c8ff1b8a206046b47f.webm": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/1c3000e8168509c8ff1b8a206046b47f.webm",
+      "sha256": "2c388ed85e279965bbcf24f18062c083019677144ff0725484c69b5b9d88946c"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/69f970f8dc75cfdeda3bfaec618ac215.vtt": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/69f970f8dc75cfdeda3bfaec618ac215.vtt",
+      "sha256": "30d7764b08ac7760bd5481844b98bbfc0137c1dc0a118c2030dd8f69910fd968"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/69f970f8dc75cfdeda3bfaec618ac215.webm": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/69f970f8dc75cfdeda3bfaec618ac215.webm",
+      "sha256": "520bd52b6c6a325a0dbc2b793e68b5a4ec6b0560378108f1e50eb3d6c782c644"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/browser-verification.json": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/browser-verification.json",
+      "sha256": "05e41f1c7cceb0fb1c03b031276138d9d168035af3cce84384d36d2f802c3091"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/events.json": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/events.json",
+      "sha256": "cda8753cc4130301ca90969203a3fd375d33f9f5bca680a25c396ed9a2cea498"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/independent-observer.png": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/independent-observer.png",
+      "sha256": "0aad2f2e58f0df4a8e564a74ca0317c3675fa80a4130fc6738eeb710d99aee36"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/manifest.json": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/manifest.json",
+      "sha256": "bf139272f97c807010944d954ce29dc2647b4498a863fbb40789a0c73fb3183b"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/poster-0.jpg": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/poster-0.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/poster-1.jpg": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/poster-1.jpg",
+      "sha256": "76605a330e44b429905b375faafc35885db22bc426af5c40698e63f8ca0cb06e"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/poster-2.jpg": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/poster-2.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/result.png": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/result.png",
+      "sha256": "ee2514b4aee0d3dc601153b6d9ed37e7be8d7e55a0550a400201228b7d9d3d54"
+    },
+    "media/bookkeeper-deposit-6d385d21dc89/verification.json": {
+      "archivePath": "bookkeeper-deposit-6d385d21dc89/verification.json",
+      "sha256": "8c337939ec293ddfbeca8c63df4899f2306712b35c4b19a8388887a9eb42f1bb"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/6e89497f08cd98a94942b19cf077d057.vtt": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/6e89497f08cd98a94942b19cf077d057.vtt",
+      "sha256": "dac7cf938d3c50e18b4de81fdd976f35f368e53912b599223bcff038b2a7ed43"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/6e89497f08cd98a94942b19cf077d057.webm": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/6e89497f08cd98a94942b19cf077d057.webm",
+      "sha256": "27f82923304a96ae5600b6ec52581c3594d3c14040c42a98adbad56b003b92ca"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/7cb658d027a4289f95f5e86ceefb0570.vtt": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/7cb658d027a4289f95f5e86ceefb0570.vtt",
+      "sha256": "60815945429a7740b65cda831125f6fda2a4373d06ecd02b34105fb0b9366dbd"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/7cb658d027a4289f95f5e86ceefb0570.webm": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/7cb658d027a4289f95f5e86ceefb0570.webm",
+      "sha256": "4d13db7efd545d2908e2deadaa92a6974ed23b98b23c84c582aac82562717c82"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/7da6385e54450ddd6d59c9d3fd5675b2.vtt": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/7da6385e54450ddd6d59c9d3fd5675b2.vtt",
+      "sha256": "7547605c97446e0c801390b9c64fbdadb57eabc196575b700d0630f47c8a9ae0"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/7da6385e54450ddd6d59c9d3fd5675b2.webm": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/7da6385e54450ddd6d59c9d3fd5675b2.webm",
+      "sha256": "be5705c35da819c04c57c255f660f89ac937090906c4b6efd2750af95eb8708d"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/browser-verification.json": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/browser-verification.json",
+      "sha256": "86b820ab3df06755dfa71a1bf0ca88ea88adfc52ad763bc6eeecb8c9a231c98f"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/d0d226ed07850a8d91ba53d916b61d02.vtt": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/d0d226ed07850a8d91ba53d916b61d02.vtt",
+      "sha256": "5bae617f85509a810103feb01df58e453cbefeab83610c8923da559f01f68c62"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/d0d226ed07850a8d91ba53d916b61d02.webm": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/d0d226ed07850a8d91ba53d916b61d02.webm",
+      "sha256": "c4ed4afcf7cfebacd10961255604ce9fc600ecf606e6f7da508c7808c925d159"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/events.json": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/events.json",
+      "sha256": "19146d7c56d3c57c610513ee2bd0f92b74ebc2bb164575b660b3522b49a008c3"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/independent-observer.png": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/independent-observer.png",
+      "sha256": "661228c72de90c7f428e0d7f0de0f84caa42d3b6928c091d96063d7d022760ce"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/manifest.json": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/manifest.json",
+      "sha256": "c0f295c73750df64e8f3bc8cd9e49dbb535392bfe4ec45edfef4af77d26c79c4"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/poster-0.jpg": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/poster-0.jpg",
+      "sha256": "76605a330e44b429905b375faafc35885db22bc426af5c40698e63f8ca0cb06e"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/poster-1.jpg": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/poster-1.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/poster-2.jpg": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/poster-2.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/poster-3.jpg": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/poster-3.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/result.png": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/result.png",
+      "sha256": "dbb4045ee86cfa6cf4a870cdab2ba786350cd4037d8f4d184b7331fee20718b0"
+    },
+    "media/subcontractor-invoices-14db7111ef4a/verification.json": {
+      "archivePath": "subcontractor-invoices-14db7111ef4a/verification.json",
+      "sha256": "c81de4ead34706d8f85604cd5b9430a2ff034833d457d964a74eeeb4db9942c3"
+    },
+    "media/staffing-billing-528509414963/78aff141e5810e243ed212144f32cb41.vtt": {
+      "archivePath": "staffing-billing-528509414963/78aff141e5810e243ed212144f32cb41.vtt",
+      "sha256": "2fb43bcbbe16736be0dbc52b0849a23128ca2d99faf63fdcd722be9cc751bf05"
+    },
+    "media/staffing-billing-528509414963/78aff141e5810e243ed212144f32cb41.webm": {
+      "archivePath": "staffing-billing-528509414963/78aff141e5810e243ed212144f32cb41.webm",
+      "sha256": "717bcab67b7b57310cb64a230714d711e86e871dc572511d8e4c37d145170853"
+    },
+    "media/staffing-billing-528509414963/browser-verification.json": {
+      "archivePath": "staffing-billing-528509414963/browser-verification.json",
+      "sha256": "a7d85d57480e1c73123e558537904684b4de43cff3a02caa062c38e103ab9519"
+    },
+    "media/staffing-billing-528509414963/cd9c3d19babbabe9d59c17b1cd67a365.vtt": {
+      "archivePath": "staffing-billing-528509414963/cd9c3d19babbabe9d59c17b1cd67a365.vtt",
+      "sha256": "3a602cb59f697e27f7f5086220527304531ab226171737bd22e489fb616e713a"
+    },
+    "media/staffing-billing-528509414963/cd9c3d19babbabe9d59c17b1cd67a365.webm": {
+      "archivePath": "staffing-billing-528509414963/cd9c3d19babbabe9d59c17b1cd67a365.webm",
+      "sha256": "2b5704518c7b6e12be0ed0cc1beeea510dd60d563a9652866e7184b945c98245"
+    },
+    "media/staffing-billing-528509414963/e619a429983d0d48948178cae12c3fb4.vtt": {
+      "archivePath": "staffing-billing-528509414963/e619a429983d0d48948178cae12c3fb4.vtt",
+      "sha256": "f211189a020f73b761f2f8a277fe573b2bd5aff3ce20e4d7723b9d735fcd9bc7"
+    },
+    "media/staffing-billing-528509414963/e619a429983d0d48948178cae12c3fb4.webm": {
+      "archivePath": "staffing-billing-528509414963/e619a429983d0d48948178cae12c3fb4.webm",
+      "sha256": "eb109c8a619ac43c4d99a4ed7213cb43c4453d14bb1525bc792c9dd16e81f92f"
+    },
+    "media/staffing-billing-528509414963/events.json": {
+      "archivePath": "staffing-billing-528509414963/events.json",
+      "sha256": "f1d0ea5a877039abea2dc30298fb67ed5426b26d303871bef869066da23c0fe7"
+    },
+    "media/staffing-billing-528509414963/ff53639827c7d6a7c482c6b9d98fb522.vtt": {
+      "archivePath": "staffing-billing-528509414963/ff53639827c7d6a7c482c6b9d98fb522.vtt",
+      "sha256": "9b70ac0725076f8aa03742e4562970d1eeb5a5d194890fccd0b42687a99a9959"
+    },
+    "media/staffing-billing-528509414963/ff53639827c7d6a7c482c6b9d98fb522.webm": {
+      "archivePath": "staffing-billing-528509414963/ff53639827c7d6a7c482c6b9d98fb522.webm",
+      "sha256": "ca4f08d3ccc9fb1edd79613e4c47aae50e48b35dda4310f215bae3ca72f8ceb9"
+    },
+    "media/staffing-billing-528509414963/independent-observer.png": {
+      "archivePath": "staffing-billing-528509414963/independent-observer.png",
+      "sha256": "d9ee10e2962e1c939610e4b39e85987b5d49e0323c1b186b1efe4122fe918234"
+    },
+    "media/staffing-billing-528509414963/manifest.json": {
+      "archivePath": "staffing-billing-528509414963/manifest.json",
+      "sha256": "f8322fbdb9a4b9882458c47d02333343fe1f9e55104fbc091eb38fcc310b69d2"
+    },
+    "media/staffing-billing-528509414963/poster-0.jpg": {
+      "archivePath": "staffing-billing-528509414963/poster-0.jpg",
+      "sha256": "cabc3be9c11fcb3aacc4b9417bb4cd09c2218149e74e3c59f64c3496f16179c7"
+    },
+    "media/staffing-billing-528509414963/poster-1.jpg": {
+      "archivePath": "staffing-billing-528509414963/poster-1.jpg",
+      "sha256": "01802307d2e1afa4299c224a815431973b4c59baa649b8fecf4811a3bde8bf40"
+    },
+    "media/staffing-billing-528509414963/poster-2.jpg": {
+      "archivePath": "staffing-billing-528509414963/poster-2.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/staffing-billing-528509414963/poster-3.jpg": {
+      "archivePath": "staffing-billing-528509414963/poster-3.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/staffing-billing-528509414963/result.png": {
+      "archivePath": "staffing-billing-528509414963/result.png",
+      "sha256": "327ff00d69bab45047d452fc69909ca1b733bf6a0681cdc8e428728bd1a5d8fb"
+    },
+    "media/staffing-billing-528509414963/verification.json": {
+      "archivePath": "staffing-billing-528509414963/verification.json",
+      "sha256": "1cbdb2266f5da86d2b17780315157b1b5bf03c3b756b709fb096903b3a0bf160"
+    },
+    "media/vintage-returns-6f2cc861709c/0bc4b9a111f5834070d55174e6a20a07.vtt": {
+      "archivePath": "vintage-returns-6f2cc861709c/0bc4b9a111f5834070d55174e6a20a07.vtt",
+      "sha256": "d1ed6ba5c720447c70a528194f0b2f007e88100709e89a808561f8d4e345e752"
+    },
+    "media/vintage-returns-6f2cc861709c/0bc4b9a111f5834070d55174e6a20a07.webm": {
+      "archivePath": "vintage-returns-6f2cc861709c/0bc4b9a111f5834070d55174e6a20a07.webm",
+      "sha256": "4b6eada2e8a247b0f68ab77bee7b2d9558236f0e47a6462d2a7520e2dcf20269"
+    },
+    "media/vintage-returns-6f2cc861709c/34f293dfcabe6c69d570bf0e3fb6d1ae.vtt": {
+      "archivePath": "vintage-returns-6f2cc861709c/34f293dfcabe6c69d570bf0e3fb6d1ae.vtt",
+      "sha256": "e16e61344ea988d98aa5bd5ff4176eb587032bf1a9d3636b7e0b8d4b00bcb32d"
+    },
+    "media/vintage-returns-6f2cc861709c/34f293dfcabe6c69d570bf0e3fb6d1ae.webm": {
+      "archivePath": "vintage-returns-6f2cc861709c/34f293dfcabe6c69d570bf0e3fb6d1ae.webm",
+      "sha256": "4f3293306f62baca7303e8e95a4495a27dd50be913a1b623483a9979b34d5ea2"
+    },
+    "media/vintage-returns-6f2cc861709c/96f6b230d7ceb4f26efcd7f88cf8e7a6.vtt": {
+      "archivePath": "vintage-returns-6f2cc861709c/96f6b230d7ceb4f26efcd7f88cf8e7a6.vtt",
+      "sha256": "aa71c26eefac9495defb4398ebc7fca5508f82500fd51de214f9b99d8e43f1df"
+    },
+    "media/vintage-returns-6f2cc861709c/96f6b230d7ceb4f26efcd7f88cf8e7a6.webm": {
+      "archivePath": "vintage-returns-6f2cc861709c/96f6b230d7ceb4f26efcd7f88cf8e7a6.webm",
+      "sha256": "bc0708550f4a09b966a4995658f0b27e0a8b0416aea2144fcad62199bc586c89"
+    },
+    "media/vintage-returns-6f2cc861709c/a08a834ba43b2100b364c5428a02f93a.vtt": {
+      "archivePath": "vintage-returns-6f2cc861709c/a08a834ba43b2100b364c5428a02f93a.vtt",
+      "sha256": "83957a906d55a372bf9f599419a453642a301864db1566a3be9848db663b9b52"
+    },
+    "media/vintage-returns-6f2cc861709c/a08a834ba43b2100b364c5428a02f93a.webm": {
+      "archivePath": "vintage-returns-6f2cc861709c/a08a834ba43b2100b364c5428a02f93a.webm",
+      "sha256": "271a0200fd6d376d5c5e9db7351ad38d6268aef601b43fcb2a5888c1faa2b890"
+    },
+    "media/vintage-returns-6f2cc861709c/browser-verification.json": {
+      "archivePath": "vintage-returns-6f2cc861709c/browser-verification.json",
+      "sha256": "5c17537650ac5bb793f7c1e97ea6f17b61d547b2f22b7da711dc6b8ffc5685f7"
+    },
+    "media/vintage-returns-6f2cc861709c/events.json": {
+      "archivePath": "vintage-returns-6f2cc861709c/events.json",
+      "sha256": "34199c05d13188e1b693d8dc833649ede0df7587a4245a25031e35ce4f07e577"
+    },
+    "media/vintage-returns-6f2cc861709c/independent-observer.png": {
+      "archivePath": "vintage-returns-6f2cc861709c/independent-observer.png",
+      "sha256": "6049348b8cba97a718d58e1c6ce8446d38a9cf2bcf6c6261b867fb3638417bc4"
+    },
+    "media/vintage-returns-6f2cc861709c/manifest.json": {
+      "archivePath": "vintage-returns-6f2cc861709c/manifest.json",
+      "sha256": "6209227bd913f7cff6022b0ef6d83acd29a29b161241d2fab0a5adc825a47ed0"
+    },
+    "media/vintage-returns-6f2cc861709c/poster-0.jpg": {
+      "archivePath": "vintage-returns-6f2cc861709c/poster-0.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/vintage-returns-6f2cc861709c/poster-1.jpg": {
+      "archivePath": "vintage-returns-6f2cc861709c/poster-1.jpg",
+      "sha256": "76605a330e44b429905b375faafc35885db22bc426af5c40698e63f8ca0cb06e"
+    },
+    "media/vintage-returns-6f2cc861709c/poster-2.jpg": {
+      "archivePath": "vintage-returns-6f2cc861709c/poster-2.jpg",
+      "sha256": "261e5c5fa8727d6fca2c331e17a650b803616b14e78458ea22f27cb442fce89a"
+    },
+    "media/vintage-returns-6f2cc861709c/poster-3.jpg": {
+      "archivePath": "vintage-returns-6f2cc861709c/poster-3.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/vintage-returns-6f2cc861709c/result.png": {
+      "archivePath": "vintage-returns-6f2cc861709c/result.png",
+      "sha256": "7ccc36a53bda5576cdb82ff2c14a6475558adf126027270c69c7c79134b16c04"
+    },
+    "media/vintage-returns-6f2cc861709c/verification.json": {
+      "archivePath": "vintage-returns-6f2cc861709c/verification.json",
+      "sha256": "6b1c14a5405fe511b85e224f8ac88d4cc6dcb5094af2ed9edd8ae38d5f78ca44"
+    },
+    "media/produce-packing-01672cbe1a06/08351027d3dce38658b585692ffd0036.vtt": {
+      "archivePath": "produce-packing-01672cbe1a06/08351027d3dce38658b585692ffd0036.vtt",
+      "sha256": "6c4a035144a4731cb4deaa89a631e0d8a98556e0e87b43de958691a454ebf5a3"
+    },
+    "media/produce-packing-01672cbe1a06/08351027d3dce38658b585692ffd0036.webm": {
+      "archivePath": "produce-packing-01672cbe1a06/08351027d3dce38658b585692ffd0036.webm",
+      "sha256": "c8bb85da996b20706d9e9bd1998e8c1f8ce2d3fc3595bdfbd9b1a844a21d36f8"
+    },
+    "media/produce-packing-01672cbe1a06/6dfbe6730e1a6cd6409c24549fccbb3e.vtt": {
+      "archivePath": "produce-packing-01672cbe1a06/6dfbe6730e1a6cd6409c24549fccbb3e.vtt",
+      "sha256": "ad08c282b23cfc3e71919a92b38e836d29f28b3c39dce234963ae0f74cf574e2"
+    },
+    "media/produce-packing-01672cbe1a06/6dfbe6730e1a6cd6409c24549fccbb3e.webm": {
+      "archivePath": "produce-packing-01672cbe1a06/6dfbe6730e1a6cd6409c24549fccbb3e.webm",
+      "sha256": "5742b23eb1ff0ca0b1a300968c4a3b9ff1046754b8d7648e1d0730e293bf468d"
+    },
+    "media/produce-packing-01672cbe1a06/bc4b039b9b82f99fc15559602278d87a.vtt": {
+      "archivePath": "produce-packing-01672cbe1a06/bc4b039b9b82f99fc15559602278d87a.vtt",
+      "sha256": "3369d62aa31efa1f2e170af864c3c93f3bf9e5230506c18c19bdc460f510f0fa"
+    },
+    "media/produce-packing-01672cbe1a06/bc4b039b9b82f99fc15559602278d87a.webm": {
+      "archivePath": "produce-packing-01672cbe1a06/bc4b039b9b82f99fc15559602278d87a.webm",
+      "sha256": "e703d5fa1d74ea0ea6aaccf3fe460244df3383e03753d0f99db65b2570220748"
+    },
+    "media/produce-packing-01672cbe1a06/browser-verification.json": {
+      "archivePath": "produce-packing-01672cbe1a06/browser-verification.json",
+      "sha256": "3281ef707c059c7cc79e891499bff53d2c0dbb9aee0396d41b54ea3c2a0141d5"
+    },
+    "media/produce-packing-01672cbe1a06/c8386c5c8780970d2ceac63e3cd1a8b1.vtt": {
+      "archivePath": "produce-packing-01672cbe1a06/c8386c5c8780970d2ceac63e3cd1a8b1.vtt",
+      "sha256": "860a849e15937d0771a05d3bf9e6e21370d19831bc79c6c120dcb42b91d8dcef"
+    },
+    "media/produce-packing-01672cbe1a06/c8386c5c8780970d2ceac63e3cd1a8b1.webm": {
+      "archivePath": "produce-packing-01672cbe1a06/c8386c5c8780970d2ceac63e3cd1a8b1.webm",
+      "sha256": "70d463d5c5d8d2f4e2d1e22f2e4a742da54d0d1e12fa59fcc3f832f9488f23cb"
+    },
+    "media/produce-packing-01672cbe1a06/events.json": {
+      "archivePath": "produce-packing-01672cbe1a06/events.json",
+      "sha256": "7468451e3968ccbb90854fba6d3ed2dc8176b7d3d67c8a08e7191376027efb32"
+    },
+    "media/produce-packing-01672cbe1a06/independent-observer.png": {
+      "archivePath": "produce-packing-01672cbe1a06/independent-observer.png",
+      "sha256": "141da02a4d9119bdb8ac2de112d1ed098c264034c2918da41b6392c5aea79be4"
+    },
+    "media/produce-packing-01672cbe1a06/manifest.json": {
+      "archivePath": "produce-packing-01672cbe1a06/manifest.json",
+      "sha256": "94d33eceb76904498090830c4bf0cfdcf8fe32bb0499a6f611294e6e6a8154a6"
+    },
+    "media/produce-packing-01672cbe1a06/poster-0.jpg": {
+      "archivePath": "produce-packing-01672cbe1a06/poster-0.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/produce-packing-01672cbe1a06/poster-1.jpg": {
+      "archivePath": "produce-packing-01672cbe1a06/poster-1.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/produce-packing-01672cbe1a06/poster-2.jpg": {
+      "archivePath": "produce-packing-01672cbe1a06/poster-2.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/produce-packing-01672cbe1a06/poster-3.jpg": {
+      "archivePath": "produce-packing-01672cbe1a06/poster-3.jpg",
+      "sha256": "76605a330e44b429905b375faafc35885db22bc426af5c40698e63f8ca0cb06e"
+    },
+    "media/produce-packing-01672cbe1a06/result.png": {
+      "archivePath": "produce-packing-01672cbe1a06/result.png",
+      "sha256": "5d19e67ae0cfc7741c4294c1403de5074955083e3a968942eae7b3bc2b6f072a"
+    },
+    "media/produce-packing-01672cbe1a06/verification.json": {
+      "archivePath": "produce-packing-01672cbe1a06/verification.json",
+      "sha256": "e0f506e5e9b33fceee7a6ad7e69f0ceb3d5b7faff933c483b1823393ba36544e"
+    },
+    "media/consultancy-contract-4af256fb53e3/290aa264b07aa82fe41d5e948934dce7.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/290aa264b07aa82fe41d5e948934dce7.vtt",
+      "sha256": "d67b4983b98caf043ea3b6d2f9f0de21efc254599d305bc9dcd3888d9c834223"
+    },
+    "media/consultancy-contract-4af256fb53e3/290aa264b07aa82fe41d5e948934dce7.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/290aa264b07aa82fe41d5e948934dce7.webm",
+      "sha256": "54b14c0c82fb9ac2ad015bd79de94f5b84ae98857a72d7f8b0ac5f27c0951161"
+    },
+    "media/consultancy-contract-4af256fb53e3/2cffb1f799fda15560614790976c9438.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/2cffb1f799fda15560614790976c9438.vtt",
+      "sha256": "2da50aa5363f827251b738f8433bc1f5dcca59935006ff9eef57fe0923452bdb"
+    },
+    "media/consultancy-contract-4af256fb53e3/2cffb1f799fda15560614790976c9438.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/2cffb1f799fda15560614790976c9438.webm",
+      "sha256": "7bff51268864f841b1ce805f2e79d7e26c21f81ba06ac34bf892ff49459b7a91"
+    },
+    "media/consultancy-contract-4af256fb53e3/36cd230432dbb2570fb1ff5bf4b4b4dd.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/36cd230432dbb2570fb1ff5bf4b4b4dd.vtt",
+      "sha256": "8f03dd3357613a77d335da30953841e0d3beda04fdc4385aaca2e4b21057e49c"
+    },
+    "media/consultancy-contract-4af256fb53e3/36cd230432dbb2570fb1ff5bf4b4b4dd.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/36cd230432dbb2570fb1ff5bf4b4b4dd.webm",
+      "sha256": "14b36658a5633a5dd6dbd036a2e548c7f7a6507b010d93405c201389b59176c4"
+    },
+    "media/consultancy-contract-4af256fb53e3/5edc9300262aa67c990c5fbe6aea02af.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/5edc9300262aa67c990c5fbe6aea02af.vtt",
+      "sha256": "157bda6956aba3dd4c5da615d6db7f74bf24b7077dc52d31c82f9461eef0da9e"
+    },
+    "media/consultancy-contract-4af256fb53e3/5edc9300262aa67c990c5fbe6aea02af.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/5edc9300262aa67c990c5fbe6aea02af.webm",
+      "sha256": "b1432b4191cd1e483874fe54a0190caeaf8e1348a7d19f58c9ca906a8a861b4d"
+    },
+    "media/consultancy-contract-4af256fb53e3/a2e628a3ae60670da95ddf6372b4f5d7.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/a2e628a3ae60670da95ddf6372b4f5d7.vtt",
+      "sha256": "6fcd8eacd5cb1ea40541263a381780a63c434c8e09df7845c946cb508305567e"
+    },
+    "media/consultancy-contract-4af256fb53e3/a2e628a3ae60670da95ddf6372b4f5d7.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/a2e628a3ae60670da95ddf6372b4f5d7.webm",
+      "sha256": "61501573e2827a7071ee47712a0e170f708085c77a47eaacccd53bad178dee09"
+    },
+    "media/consultancy-contract-4af256fb53e3/a8d3fb96e013896e20af33066a462c8e.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/a8d3fb96e013896e20af33066a462c8e.vtt",
+      "sha256": "39abb9104aa2aa4eefa23058a294acdf4bfeb4e4b4093c6ddbaab7d71e772d48"
+    },
+    "media/consultancy-contract-4af256fb53e3/a8d3fb96e013896e20af33066a462c8e.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/a8d3fb96e013896e20af33066a462c8e.webm",
+      "sha256": "ea7b9fa439ad107543e5f707ab3a6026f12786d2b56d63fd3ea4d9c86fcd004f"
+    },
+    "media/consultancy-contract-4af256fb53e3/adb51ae0f1882791a7a8fa21772e231b.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/adb51ae0f1882791a7a8fa21772e231b.vtt",
+      "sha256": "143868a4e0f346827f862bcf543ed188cc8ecd96c76f4bfb0bb610747feb4d2f"
+    },
+    "media/consultancy-contract-4af256fb53e3/adb51ae0f1882791a7a8fa21772e231b.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/adb51ae0f1882791a7a8fa21772e231b.webm",
+      "sha256": "47d25a4dcab395f61a27d482d0ac6aac0b33f78231d9687f6a1afb4cc78a9ec0"
+    },
+    "media/consultancy-contract-4af256fb53e3/browser-verification.json": {
+      "archivePath": "consultancy-contract-4af256fb53e3/browser-verification.json",
+      "sha256": "642f5d3704c4238b29742a1b9a02196b8653be7f32ba3e64214c65005d32eef8"
+    },
+    "media/consultancy-contract-4af256fb53e3/cce270189bd6d732a81c905a2ca70dd2.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/cce270189bd6d732a81c905a2ca70dd2.vtt",
+      "sha256": "88ddd626a93ae4495c72fdb6808542dea7315edbc5d1edfbef60c899c1aa611f"
+    },
+    "media/consultancy-contract-4af256fb53e3/cce270189bd6d732a81c905a2ca70dd2.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/cce270189bd6d732a81c905a2ca70dd2.webm",
+      "sha256": "e5c8417bbb1d6483dd70e886528d778ce1eb75b7ea696daee9a1e138da0d15a8"
+    },
+    "media/consultancy-contract-4af256fb53e3/da1b1057b6c240839eab5fc30053e9b8.vtt": {
+      "archivePath": "consultancy-contract-4af256fb53e3/da1b1057b6c240839eab5fc30053e9b8.vtt",
+      "sha256": "7379fc7cf2b664b5775bab02a6f4b98b23d20b33a564ba4771fc86eb9e140edf"
+    },
+    "media/consultancy-contract-4af256fb53e3/da1b1057b6c240839eab5fc30053e9b8.webm": {
+      "archivePath": "consultancy-contract-4af256fb53e3/da1b1057b6c240839eab5fc30053e9b8.webm",
+      "sha256": "a7338e8d6ab99bf38f53d4835d5323915fc752811387f951b5da475bccfc1995"
+    },
+    "media/consultancy-contract-4af256fb53e3/events.json": {
+      "archivePath": "consultancy-contract-4af256fb53e3/events.json",
+      "sha256": "871ced971122ad65ae19b8b35779ad78237c567ec4cd569094aa599ca02803e3"
+    },
+    "media/consultancy-contract-4af256fb53e3/independent-observer.png": {
+      "archivePath": "consultancy-contract-4af256fb53e3/independent-observer.png",
+      "sha256": "8aedee18475a2720b07fa8646b05c561f24911e9a7c25e4f72358d94f8ca9985"
+    },
+    "media/consultancy-contract-4af256fb53e3/manifest.json": {
+      "archivePath": "consultancy-contract-4af256fb53e3/manifest.json",
+      "sha256": "49910856a3c110fa56c574f172e92a782f810c628ecc2f8013e3225bc7db0967"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-0.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-0.jpg",
+      "sha256": "98f2d0a7146d76c912048a8efd7b1d4c4910f790fe5d004d903b41f5cb66fb97"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-1.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-1.jpg",
+      "sha256": "261e5c5fa8727d6fca2c331e17a650b803616b14e78458ea22f27cb442fce89a"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-2.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-2.jpg",
+      "sha256": "98f2d0a7146d76c912048a8efd7b1d4c4910f790fe5d004d903b41f5cb66fb97"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-3.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-3.jpg",
+      "sha256": "98f2d0a7146d76c912048a8efd7b1d4c4910f790fe5d004d903b41f5cb66fb97"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-4.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-4.jpg",
+      "sha256": "261e5c5fa8727d6fca2c331e17a650b803616b14e78458ea22f27cb442fce89a"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-5.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-5.jpg",
+      "sha256": "76605a330e44b429905b375faafc35885db22bc426af5c40698e63f8ca0cb06e"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-6.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-6.jpg",
+      "sha256": "261e5c5fa8727d6fca2c331e17a650b803616b14e78458ea22f27cb442fce89a"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-7.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-7.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/consultancy-contract-4af256fb53e3/poster-8.jpg": {
+      "archivePath": "consultancy-contract-4af256fb53e3/poster-8.jpg",
+      "sha256": "3e7763333b533770e11fc8d5acd604680d958c2b080b8bfbcf91e9001632059c"
+    },
+    "media/consultancy-contract-4af256fb53e3/result.png": {
+      "archivePath": "consultancy-contract-4af256fb53e3/result.png",
+      "sha256": "a8148f786c77cc14673f257fad0be130db5dded6a4461444568164161c7be93d"
+    },
+    "media/consultancy-contract-4af256fb53e3/verification.json": {
+      "archivePath": "consultancy-contract-4af256fb53e3/verification.json",
+      "sha256": "b5917516a608652349c9ed5420c653741aee962be3866ad5a9aa6bbdee2ecf18"
+    }
+  },
+  "mediaTransformation": "none; original archive bytes copied exactly",
+  "sourceIndexSHA256": "3e5ff769e540bd1104c7682c0afdf1b45f6c9d74af6ec9bca972fc896b5331e5",
+  "sourceChecksumsSHA256": "affa7936e47c5ca5a248f22d3729e3914ca246b7bf725d92af3fdba1cb988b5c",
+  "reel": {
+    "url": "https://github.com/newdarwindev/runspindle-demo-suite/releases/download/demo-085a776b2328/combined-reel.mp4",
+    "status": "rendered",
+    "path": "combined-reel.mp4",
+    "durationSeconds": 122.84,
+    "includes": "Actual clips with case/outcome title cards; individual clips retained."
+  }
+}

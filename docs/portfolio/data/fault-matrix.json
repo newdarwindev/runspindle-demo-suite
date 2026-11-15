@@ -1,0 +1,146 @@
+[
+  {
+    "case": "bookkeeper-deposit",
+    "fault": "expired",
+    "runId": "bookkeeper-deposit-1c86c1135d84",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bookkeeper-deposit",
+    "fault": "wrong-account",
+    "runId": "bookkeeper-deposit-de423f79aa49",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "staffing-billing",
+    "fault": "tenant-expired",
+    "runId": "staffing-billing-9a6d4f2d5635",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "vintage-returns",
+    "fault": "wrong-account",
+    "runId": "vintage-returns-879102c8ed01",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bookkeeper-deposit",
+    "fault": "denied",
+    "runId": "bookkeeper-deposit-ddaf33dd10ee",
+    "initialOutcome": "blocked",
+    "resumed": false,
+    "verifiedCompletion": false,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bookkeeper-deposit",
+    "fault": "missing",
+    "runId": "bookkeeper-deposit-bbb4993539e4",
+    "initialOutcome": "blocked",
+    "resumed": false,
+    "verifiedCompletion": false,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bakery-prep",
+    "fault": "crash",
+    "runId": "bakery-prep-5cc7ffdad389",
+    "initialOutcome": "blocked",
+    "resumed": true,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "consultancy-contract",
+    "fault": "lost-ack",
+    "runId": "consultancy-contract-ffd7f4605bdc",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "consultancy-contract",
+    "fault": "unresolved",
+    "runId": "consultancy-contract-0c2b558a8b66",
+    "initialOutcome": "unknown",
+    "resumed": false,
+    "verifiedCompletion": false,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "consultancy-contract",
+    "fault": "forbidden",
+    "runId": "consultancy-contract-3aaf5bfa1746",
+    "initialOutcome": "blocked",
+    "resumed": false,
+    "verifiedCompletion": false,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bakery-prep",
+    "fault": "artifact-interruption",
+    "runId": "bakery-prep-8ed77be413bb",
+    "initialOutcome": "blocked",
+    "resumed": true,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bakery-prep",
+    "fault": "ambiguous",
+    "runId": "bakery-prep-e1609cb6a352",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "produce-packing",
+    "fault": "tenant-expired",
+    "runId": "produce-packing-5654cdc1c797",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "subcontractor-invoices",
+    "fault": "tenant-expired",
+    "runId": "subcontractor-invoices-fdd323308e54",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bakery-prep",
+    "fault": "offline",
+    "runId": "bakery-prep-d141be13e4fd",
+    "initialOutcome": "blocked",
+    "resumed": true,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  },
+  {
+    "case": "bakery-prep",
+    "fault": "stale",
+    "runId": "bakery-prep-0a688c62442d",
+    "initialOutcome": "verified",
+    "resumed": false,
+    "verifiedCompletion": true,
+    "expectedBehaviorVerified": true
+  }
+]
