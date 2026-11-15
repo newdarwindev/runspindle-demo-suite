@@ -12,9 +12,6 @@ jobs:
   verify:
     runs-on: [self-hosted, linux, x64, runspindle-isolated, strix]
     timeout-minutes: 14
-    env:
-      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/runspindle-demo-browsers
-      npm_config_cache: ${{ runner.temp }}/runspindle-demo-npm
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -30,6 +27,8 @@ jobs:
           test "$(uname -s)" = Linux
           test "$(uname -m)" = x86_64
           echo "Using the provisioned disposable local runner; no host or image changes."
+          echo "PLAYWRIGHT_BROWSERS_PATH=$RUNNER_TEMP/runspindle-demo-browsers" >> "$GITHUB_ENV"
+          echo "npm_config_cache=$RUNNER_TEMP/runspindle-demo-npm" >> "$GITHUB_ENV"
       - name: Install locked browser dependency
         run: npm ci
       - name: Install pinned browser
