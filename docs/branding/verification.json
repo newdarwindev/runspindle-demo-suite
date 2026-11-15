@@ -1,0 +1,294 @@
+{
+  "passed": true,
+  "apps": 14,
+  "viewports": [
+    1280,
+    390
+  ],
+  "results": [
+    {
+      "app": "mock-excel",
+      "width": 1280,
+      "bodyFont": "Arial, sans-serif",
+      "headingFont": "Georgia, serif",
+      "background": "rgb(237, 245, 238)",
+      "style": "ledger",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-excel",
+      "width": 390,
+      "bodyFont": "Arial, sans-serif",
+      "headingFont": "Georgia, serif",
+      "background": "rgb(237, 245, 238)",
+      "style": "ledger",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-mail",
+      "width": 1280,
+      "bodyFont": "Verdana, sans-serif",
+      "headingFont": "\"Trebuchet MS\", sans-serif",
+      "background": "rgb(238, 244, 255)",
+      "style": "inbox",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-mail",
+      "width": 390,
+      "bodyFont": "Verdana, sans-serif",
+      "headingFont": "\"Trebuchet MS\", sans-serif",
+      "background": "rgb(238, 244, 255)",
+      "style": "inbox",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-counterorders",
+      "width": 1280,
+      "bodyFont": "\"Trebuchet MS\", sans-serif",
+      "headingFont": "Georgia, serif",
+      "background": "rgb(255, 244, 223)",
+      "style": "bakery",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-counterorders",
+      "width": 390,
+      "bodyFont": "\"Trebuchet MS\", sans-serif",
+      "headingFont": "Georgia, serif",
+      "background": "rgb(255, 244, 223)",
+      "style": "bakery",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-job-board",
+      "width": 1280,
+      "bodyFont": "Arial, sans-serif",
+      "headingFont": "Verdana, sans-serif",
+      "background": "rgb(243, 239, 255)",
+      "style": "directory",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-job-board",
+      "width": 390,
+      "bodyFont": "Arial, sans-serif",
+      "headingFont": "Verdana, sans-serif",
+      "background": "rgb(243, 239, 255)",
+      "style": "directory",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-applicant-portal",
+      "width": 1280,
+      "bodyFont": "Georgia, serif",
+      "headingFont": "\"Trebuchet MS\", sans-serif",
+      "background": "rgb(240, 248, 236)",
+      "style": "journey",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-applicant-portal",
+      "width": 390,
+      "bodyFont": "Georgia, serif",
+      "headingFont": "\"Trebuchet MS\", sans-serif",
+      "background": "rgb(240, 248, 236)",
+      "style": "journey",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-interview-room",
+      "width": 1280,
+      "bodyFont": "Verdana, sans-serif",
+      "headingFont": "\"Palatino Linotype\", Georgia, serif",
+      "background": "rgb(250, 240, 237)",
+      "style": "conversation",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-interview-room",
+      "width": 390,
+      "bodyFont": "Verdana, sans-serif",
+      "headingFont": "\"Palatino Linotype\", Georgia, serif",
+      "background": "rgb(250, 240, 237)",
+      "style": "conversation",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-coderpad",
+      "width": 1280,
+      "bodyFont": "Consolas, monospace",
+      "headingFont": "\"Courier New\", monospace",
+      "background": "rgb(17, 24, 39)",
+      "style": "terminal",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-coderpad",
+      "width": 390,
+      "bodyFont": "Consolas, monospace",
+      "headingFont": "\"Courier New\", monospace",
+      "background": "rgb(17, 24, 39)",
+      "style": "terminal",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-issue-tracker",
+      "width": 1280,
+      "bodyFont": "Tahoma, sans-serif",
+      "headingFont": "\"Arial Narrow\", Arial, sans-serif",
+      "background": "rgb(255, 247, 230)",
+      "style": "triage",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-issue-tracker",
+      "width": 390,
+      "bodyFont": "Tahoma, sans-serif",
+      "headingFont": "\"Arial Narrow\", Arial, sans-serif",
+      "background": "rgb(255, 247, 230)",
+      "style": "triage",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-code-workspace",
+      "width": 1280,
+      "bodyFont": "\"Courier New\", monospace",
+      "headingFont": "Consolas, monospace",
+      "background": "rgb(33, 29, 44)",
+      "style": "workbench",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-code-workspace",
+      "width": 390,
+      "bodyFont": "\"Courier New\", monospace",
+      "headingFont": "Consolas, monospace",
+      "background": "rgb(33, 29, 44)",
+      "style": "workbench",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-bank",
+      "width": 1280,
+      "bodyFont": "Arial, sans-serif",
+      "headingFont": "\"Times New Roman\", serif",
+      "background": "rgb(240, 243, 245)",
+      "style": "banking",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-bank",
+      "width": 390,
+      "bodyFont": "Arial, sans-serif",
+      "headingFont": "\"Times New Roman\", serif",
+      "background": "rgb(240, 243, 245)",
+      "style": "banking",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-vendor-portal",
+      "width": 1280,
+      "bodyFont": "Verdana, sans-serif",
+      "headingFont": "Tahoma, sans-serif",
+      "background": "rgb(234, 246, 247)",
+      "style": "logistics",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-vendor-portal",
+      "width": 390,
+      "bodyFont": "Verdana, sans-serif",
+      "headingFont": "Tahoma, sans-serif",
+      "background": "rgb(234, 246, 247)",
+      "style": "logistics",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-timesheet-portal",
+      "width": 1280,
+      "bodyFont": "\"Trebuchet MS\", sans-serif",
+      "headingFont": "Arial, sans-serif",
+      "background": "rgb(255, 240, 239)",
+      "style": "schedule",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-timesheet-portal",
+      "width": 390,
+      "bodyFont": "\"Trebuchet MS\", sans-serif",
+      "headingFont": "Arial, sans-serif",
+      "background": "rgb(255, 240, 239)",
+      "style": "schedule",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-marketplace",
+      "width": 1280,
+      "bodyFont": "\"Trebuchet MS\", sans-serif",
+      "headingFont": "\"Palatino Linotype\", Georgia, serif",
+      "background": "rgb(247, 239, 242)",
+      "style": "boutique",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-marketplace",
+      "width": 390,
+      "bodyFont": "\"Trebuchet MS\", sans-serif",
+      "headingFont": "\"Palatino Linotype\", Georgia, serif",
+      "background": "rgb(247, 239, 242)",
+      "style": "boutique",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-supplier-portal",
+      "width": 1280,
+      "bodyFont": "Tahoma, sans-serif",
+      "headingFont": "\"Book Antiqua\", Georgia, serif",
+      "background": "rgb(244, 243, 223)",
+      "style": "harvest",
+      "overflow": false,
+      "buttonVisible": true
+    },
+    {
+      "app": "mock-supplier-portal",
+      "width": 390,
+      "bodyFont": "Tahoma, sans-serif",
+      "headingFont": "\"Book Antiqua\", Georgia, serif",
+      "background": "rgb(244, 243, 223)",
+      "style": "harvest",
+      "overflow": false,
+      "buttonVisible": true
+    }
+  ],
+  "sourceCommit": "fb916a855fca470454d88a3d363d74ba695e8e5b",
+  "sandboxEnabled": true,
+  "scope": "Initial server-composed signed-out layouts; full workflow re-recording pending",
+  "visualReview": "Desktop/mobile contact sheets reviewed"
+}
