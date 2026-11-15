@@ -2,7 +2,7 @@ import json,sys,tempfile,unittest,zipfile
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from presentation import assemble,safe_file,validate_links,stamp,export_fault_matrix
+from presentation import assemble,safe_file,validate_links,stamp,export_fault_matrix,make_reel
 import evaluate
 class PresentationTests(unittest.TestCase):
  def test_blocked_package_is_truthful_and_zip_verified(self):
@@ -28,6 +28,23 @@ class PresentationTests(unittest.TestCase):
  def test_fault_matrix_absence_is_explicit(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);self.assertEqual(export_fault_matrix(root,root,[])['status'],'unavailable')
+ def test_portable_reel_failure_is_not_rendered(self):
+  from types import SimpleNamespace
+  entries=[{'case':'bakery-prep','outcome':'verified','runId':'run-1','media':[{'clip':'page.webm'}]}]
+  with tempfile.TemporaryDirectory() as tmp,patch('presentation.shutil.which',return_value='/tool/ffmpeg'),patch('presentation.subprocess.run') as run:
+   run.side_effect=[SimpleNamespace(returncode=0)]*3+[SimpleNamespace(returncode=1)]
+   result=make_reel(Path(tmp),entries)
+   self.assertEqual(result['status'],'failed')
+   self.assertIn('WebM',result['reason'])
+   self.assertIn('libvpx',run.call_args.args[0])
+ def test_portable_reel_records_both_formats(self):
+  from types import SimpleNamespace
+  entries=[{'case':'bakery-prep','outcome':'verified','runId':'run-1','media':[{'clip':'page.webm'}]}]
+  with tempfile.TemporaryDirectory() as tmp,patch('presentation.shutil.which',return_value='/tool/ffmpeg'),patch('presentation.subprocess.run',return_value=SimpleNamespace(returncode=0)),patch('presentation.duration',return_value=3):
+   result=make_reel(Path(tmp),entries)
+   self.assertEqual(result['status'],'rendered')
+   self.assertEqual(result['portablePath'],'combined-reel.webm')
+   self.assertEqual(result['path'],'combined-reel.mp4')
  def test_timestamps(self):self.assertEqual(stamp(65.25),'00:01:05.250')
  def test_feedback_bound_to_exact_output(self):
   with tempfile.TemporaryDirectory() as tmp,patch.object(evaluate,'STATE',Path(tmp)/'state.json'):
