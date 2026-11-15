@@ -27,6 +27,7 @@ def validate_links(dest):
    link=html.unescape(raw);u=urlsplit(link)
    if u.scheme or link.startswith('#'):continue
    target=(page.parent/unquote(u.path)).resolve()
+   if target.is_dir():target=(target/'index.html').resolve()
    if not target.is_relative_to(dest.resolve()) or not target.is_file():errors.append(str(page.relative_to(dest))+': '+link)
  return errors
 
@@ -134,7 +135,7 @@ def assemble(root=ROOT,media_tools=True,reel=False):
    poster=f' poster="{run}/{esc(v["poster"])}"' if v['poster'] else ''
    card+=f'<video controls preload="metadata"{poster}><source src="{run}/{esc(v["clip"])}"><track kind="captions" label="Fixture labels" srclang="en" src="{run}/{esc(v["captions"])}" default></video>'
   card+='<ul>'+''.join(f'<li>{esc(x)}</li>' for x in run_missing)+'</ul><details><summary>Verification and provenance</summary><pre>'+esc(json.dumps(checks,indent=2))+'</pre><ul>'+''.join(f'<li><a href="{run}/{esc(x)}">{esc(x)}</a></li>' for x in copied if Path(x).suffix=='.json')+'</ul></details></section>';cards.append(card)
- if (root/'docs').exists():shutil.copytree(root/'docs',dest/'docs',dirs_exist_ok=True)
+ if (root/'docs').exists():shutil.copytree(root/'docs',dest/'docs',dirs_exist_ok=True,ignore=lambda source,names: {'tools'} if Path(source)==root/'docs/portfolio' else set())
  matrix=export_fault_matrix(artifacts,dest,entries)
  reel_result=make_reel(dest,entries) if reel else {'status':'not-requested','reason':'Individual clips retained; use --reel to render combined title-card reel.'}
  (dest/'cue-sheet.md').write_text('\n'.join(notes)+'\n');(dest/'evidence-index.json').write_text(json.dumps({'fixtureOnly':True,'upstreamExecuted':False,'runs':entries,'missing':missing,'reel':reel_result,'faultMatrix':matrix},indent=2))
