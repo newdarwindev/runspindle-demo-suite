@@ -48,5 +48,5 @@ class PresentationTests(unittest.TestCase):
     self.assertNotIn('docs/portfolio/tools/template.html',z.namelist())
    self.assertFalse(result['brokenLinks'])
    (root/'docs/portfolio/index.html').unlink()
-   self.assertTrue(validate_links(root/'docs'))
+   self.assertIn('index.html: portfolio/',validate_links(root/'docs'))
 if __name__=='__main__':unittest.main()
