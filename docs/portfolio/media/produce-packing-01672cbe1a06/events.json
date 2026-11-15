@@ -1,0 +1,109 @@
+[
+  {
+    "kind": "started",
+    "time": "2026-11-15T07:53:34.052Z",
+    "case": "produce-packing",
+    "adapter": "deterministic-browser-fixture",
+    "executionMode": "fixture",
+    "upstreamExecuted": false
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:34.251Z",
+    "case": "produce-packing",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:34.308Z",
+    "case": "produce-packing",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 56.67885300000006,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:34.362Z",
+    "case": "produce-packing",
+    "app": "mock-supplier-portal",
+    "account": "produce-supplier",
+    "scope": "Garden"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T07:53:34.409Z",
+    "case": "produce-packing",
+    "app": "mock-supplier-portal",
+    "account": "produce-supplier",
+    "scope": "Garden"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:34.518Z",
+    "case": "produce-packing",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:34.556Z",
+    "case": "produce-packing",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 37.99890999999991,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:34.609Z",
+    "case": "produce-packing",
+    "app": "mock-supplier-portal",
+    "account": "produce-supplier",
+    "scope": "Bistro"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T07:53:34.654Z",
+    "case": "produce-packing",
+    "app": "mock-supplier-portal",
+    "account": "produce-supplier",
+    "scope": "Bistro"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:34.731Z",
+    "case": "produce-packing",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:34.805Z",
+    "case": "produce-packing",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 73.56499500000007,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:34.856Z",
+    "case": "produce-packing",
+    "app": "mock-excel",
+    "account": "produce",
+    "scope": ""
+  },
+  {
+    "kind": "worker-finished",
+    "time": "2026-11-15T07:53:35.094Z",
+    "case": "produce-packing",
+    "result": {
+      "tomatoes": 6
+    }
+  }
+]

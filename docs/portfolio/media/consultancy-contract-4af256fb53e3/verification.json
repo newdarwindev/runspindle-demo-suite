@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "expected_result": true,
+    "actual_workbook_row": true,
+    "actual_table_cells": true,
+    "actual_table_totals": true,
+    "unrelated_table_rows_preserved": true,
+    "unrelated_preserved": true,
+    "single_case_row": true,
+    "saved_revision_matches": true,
+    "historical_notes_preserved": true,
+    "code_tests": true,
+    "issue": true,
+    "one_comment": true,
+    "hired": true,
+    "pr": true,
+    "independent_browser_readback": true,
+    "checkpoint_source_readback": true
+  },
+  "passed": true,
+  "observedAt": 1794729221.2758238,
+  "observer": "independent persisted workbook cells, totals, notes and revision readback",
+  "result": {
+    "openJobs": 2,
+    "originalRows": 6,
+    "correctedRows": 10,
+    "issue": "47",
+    "status": "Ready for review"
+  }
+}

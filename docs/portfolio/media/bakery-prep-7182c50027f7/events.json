@@ -1,0 +1,77 @@
+[
+  {
+    "kind": "started",
+    "time": "2026-11-15T07:53:21.033Z",
+    "case": "bakery-prep",
+    "adapter": "deterministic-browser-fixture",
+    "executionMode": "fixture",
+    "upstreamExecuted": false
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:21.506Z",
+    "case": "bakery-prep",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:21.663Z",
+    "case": "bakery-prep",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 156.35854900000004,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:21.776Z",
+    "case": "bakery-prep",
+    "app": "mock-counterorders",
+    "account": "bakery",
+    "scope": ""
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T07:53:21.851Z",
+    "case": "bakery-prep",
+    "app": "mock-counterorders",
+    "account": "bakery",
+    "scope": ""
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T07:53:21.938Z",
+    "case": "bakery-prep",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T07:53:22.051Z",
+    "case": "bakery-prep",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 112.73492999999985,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T07:53:22.122Z",
+    "case": "bakery-prep",
+    "app": "mock-excel",
+    "account": "bakery",
+    "scope": ""
+  },
+  {
+    "kind": "worker-finished",
+    "time": "2026-11-15T07:53:22.742Z",
+    "case": "bakery-prep",
+    "result": {
+      "loaves": 3,
+      "rolls": 16
+    }
+  }
+]
