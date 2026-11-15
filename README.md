@@ -11,7 +11,7 @@ git clone --recurse-submodules https://github.com/newdarwindev/runspindle-demo-s
 cd runspindle-demo-suite
 ```
 
-All seven workflows have browser recordings and independent verification. All 21 child repositories are published and pinned. See [verified presentation release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-b6479f31c50e) for the self-contained gallery, clips and evidence.
+All seven workflows have browser recordings and independent verification. All 21 child repositories are published and pinned. See [verified presentation release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-efcb0fdd330a) for the self-contained gallery, clips and evidence.
 
 ```sh
 python3 tools/demo.py bootstrap

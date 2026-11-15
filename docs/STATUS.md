@@ -1,26 +1,28 @@
 # Implementation and verification status
 
-## Verified release
+All five [original milestones](MILESTONES.md) are delivered for the synthetic fixture suite. The first release's requirement omissions were corrected and reverified.
 
-[CI run 43631979338](https://github.com/newdarwindev/runspindle-demo-suite/actions/runs/43631979338) passed at parent commit `be01b864680ec44fdb0a2d9f2260dcf7ef2b4a52`:
+## Verified checkpoint
 
-- All 50 contract, independent-evidence and presentation tests.
-- All seven normal browser workflows, with independent persisted-state and fresh-browser readback.
-- Fourteen fault scenarios, including expected blocked/unknown outcomes rather than false success.
-- Locked-version evaluation, exact feedback approval, activation and rollback.
-- Gallery link and video playback checks, real clips, captions, posters, cues and combined reel.
-- Durable [presentation release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-be01b864680e).
+[CI run 43691466189](https://github.com/newdarwindev/runspindle-demo-suite/actions/runs/43691466189) passed at `efcb0fdd330a75e020681df110c2405be0f3ba93`:
 
-The released ZIP has 22 runs, no missing media, and a 110.96-second combined reel. Independent download verification passed ZIP integrity and all 452 file checksums. ZIP SHA256: `ecc8a34b8f67e6950266ea57b7f68fe7e211e35e0723e12b076ace61d729bad4`.
+- 65 contract, fidelity, child-execution, independent-evidence and presentation tests.
+- Seven normal browser workflows and fresh-browser readbacks.
+- Sixteen fault scenarios, including staffing sign-in recovery and separate bank wrong-account verification.
+- Manual-adapter real-browser waiting and fresh-identity handback, with a separate synthetic test driver.
+- Locked-version evaluation, explicit revision approval, activation and rollback.
+- Gallery playback/link verification and durable release publication.
 
-All 21 child repositories are published and pinned as real Git submodules. A fresh recursive checkout of final 21-pin commit `b6479f31c50e649048764371532fa78912952611` passed all 50 tests. [Final full CI run 43634950337](https://github.com/newdarwindev/runspindle-demo-suite/actions/runs/43634950337) passed verification and publication. Its [21-pin release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-b6479f31c50e) adds directly downloadable combined-reel MP4 and gallery screenshot alongside the ZIP and verification JSON.
+All 21 children are published and pinned. A fresh recursive GitHub clone passed all 65 tests. Workflows own executable steps and assertions; apps own consumed defaults and action permissions.
 
-## Publication
+## Presentation
 
-Repository-creation cooldown has cleared. All 14 mock apps and seven workflow repositories are published. No repository-creation blocker remains.
+[Verified release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-efcb0fdd330a) contains the ZIP, direct MP4 reel, gallery screenshot and verification JSON. ZIP download verification passed integrity and all 494 checksums. It contains 24 runs, no missing media, a verified 16-row fault matrix, and a 127.56-second reel.
 
-## Evidence boundary
+ZIP SHA256: `cb361468a9b011843fc9c0cec4d600dcf2502fbe8db05e1840b808b9b3f9f2e3`.
 
-No external credentials or upstream model keys are needed. The deterministic fixture adapter executes only controlled browser apps. Upstream Runspindle itself does not execute. Operator timing is labeled scripted; no competitive savings or real-human-time claim is inferred. All identities and business data are fictional. Expected safety blocks are verification successes, not completed business tasks.
+Expected denied, missing-data, forbidden-assessment and unresolved-effect outcomes remain visible. A passing safety scenario is not a completed business task.
 
-The release is a downloadable, self-contained gallery. No hosted backend or persistent demo service, schedule or agent is provisioned.
+## Limits and optional next validation
+
+No upstream Runspindle code executes. All identities/data are fictional and interfaces conceptual. No competitive savings or active human-time claim is made. No attended human end-to-end manual run has been recorded; use the graphical-host command in [MANUAL.md](MANUAL.md) for that validation. No hosted backend or persistent service is provisioned. There are no blocking implementation or publication failures for the delivered fixture scope.

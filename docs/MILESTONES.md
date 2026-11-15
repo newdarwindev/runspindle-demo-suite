@@ -1,18 +1,26 @@
 # Original delivery milestones
 
-The original five milestones are retained below. Historical green CI verifies the scope it executed, not requirements absent from that implementation.
+All five original milestones have now been delivered. Requirement-level re-audit found gaps in the first release; those were implemented and reverified, rather than treating earlier green CI as proof of missing behavior.
 
-| Milestone | Evidence and current status |
+| Milestone | Verified status |
 | --- | --- |
-| 1. Publish now | Complete: parent README/checklist and all 14 app plus seven workflow repositories are published with exact submodule pins. |
-| 2. Publish the first demos | Complete: bakery and bookkeeper sign-in recovery have actual browser recordings and independent checks in published releases. |
-| 3. Complete the suite | Reopened on review: seven normal paths and 14 historical fault scenarios passed, but manual operator handoff, application draft/screening, navigable issue evidence, staffing recovery coverage and source-link verification need the follow-up implementation. |
-| 4. Publish and verify the presentation package | Historical package verified; refresh required after milestone 3 corrections. The follow-up package must include the executed fault matrix in JSON and a human-readable table. |
-| 5. Finish the handoff | Pending refreshed CI/release evidence and explicit disclosure of any remaining gaps. |
+| 1. Publish now | Complete. Parent and 21 real child repositories published and pinned. Workflow children own executed steps/scopes and independent assertions; app children own consumed defaults and action permissions. |
+| 2. Publish the first demos | Complete. Bakery normal path and bookkeeper sign-in recovery have actual recordings and independent workbook readback. |
+| 3. Complete the suite | Complete for fixture execution. Seven normal workflows, 16 fault scenarios, 65 tests, independent browser readback, manual-adapter browser contract, evaluation approval and rollback pass. |
+| 4. Publish and verify the presentation package | Complete. Gallery/video/link checks pass. Durable ZIP includes executed JSON/Markdown fault matrix, actual clips, posters, cues, evidence and reel. Downloaded ZIP integrity and all 494 checksums verified for the release below. |
+| 5. Finish the handoff | Complete. Scope, limits and reproduction commands are recorded here and in STATUS.md and MANUAL.md. |
 
-## Scope
+## Verified checkpoint
 
-All execution is deterministic fixture execution against synthetic localhost apps. No upstream Runspindle integration or comparative staff-time savings is claimed. No hosted backend or persistent demo service is provisioned.
+- [Full CI 43691466189](https://github.com/newdarwindev/runspindle-demo-suite/actions/runs/43691466189) at `efcb0fdd330a75e020681df110c2405be0f3ba93`.
+- [Durable presentation release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-efcb0fdd330a).
+- Fresh recursive checkout of all 21 updated pins passed 65 tests.
+
+## Scope and remaining validation limits
+
+All execution is deterministic fixture execution against synthetic localhost apps. No upstream Runspindle integration or comparative staff-time savings is claimed. The manual adapter was exercised in a real browser using a separately labeled synthetic test driver; no attended human end-to-end session is claimed. That optional attended validation needs a graphical host and the command in MANUAL.md. The operator adapter is a software/control boundary, not OS-level isolation.
+
+No hosted backend or persistent demo service is provisioned. The downloadable gallery and locally runnable suite are delivered; hosting requires an explicitly selected supported target and applicable authorization.
 
 ## Regeneration
 
@@ -27,4 +35,4 @@ python3 tools/presentation.py --reel
 node tools/verify-gallery.cjs
 ```
 
-Use a supported sandboxed Chromium installation; CI uses `BROWSER_CHANNEL=chrome`. The generated matrix records expected blocked/unknown outcomes separately from business-task completion. Missing matrix evidence is explicitly unavailable, never inferred from a green normal run.
+Use supported sandboxed Chromium; CI uses `BROWSER_CHANNEL=chrome`. Expected blocked/unknown behavior is distinct from business-task completion. Missing evidence is unavailable, never inferred from a green normal run.

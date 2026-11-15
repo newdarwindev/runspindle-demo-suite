@@ -20,4 +20,4 @@ Resetting a case replaces its previous live state. Use `python tools/demo.py res
 
 ## Verification boundary
 
-The headed manual mode is implemented and covered by adapter/control and server contract checks. No attended end-to-end manual browser run has been recorded during this implementation. Existing automated browser recordings establish the scripted fixture paths only. Run the command above on a graphical host to validate the attended path.
+The headed manual mode is implemented and covered by adapter/control and server contract checks. CI also exercises its waiting and fresh-identity handback in a real browser using a separately labeled synthetic test driver. No attended end-to-end manual browser run has been recorded during this implementation. Existing automated browser recordings establish the scripted fixture paths only. Run the command above on a graphical host to validate the attended path.
