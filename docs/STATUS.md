@@ -27,6 +27,10 @@ Expected denied, missing-data, forbidden-assessment and unresolved-effect outcom
 
 No upstream Runspindle code executes. All identities/data are fictional and interfaces conceptual. No competitive savings or active human-time claim is made. No attended human end-to-end manual run has been recorded; use the graphical-host command in [MANUAL.md](MANUAL.md) for that validation. No hosted backend or persistent service is provisioned. There are no blocking implementation or publication failures for the delivered fixture scope.
 
-## Additional branding milestone
+## Published branded fixture checkpoint
 
-[Milestone 6](BRANDING.md) is in progress: 14 independent fictional brands implemented and 68 Python tests passed. Sandboxed desktop/mobile checks and contact-sheet visual review passed on a supported connected Linux host (14 apps, 28 screenshots). Refreshed full workflow recordings remain pending. This does not change the verified original-release checkpoint above or claim its recordings show the new designs.
+The [branded release](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-193b07c4eae8) supersedes the earlier presentation checkpoint for the new designs, without rewriting old evidence. Seven normal runs, all 16 fault expectations and evaluation/rollback passed on Strix. The package retains the initial pre-install blocked attempt alongside 24 post-install runs.
+
+Validation: 73 packager tests, 656 archive hashes, 93 media items played in sandboxed pinned Chromium and 156 links checked. Both 116.84-second MP4 and VP8/WebM reels are published. All six uploaded asset digests matched the verified local bytes. ZIP SHA256: `8146bc89cfcc2744a77296e8ffa0c1d4db65a1b0b0c7d992bee9af116e069326`.
+
+Workflow capture source is `1c6e074`; packager content matches `193b07c4`. [Milestone 6](MILESTONES.md) is implemented for the standalone fixture scope. Current demo Actions qualification and Pages activation remain pending; source code in another repository is never a dependency here. The static portfolio still displays its accurately labeled historical recordings.

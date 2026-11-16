@@ -35,10 +35,12 @@ python3 tools/presentation.py --reel
 node tools/verify-gallery.cjs
 ```
 
-Use supported sandboxed Chromium; CI uses `BROWSER_CHANNEL=chrome`. Expected blocked/unknown behavior is distinct from business-task completion. Missing evidence is unavailable, never inferred from a green normal run.
+Use supported sandboxed Chromium. The portable VP8/WebM reel supports pinned Chromium; H.264 MP4 remains available for compatible players. Expected blocked/unknown behavior is distinct from business-task completion. Missing evidence is unavailable, never inferred from a green normal run.
 
 ## 6. Give each mock software its own visual identity
 
-**In progress.** Every mock software must have its own branding, visual style, color scheme and typography. All 14 child apps now implement independent identities, palettes, type treatments and layout motifs, with child-owned brand manifests. All 68 Python tests pass, including identity uniqueness, implementation wiring and readable-contrast checks. See [branding acceptance gates and product directions](BRANDING.md).
+**Implemented and verified for the standalone fixture scope.** All 14 child apps have distinct fictional brands, palettes, typography and layout motifs. Desktop/mobile checks cover 28 screenshots. Refreshed branded evidence is now [published](https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-193b07c4eae8): seven normal workflow completions, all 16 fault expectations, evaluation/rollback, and a verified portable package.
 
-Desktop/mobile browser gate and contact-sheet visual review pass on a fresh recursive checkout: 14 apps, 28 screenshots, sandboxed Chrome, no overflow or JavaScript errors. Remaining gates: refreshed full workflow recordings and package verification. Earlier release clips and portfolio media retain their original provenance.
+The package retains 25 run records: 24 post-install runs plus the initial missing-FFmpeg blocked attempt, which has no clips. Packager verification passed 73 tests, 656 archive hashes, and sandboxed pinned Chromium playback of 93 media items with 156 links checked. The MP4 and VP8/WebM reels last 116.84 seconds.
+
+Recording source remains `1c6e074`; packager content matches `193b07c4`. Exact child pins and outcomes remain in manifests. These are bounded Strix fixture observations, not Actions, upstream integration or human-time-savings evidence. Pages activation and demo fleet admission remain separate owner-operated gates. The historical static portfolio remains pinned to its earlier release.
