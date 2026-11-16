@@ -1,9 +1,20 @@
 """Build a portable, allowlisted presentation from actual recorded manifests."""
-import argparse,hashlib,html,json,re,shutil,subprocess,zipfile
+import argparse,hashlib,html,json,os,re,shutil,subprocess,zipfile
 from pathlib import Path
 from urllib.parse import urlsplit,unquote
 ROOT=Path(__file__).resolve().parents[1]
 ALLOWED={'.json','.webm','.mp4','.png','.jpg','.vtt','.csv'}
+def ffmpeg_binary():
+ pinned=os.environ.get('DEMO_FFMPEG_PATH')
+ if not pinned:return shutil.which('ffmpeg')
+ expected=os.environ.get('DEMO_FFMPEG_SHA256','')
+ path=Path(pinned)
+ if not path.is_absolute() or not path.is_file() or path.is_symlink() or not re.fullmatch(r'[0-9a-f]{64}',expected):
+  raise ValueError('Task-local FFmpeg requires an absolute regular path and SHA256 pin')
+ if hashlib.sha256(path.read_bytes()).hexdigest()!=expected:raise ValueError('Task-local FFmpeg SHA256 mismatch')
+ if not os.access(path,os.X_OK):raise ValueError('Task-local FFmpeg is not executable')
+ return str(path)
+
 def safe_file(base,relative):
  original=base/relative
  if original.is_symlink():raise ValueError('Symlink evidence is not exported')
@@ -32,7 +43,8 @@ def validate_links(dest):
  return errors
 
 def make_reel(dest,entries):
- if not shutil.which('ffmpeg'):return {'status':'unavailable','reason':'ffmpeg not installed'}
+ ffmpeg=ffmpeg_binary()
+ if not ffmpeg:return {'status':'unavailable','reason':'ffmpeg not installed'}
  import tempfile
  with tempfile.TemporaryDirectory(prefix='runspindle-reel-') as temp:
   tmp=Path(temp);segments=[]
@@ -40,21 +52,21 @@ def make_reel(dest,entries):
    if not entry['media']:continue
    label=tmp/'title.txt';label.write_text(entry['case']+' · '+entry['outcome']+'\nFICTIONAL DEMO · CONCEPTUAL INTERFACE')
    title=tmp/f'{len(segments):04}-title.mp4'
-   cmd=['ffmpeg','-v','error','-y','-f','lavfi','-i','color=c=0x102234:s=1280x720:d=2','-vf',f'drawtext=textfile={label}:fontcolor=white:fontsize=36:x=(w-text_w)/2:y=(h-text_h)/2','-an','-r','25','-c:v','libx264','-preset','ultrafast','-pix_fmt','yuv420p',str(title)]
+   cmd=[ffmpeg,'-v','error','-y','-f','lavfi','-i','color=c=0x102234:s=1280x720:d=2','-vf',f'drawtext=textfile={label}:fontcolor=white:fontsize=36:x=(w-text_w)/2:y=(h-text_h)/2','-an','-r','25','-c:v','libx264','-preset','ultrafast','-pix_fmt','yuv420p',str(title)]
    result=subprocess.run(cmd,capture_output=True)
    if result.returncode:return {'status':'failed','reason':'Title card rendering failed'}
    segments.append(title)
    for media in entry['media']:
     clip=dest/entry['runId']/media['clip'];output=tmp/f'{len(segments):04}-clip.mp4'
-    result=subprocess.run(['ffmpeg','-v','error','-y','-i',str(clip),'-vf','scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2','-an','-r','25','-c:v','libx264','-preset','ultrafast','-pix_fmt','yuv420p',str(output)],capture_output=True)
+    result=subprocess.run([ffmpeg,'-v','error','-y','-i',str(clip),'-vf','scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2','-an','-r','25','-c:v','libx264','-preset','ultrafast','-pix_fmt','yuv420p',str(output)],capture_output=True)
     if result.returncode:return {'status':'failed','reason':'Actual clip transcoding failed'}
     segments.append(output)
   if not segments:return {'status':'unavailable','reason':'No actual clips available'}
   listing=tmp/'concat.txt';listing.write_text(''.join(f"file '{p}'\n" for p in segments))
-  result=subprocess.run(['ffmpeg','-v','error','-y','-f','concat','-safe','0','-i',str(listing),'-c','copy','-movflags','+faststart',str(dest/'combined-reel.mp4')],capture_output=True)
+  result=subprocess.run([ffmpeg,'-v','error','-y','-f','concat','-safe','0','-i',str(listing),'-c','copy','-movflags','+faststart',str(dest/'combined-reel.mp4')],capture_output=True)
   if result.returncode:return {'status':'failed','reason':'Clip concatenation failed'}
   # Chromium builds without proprietary H.264 decoding need an open-codec reel.
-  result=subprocess.run(['ffmpeg','-v','error','-y','-i',str(dest/'combined-reel.mp4'),'-an','-c:v','libvpx','-deadline','realtime','-cpu-used','8','-b:v','1500k',str(dest/'combined-reel.webm')],capture_output=True)
+  result=subprocess.run([ffmpeg,'-v','error','-y','-i',str(dest/'combined-reel.mp4'),'-an','-c:v','libvpx','-deadline','realtime','-cpu-used','8','-b:v','1500k',str(dest/'combined-reel.webm')],capture_output=True)
   if result.returncode:return {'status':'failed','reason':'Portable WebM reel transcoding failed'}
   return {'status':'rendered','portablePath':'combined-reel.webm','portableCodec':'vp8','path':'combined-reel.mp4','durationSeconds':duration(dest/'combined-reel.mp4'),'includes':'Actual clips with case/outcome title cards; individual clips retained.'}
 
@@ -86,6 +98,7 @@ def export_fault_matrix(artifacts,dest,entries):
  return {'status':'verified' if clean and all(r['expectedBehaviorVerified'] for r in clean) else 'incomplete','scenarios':len(clean),'json':'fault-matrix.json','table':'fault-matrix.md','rows':clean}
 
 def assemble(root=ROOT,media_tools=True,reel=False):
+ ffmpeg=ffmpeg_binary() if media_tools or reel else None
  artifacts=root/'artifacts';dest=artifacts/'presentation-package';dest.mkdir(parents=True,exist_ok=True)
  # Only delete files generated by this assembler, never source run evidence.
  for p in dest.iterdir():
@@ -113,8 +126,8 @@ def assemble(root=ROOT,media_tools=True,reel=False):
    seconds=duration(out/clip) if media_tools else None
    caption=f'FICTIONAL DEMO • CONCEPTUAL INTERFACE\n{case} • {run}\n{m.get("outcome","unknown")} • fixture execution only'
    vtt=Path(clip).stem+'.vtt';(out/vtt).write_text('WEBVTT\n\n00:00:00.000 --> '+stamp(seconds or 3600)+'\n'+caption+'\n');poster=None
-   if media_tools and shutil.which('ffmpeg'):
-    poster=f'poster-{i}.jpg';r=subprocess.run(['ffmpeg','-v','error','-y','-ss','0','-i',str(out/clip),'-frames:v','1',str(out/poster)],capture_output=True)
+   if media_tools and ffmpeg:
+    poster=f'poster-{i}.jpg';r=subprocess.run([ffmpeg,'-v','error','-y','-ss','0','-i',str(out/clip),'-frames:v','1',str(out/poster)],capture_output=True)
     if r.returncode:poster=None
    if not poster and m.get('media',{}).get('screenshots'):
     poster=next((x for x in m['media']['screenshots'] if x in copied),None)
