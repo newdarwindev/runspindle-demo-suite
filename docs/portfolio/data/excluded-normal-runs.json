@@ -1,0 +1,13 @@
+[
+  {
+    "runId": "bakery-prep-5b58e08406c4",
+    "case": "bakery-prep",
+    "outcome": "blocked",
+    "reason": "Not a verified completion",
+    "evidence": [
+      "excluded/bakery-prep-5b58e08406c4/manifest.json",
+      "excluded/bakery-prep-5b58e08406c4/verification.json",
+      "excluded/bakery-prep-5b58e08406c4/worker.json"
+    ]
+  }
+]

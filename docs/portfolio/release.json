@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "releaseTag": "demo-193b07c4eae8",
+  "archiveSHA256": "8146bc89cfcc2744a77296e8ffa0c1d4db65a1b0b0c7d992bee9af116e069326",
+  "recordingCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
+  "packagingCommit": "193b07c4eae87c0d5ecf9db4d0de053d047b8399",
+  "sourceIndexSHA256": "4284cc8b98ee40f3526d64de0614790e079c28c1c4ee65b11dab663d276b31e9",
+  "sourceChecksumsSHA256": "9909d01832132c3b4e14b6d8d170f6459ada8c65fa7b7d67c20d16e265b88eb5",
+  "sourceRunCount": 25,
+  "selectedClipCount": 31,
+  "normalRunIds": {
+    "bakery-prep": "bakery-prep-ab95b5d07c1a",
+    "bookkeeper-deposit": "bookkeeper-deposit-f2fc0de67b7b",
+    "consultancy-contract": "consultancy-contract-846eb798ca6a",
+    "produce-packing": "produce-packing-64d8af09a1c5",
+    "staffing-billing": "staffing-billing-dd78430b59ad",
+    "subcontractor-invoices": "subcontractor-invoices-b2d50e5fcf4b",
+    "vintage-returns": "vintage-returns-784a4bf6a100"
+  },
+  "recordingContext": "Bounded Strix fixture run; not GitHub Actions qualification.",
+  "history": {
+    "releaseTag": "demo-085a776b2328",
+    "archiveSHA256": "dee8aebf13e0a9a48326645491ad76d754fd31b7df787ea4a1bf5bd06e78185a",
+    "portfolioCommit": "e95c9e2b165dad93dac45846de0181b54dfe5cfb"
+  }
+}

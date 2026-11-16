@@ -1,0 +1,17 @@
+{
+  "producedAt": 1794739883.6654615,
+  "acceptedAt": 1794739883.6654618,
+  "acceptedBy": "fixture operator",
+  "sha256": "c61849582816af80ad620f3779ab958741cd5d37d16c6b1f7ec585a0ff9f99d4",
+  "destination": "delivered.csv",
+  "destinationBase": "run evidence directory",
+  "events": [
+    "produced",
+    "accepted",
+    "delivered"
+  ],
+  "deliveredAt": 1794739883.66553,
+  "storedCopyVerified": true,
+  "destinationVerified": true,
+  "status": "verified"
+}

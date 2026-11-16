@@ -2,7 +2,7 @@
   {
     "case": "bookkeeper-deposit",
     "fault": "expired",
-    "runId": "bookkeeper-deposit-1c86c1135d84",
+    "runId": "bookkeeper-deposit-c8e608d47306",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -11,7 +11,7 @@
   {
     "case": "bookkeeper-deposit",
     "fault": "wrong-account",
-    "runId": "bookkeeper-deposit-de423f79aa49",
+    "runId": "bookkeeper-deposit-7937bc94024c",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -20,7 +20,7 @@
   {
     "case": "staffing-billing",
     "fault": "tenant-expired",
-    "runId": "staffing-billing-9a6d4f2d5635",
+    "runId": "staffing-billing-a850d8758644",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -29,7 +29,7 @@
   {
     "case": "vintage-returns",
     "fault": "wrong-account",
-    "runId": "vintage-returns-879102c8ed01",
+    "runId": "vintage-returns-88d6316f901f",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -38,7 +38,7 @@
   {
     "case": "bookkeeper-deposit",
     "fault": "denied",
-    "runId": "bookkeeper-deposit-ddaf33dd10ee",
+    "runId": "bookkeeper-deposit-4cc44bda3492",
     "initialOutcome": "blocked",
     "resumed": false,
     "verifiedCompletion": false,
@@ -47,7 +47,7 @@
   {
     "case": "bookkeeper-deposit",
     "fault": "missing",
-    "runId": "bookkeeper-deposit-bbb4993539e4",
+    "runId": "bookkeeper-deposit-1971fafe0783",
     "initialOutcome": "blocked",
     "resumed": false,
     "verifiedCompletion": false,
@@ -56,7 +56,7 @@
   {
     "case": "bakery-prep",
     "fault": "crash",
-    "runId": "bakery-prep-5cc7ffdad389",
+    "runId": "bakery-prep-8fa3ed6dfad8",
     "initialOutcome": "blocked",
     "resumed": true,
     "verifiedCompletion": true,
@@ -65,7 +65,7 @@
   {
     "case": "consultancy-contract",
     "fault": "lost-ack",
-    "runId": "consultancy-contract-ffd7f4605bdc",
+    "runId": "consultancy-contract-2a8044ee7374",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -74,7 +74,7 @@
   {
     "case": "consultancy-contract",
     "fault": "unresolved",
-    "runId": "consultancy-contract-0c2b558a8b66",
+    "runId": "consultancy-contract-f0af64691d51",
     "initialOutcome": "unknown",
     "resumed": false,
     "verifiedCompletion": false,
@@ -83,7 +83,7 @@
   {
     "case": "consultancy-contract",
     "fault": "forbidden",
-    "runId": "consultancy-contract-3aaf5bfa1746",
+    "runId": "consultancy-contract-3a4fdb8a14f6",
     "initialOutcome": "blocked",
     "resumed": false,
     "verifiedCompletion": false,
@@ -92,7 +92,7 @@
   {
     "case": "bakery-prep",
     "fault": "artifact-interruption",
-    "runId": "bakery-prep-8ed77be413bb",
+    "runId": "bakery-prep-e53ea77399cb",
     "initialOutcome": "blocked",
     "resumed": true,
     "verifiedCompletion": true,
@@ -101,7 +101,7 @@
   {
     "case": "bakery-prep",
     "fault": "ambiguous",
-    "runId": "bakery-prep-e1609cb6a352",
+    "runId": "bakery-prep-905d4ca5cb06",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -110,7 +110,7 @@
   {
     "case": "produce-packing",
     "fault": "tenant-expired",
-    "runId": "produce-packing-5654cdc1c797",
+    "runId": "produce-packing-2b2bfd97662a",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -119,7 +119,7 @@
   {
     "case": "subcontractor-invoices",
     "fault": "tenant-expired",
-    "runId": "subcontractor-invoices-fdd323308e54",
+    "runId": "subcontractor-invoices-7d344b003693",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
@@ -128,7 +128,7 @@
   {
     "case": "bakery-prep",
     "fault": "offline",
-    "runId": "bakery-prep-d141be13e4fd",
+    "runId": "bakery-prep-fc6727f42ab6",
     "initialOutcome": "blocked",
     "resumed": true,
     "verifiedCompletion": true,
@@ -137,7 +137,7 @@
   {
     "case": "bakery-prep",
     "fault": "stale",
-    "runId": "bakery-prep-0a688c62442d",
+    "runId": "bakery-prep-7b32be2cc354",
     "initialOutcome": "verified",
     "resumed": false,
     "verifiedCompletion": true,
