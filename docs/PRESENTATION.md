@@ -32,3 +32,7 @@ Timings are fixture elapsed time. Human operator minutes remain unknown unless a
 The package includes executed `fault-matrix.json` and `fault-matrix.md`, linked from the gallery and evidence index. Each row must match an exported run identity, case, fault and final verdict. Missing matrix input is visibly unavailable. Expected blocked or unknown behavior is not reported as a completed business task.
 
 The combined reel includes VP8 WebM and H.264 MP4 versions. The gallery offers WebM first so pinned Chromium builds without proprietary H.264 codecs can play it; downloadable MP4 remains available. Both versions derive from the same actual fixture clips. This packaging change does not turn short page captures into complete product execution.
+
+## Task-local encoder override
+
+For an approved isolated FFmpeg installation, set `DEMO_FFMPEG_PATH` to its absolute regular executable path and `DEMO_FFMPEG_SHA256` to the independently verified binary digest. The assembler rejects missing, malformed or mismatched pins, symlinks and non-executable files before exporting artifacts. With no override it retains the existing PATH lookup. The encoder must support drawtext, H.264 and VP8; both MP4 and portable WebM reels remain required. This does not install software, modify global tools, enroll runners or prove Actions qualification. Preserve the source/version/license and verified digest alongside run evidence.

@@ -1,8 +1,8 @@
-import json,sys,tempfile,unittest,zipfile
+import hashlib,os,json,sys,tempfile,unittest,zipfile
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from presentation import assemble,safe_file,validate_links,stamp,export_fault_matrix,make_reel
+from presentation import assemble,safe_file,validate_links,stamp,export_fault_matrix,make_reel,ffmpeg_binary
 import evaluate
 class PresentationTests(unittest.TestCase):
  def test_blocked_package_is_truthful_and_zip_verified(self):
@@ -66,4 +66,30 @@ class PresentationTests(unittest.TestCase):
    self.assertFalse(result['brokenLinks'])
    (root/'docs/portfolio/index.html').unlink()
    self.assertIn('index.html: portfolio/',validate_links(root/'docs'))
+ def test_task_local_ffmpeg_pin_and_permissions(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   path=Path(tmp)/'ffmpeg';path.write_bytes(b'encoder');path.chmod(0o700)
+   digest=hashlib.sha256(path.read_bytes()).hexdigest()
+   with patch.dict(os.environ,{'DEMO_FFMPEG_PATH':str(path),'DEMO_FFMPEG_SHA256':digest}):
+    self.assertEqual(ffmpeg_binary(),str(path))
+    path.chmod(0o600)
+    with self.assertRaisesRegex(ValueError,'not executable'):ffmpeg_binary()
+    path.chmod(0o700);path.write_bytes(b'changed')
+    with self.assertRaisesRegex(ValueError,'SHA256 mismatch'):ffmpeg_binary()
+   for value,pin in [(str(path),''),('relative/path',digest)]:
+    with patch.dict(os.environ,{'DEMO_FFMPEG_PATH':value,'DEMO_FFMPEG_SHA256':pin}):
+     with self.assertRaises(ValueError):ffmpeg_binary()
+   link=Path(tmp)/'link';link.symlink_to(path)
+   with patch.dict(os.environ,{'DEMO_FFMPEG_PATH':str(link),'DEMO_FFMPEG_SHA256':digest}):
+    with self.assertRaises(ValueError):ffmpeg_binary()
+ def test_directory_index_symlink_containment(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);package=root/'package';child=package/'child';child.mkdir(parents=True)
+   outside=root/'outside.html';outside.write_text('outside')
+   (package/'index.html').write_text('<a href="child/">Child</a>')
+   (child/'index.html').symlink_to(outside)
+   self.assertIn('index.html: child/',validate_links(package))
+   (child/'index.html').unlink();(child/'real.html').write_text('inside')
+   (child/'index.html').symlink_to(child/'real.html')
+   self.assertEqual(validate_links(package),[])
 if __name__=='__main__':unittest.main()
