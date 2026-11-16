@@ -1,6 +1,6 @@
 [
   {
-    "runId": "bakery-prep-7182c50027f7",
+    "runId": "bakery-prep-ab95b5d07c1a",
     "case": "bakery-prep",
     "outcome": "verified",
     "checks": {
@@ -21,57 +21,57 @@
     },
     "media": [
       {
-        "clip": "591b4f53ec62cee4449365e0c266b278.webm",
-        "captions": "591b4f53ec62cee4449365e0c266b278.vtt",
+        "clip": "4a4869e79705ea7f5114a281e668966f.webm",
+        "captions": "4a4869e79705ea7f5114a281e668966f.vtt",
         "poster": "poster-0.jpg",
-        "durationSeconds": 0.28
+        "durationSeconds": 0.32
       },
       {
-        "clip": "1c5024b8e3f00e3b7de439dfeaac547d.webm",
-        "captions": "1c5024b8e3f00e3b7de439dfeaac547d.vtt",
+        "clip": "806fba098911bf8ac1602dafe2f57c31.webm",
+        "captions": "806fba098911bf8ac1602dafe2f57c31.vtt",
         "poster": "poster-1.jpg",
-        "durationSeconds": 1.16
+        "durationSeconds": 0.6
       },
       {
-        "clip": "da44ff9bad2de194517a7969cd8d0e29.webm",
-        "captions": "da44ff9bad2de194517a7969cd8d0e29.vtt",
+        "clip": "cf2f124d2b90743dfdb9ff9d59cf8ba0.webm",
+        "captions": "cf2f124d2b90743dfdb9ff9d59cf8ba0.vtt",
         "poster": "poster-2.jpg",
-        "durationSeconds": 0.96
+        "durationSeconds": 0.72
       }
     ],
     "missing": [],
     "metrics": {
       "verifiedCompletions": 1,
-      "elapsedSeconds": 3.15386700630188,
-      "attemptElapsedSeconds": 3.153867244720459,
+      "elapsedSeconds": 1.7261278629302979,
+      "attemptElapsedSeconds": 1.7261285781860352,
       "operatorMinutes": null,
-      "scriptedOperatorMinutes": 0.004484891316666665,
+      "scriptedOperatorMinutes": 0.0021572107833333328,
       "scriptedOperatorActions": 2,
       "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
     },
-    "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+    "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
     "childCommits": {
-      "apps/mock-timesheet-portal": "3fcb3090244163f0fba034f0611fee7fc8d2dcf7",
-      "apps/mock-code-workspace": "acf1fae4da475cfd9f72b97c1cef5b9c21dc9d0a",
-      "apps/mock-applicant-portal": "ca2298da6dfd291a8c27aedb94bcdd1a3530e606",
-      "apps/mock-vendor-portal": "7fc220b01646bca7f35b456e4cfd169efd604e03",
-      "apps/mock-counterorders": "24afd8dcf832e6a47a07bc02a33bfbe386908d42",
-      "apps/mock-issue-tracker": "1f8115073fb23129dc9b98d5638256762fa22553",
-      "apps/mock-bank": "99438709ee8a0eabe0f483233583be0eaebb391f",
-      "apps/mock-excel": "b8cf810591ecf4a384b553cbf7c9d85800e79b48",
-      "apps/mock-mail": "9cfdbf49928d110164b9eed3ea6f9e63c67ee3a0",
-      "apps/mock-coderpad": "f8246ff65b76e01bd5efad36a02efa599af31cae",
-      "apps/mock-supplier-portal": "1e6fec8c28a5deb713ed8d422e1e853f03106207",
-      "apps/mock-marketplace": "ddd70d08310d9c0a68e78cc30a06058e75d54a40",
-      "apps/mock-job-board": "fbb28295697589d5171f4a8153058c8fa067bf7b",
-      "apps/mock-interview-room": "a196a9b3befc3959c55aeef8cf8b3340ca3d9cf2",
-      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
-      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+      "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+      "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+      "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+      "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+      "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+      "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+      "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+      "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+      "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+      "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+      "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+      "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+      "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
       "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
-      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
       "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
-      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d",
-      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6"
+      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
     },
     "evidence": [
       "manifest.json",
@@ -80,11 +80,11 @@
       "checkpoint.json",
       "events.json",
       "browser-verification.json",
-      "591b4f53ec62cee4449365e0c266b278.webm",
-      "1c5024b8e3f00e3b7de439dfeaac547d.webm",
-      "da44ff9bad2de194517a7969cd8d0e29.webm",
-      "result.png",
+      "4a4869e79705ea7f5114a281e668966f.webm",
+      "806fba098911bf8ac1602dafe2f57c31.webm",
+      "cf2f124d2b90743dfdb9ff9d59cf8ba0.webm",
       "independent-observer.png",
+      "result.png",
       "artifact.json",
       "accepted.csv",
       "delivered.csv"
@@ -95,10 +95,11 @@
       "rolls": 16
     },
     "title": "Tomorrow, ready to bake",
-    "label": "Bakery prep"
+    "label": "Bakery prep",
+    "recordedAtUTC": "2026-11-15T10:51:21.939586+00:00"
   },
   {
-    "runId": "bookkeeper-deposit-6d385d21dc89",
+    "runId": "bookkeeper-deposit-f2fc0de67b7b",
     "case": "bookkeeper-deposit",
     "outcome": "verified",
     "checks": {
@@ -117,57 +118,57 @@
     },
     "media": [
       {
-        "clip": "1c3000e8168509c8ff1b8a206046b47f.webm",
-        "captions": "1c3000e8168509c8ff1b8a206046b47f.vtt",
+        "clip": "7b1a539a707d645a7479ad0536cf1215.webm",
+        "captions": "7b1a539a707d645a7479ad0536cf1215.vtt",
         "poster": "poster-0.jpg",
-        "durationSeconds": 0.64
+        "durationSeconds": 0.24
       },
       {
-        "clip": "69f970f8dc75cfdeda3bfaec618ac215.webm",
-        "captions": "69f970f8dc75cfdeda3bfaec618ac215.vtt",
+        "clip": "c4e80396a39a4f4a7718c11c0bcc3905.webm",
+        "captions": "c4e80396a39a4f4a7718c11c0bcc3905.vtt",
         "poster": "poster-1.jpg",
-        "durationSeconds": 0.28
+        "durationSeconds": 0.48
       },
       {
-        "clip": "08eba708998549a06de3684dbfe45bb6.webm",
-        "captions": "08eba708998549a06de3684dbfe45bb6.vtt",
+        "clip": "3b8966bc5e18e2bc5936a96cff8c7813.webm",
+        "captions": "3b8966bc5e18e2bc5936a96cff8c7813.vtt",
         "poster": "poster-2.jpg",
-        "durationSeconds": 0.4
+        "durationSeconds": 0.72
       }
     ],
     "missing": [],
     "metrics": {
       "verifiedCompletions": 1,
-      "elapsedSeconds": 2.2618188858032227,
-      "attemptElapsedSeconds": 2.2618191242218018,
+      "elapsedSeconds": 1.6841020584106445,
+      "attemptElapsedSeconds": 1.6841022968292236,
       "operatorMinutes": null,
-      "scriptedOperatorMinutes": 0.0020538128,
+      "scriptedOperatorMinutes": 0.001909766616666666,
       "scriptedOperatorActions": 2,
       "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
     },
-    "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+    "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
     "childCommits": {
-      "apps/mock-timesheet-portal": "3fcb3090244163f0fba034f0611fee7fc8d2dcf7",
-      "apps/mock-code-workspace": "acf1fae4da475cfd9f72b97c1cef5b9c21dc9d0a",
-      "apps/mock-applicant-portal": "ca2298da6dfd291a8c27aedb94bcdd1a3530e606",
-      "apps/mock-vendor-portal": "7fc220b01646bca7f35b456e4cfd169efd604e03",
-      "apps/mock-counterorders": "24afd8dcf832e6a47a07bc02a33bfbe386908d42",
-      "apps/mock-issue-tracker": "1f8115073fb23129dc9b98d5638256762fa22553",
-      "apps/mock-bank": "99438709ee8a0eabe0f483233583be0eaebb391f",
-      "apps/mock-excel": "b8cf810591ecf4a384b553cbf7c9d85800e79b48",
-      "apps/mock-mail": "9cfdbf49928d110164b9eed3ea6f9e63c67ee3a0",
-      "apps/mock-coderpad": "f8246ff65b76e01bd5efad36a02efa599af31cae",
-      "apps/mock-supplier-portal": "1e6fec8c28a5deb713ed8d422e1e853f03106207",
-      "apps/mock-marketplace": "ddd70d08310d9c0a68e78cc30a06058e75d54a40",
-      "apps/mock-job-board": "fbb28295697589d5171f4a8153058c8fa067bf7b",
-      "apps/mock-interview-room": "a196a9b3befc3959c55aeef8cf8b3340ca3d9cf2",
-      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
-      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+      "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+      "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+      "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+      "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+      "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+      "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+      "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+      "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+      "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+      "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+      "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+      "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+      "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
       "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
-      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
       "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
-      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d",
-      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6"
+      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
     },
     "evidence": [
       "manifest.json",
@@ -176,11 +177,11 @@
       "checkpoint.json",
       "events.json",
       "browser-verification.json",
-      "1c3000e8168509c8ff1b8a206046b47f.webm",
-      "69f970f8dc75cfdeda3bfaec618ac215.webm",
-      "08eba708998549a06de3684dbfe45bb6.webm",
-      "result.png",
-      "independent-observer.png"
+      "7b1a539a707d645a7479ad0536cf1215.webm",
+      "c4e80396a39a4f4a7718c11c0bcc3905.webm",
+      "3b8966bc5e18e2bc5936a96cff8c7813.webm",
+      "independent-observer.png",
+      "result.png"
     ],
     "fault": "normal",
     "result": {
@@ -190,10 +191,11 @@
       "amount": 540
     },
     "title": "One deposit, one paid invoice",
-    "label": "Bookkeeping"
+    "label": "Bookkeeping",
+    "recordedAtUTC": "2026-11-15T10:51:23.666220+00:00"
   },
   {
-    "runId": "subcontractor-invoices-14db7111ef4a",
+    "runId": "subcontractor-invoices-b2d50e5fcf4b",
     "case": "subcontractor-invoices",
     "outcome": "verified",
     "checks": {
@@ -212,63 +214,63 @@
     },
     "media": [
       {
-        "clip": "6e89497f08cd98a94942b19cf077d057.webm",
-        "captions": "6e89497f08cd98a94942b19cf077d057.vtt",
+        "clip": "7cc9267f2d05c91d859b47dff5b34e68.webm",
+        "captions": "7cc9267f2d05c91d859b47dff5b34e68.vtt",
         "poster": "poster-0.jpg",
-        "durationSeconds": 0.28
+        "durationSeconds": 0.32
       },
       {
-        "clip": "d0d226ed07850a8d91ba53d916b61d02.webm",
-        "captions": "d0d226ed07850a8d91ba53d916b61d02.vtt",
+        "clip": "d76e2b9bbc3d3e0a0ad469b071c593ce.webm",
+        "captions": "d76e2b9bbc3d3e0a0ad469b071c593ce.vtt",
         "poster": "poster-1.jpg",
-        "durationSeconds": 0.6
+        "durationSeconds": 0.44
       },
       {
-        "clip": "7cb658d027a4289f95f5e86ceefb0570.webm",
-        "captions": "7cb658d027a4289f95f5e86ceefb0570.vtt",
+        "clip": "824cccccf217ef21038f561f21bd6847.webm",
+        "captions": "824cccccf217ef21038f561f21bd6847.vtt",
         "poster": "poster-2.jpg",
-        "durationSeconds": 0.36
+        "durationSeconds": 0.64
       },
       {
-        "clip": "7da6385e54450ddd6d59c9d3fd5675b2.webm",
-        "captions": "7da6385e54450ddd6d59c9d3fd5675b2.vtt",
+        "clip": "7673db22b8fcdb8341c5193689113e8a.webm",
+        "captions": "7673db22b8fcdb8341c5193689113e8a.vtt",
         "poster": "poster-3.jpg",
-        "durationSeconds": 0.88
+        "durationSeconds": 0.92
       }
     ],
     "missing": [],
     "metrics": {
       "verifiedCompletions": 1,
-      "elapsedSeconds": 2.5291879177093506,
-      "attemptElapsedSeconds": 2.5291879177093506,
+      "elapsedSeconds": 1.8484001159667969,
+      "attemptElapsedSeconds": 1.848400592803955,
       "operatorMinutes": null,
-      "scriptedOperatorMinutes": 0.0031264568666666674,
+      "scriptedOperatorMinutes": 0.0029360203500000013,
       "scriptedOperatorActions": 3,
       "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
     },
-    "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+    "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
     "childCommits": {
-      "apps/mock-timesheet-portal": "3fcb3090244163f0fba034f0611fee7fc8d2dcf7",
-      "apps/mock-code-workspace": "acf1fae4da475cfd9f72b97c1cef5b9c21dc9d0a",
-      "apps/mock-applicant-portal": "ca2298da6dfd291a8c27aedb94bcdd1a3530e606",
-      "apps/mock-vendor-portal": "7fc220b01646bca7f35b456e4cfd169efd604e03",
-      "apps/mock-counterorders": "24afd8dcf832e6a47a07bc02a33bfbe386908d42",
-      "apps/mock-issue-tracker": "1f8115073fb23129dc9b98d5638256762fa22553",
-      "apps/mock-bank": "99438709ee8a0eabe0f483233583be0eaebb391f",
-      "apps/mock-excel": "b8cf810591ecf4a384b553cbf7c9d85800e79b48",
-      "apps/mock-mail": "9cfdbf49928d110164b9eed3ea6f9e63c67ee3a0",
-      "apps/mock-coderpad": "f8246ff65b76e01bd5efad36a02efa599af31cae",
-      "apps/mock-supplier-portal": "1e6fec8c28a5deb713ed8d422e1e853f03106207",
-      "apps/mock-marketplace": "ddd70d08310d9c0a68e78cc30a06058e75d54a40",
-      "apps/mock-job-board": "fbb28295697589d5171f4a8153058c8fa067bf7b",
-      "apps/mock-interview-room": "a196a9b3befc3959c55aeef8cf8b3340ca3d9cf2",
-      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
-      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+      "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+      "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+      "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+      "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+      "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+      "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+      "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+      "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+      "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+      "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+      "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+      "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+      "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
       "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
-      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
       "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
-      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d",
-      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6"
+      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
     },
     "evidence": [
       "manifest.json",
@@ -277,12 +279,12 @@
       "checkpoint.json",
       "events.json",
       "browser-verification.json",
-      "6e89497f08cd98a94942b19cf077d057.webm",
-      "d0d226ed07850a8d91ba53d916b61d02.webm",
-      "7cb658d027a4289f95f5e86ceefb0570.webm",
-      "7da6385e54450ddd6d59c9d3fd5675b2.webm",
-      "result.png",
-      "independent-observer.png"
+      "7cc9267f2d05c91d859b47dff5b34e68.webm",
+      "d76e2b9bbc3d3e0a0ad469b071c593ce.webm",
+      "824cccccf217ef21038f561f21bd6847.webm",
+      "7673db22b8fcdb8341c5193689113e8a.webm",
+      "independent-observer.png",
+      "result.png"
     ],
     "fault": "normal",
     "result": {
@@ -290,10 +292,11 @@
       "C-112": "Approved"
     },
     "title": "Know what needs attention",
-    "label": "Subcontractor invoices"
+    "label": "Subcontractor invoices",
+    "recordedAtUTC": "2026-11-15T10:51:25.350729+00:00"
   },
   {
-    "runId": "staffing-billing-528509414963",
+    "runId": "staffing-billing-dd78430b59ad",
     "case": "staffing-billing",
     "outcome": "verified",
     "checks": {
@@ -312,26 +315,26 @@
     },
     "media": [
       {
-        "clip": "cd9c3d19babbabe9d59c17b1cd67a365.webm",
-        "captions": "cd9c3d19babbabe9d59c17b1cd67a365.vtt",
+        "clip": "d054f7ca39365d38dd214e1c9c4fdb26.webm",
+        "captions": "d054f7ca39365d38dd214e1c9c4fdb26.vtt",
         "poster": "poster-0.jpg",
         "durationSeconds": 0.28
       },
       {
-        "clip": "e619a429983d0d48948178cae12c3fb4.webm",
-        "captions": "e619a429983d0d48948178cae12c3fb4.vtt",
+        "clip": "d580b0b1f907053c10f9fc39f15b04c9.webm",
+        "captions": "d580b0b1f907053c10f9fc39f15b04c9.vtt",
         "poster": "poster-1.jpg",
-        "durationSeconds": 0.52
+        "durationSeconds": 0.4
       },
       {
-        "clip": "78aff141e5810e243ed212144f32cb41.webm",
-        "captions": "78aff141e5810e243ed212144f32cb41.vtt",
+        "clip": "139d772d2b3d4cad5670902a37de6689.webm",
+        "captions": "139d772d2b3d4cad5670902a37de6689.vtt",
         "poster": "poster-2.jpg",
-        "durationSeconds": 0.36
+        "durationSeconds": 0.6
       },
       {
-        "clip": "ff53639827c7d6a7c482c6b9d98fb522.webm",
-        "captions": "ff53639827c7d6a7c482c6b9d98fb522.vtt",
+        "clip": "a37dfaaa8307d3d658f6051959f789ef.webm",
+        "captions": "a37dfaaa8307d3d658f6051959f789ef.vtt",
         "poster": "poster-3.jpg",
         "durationSeconds": 0.84
       }
@@ -339,36 +342,36 @@
     "missing": [],
     "metrics": {
       "verifiedCompletions": 1,
-      "elapsedSeconds": 2.5046284198760986,
-      "attemptElapsedSeconds": 2.5046286582946777,
+      "elapsedSeconds": 1.80643630027771,
+      "attemptElapsedSeconds": 1.80643630027771,
       "operatorMinutes": null,
-      "scriptedOperatorMinutes": 0.002990801666666666,
+      "scriptedOperatorMinutes": 0.002810362983333335,
       "scriptedOperatorActions": 3,
       "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
     },
-    "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+    "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
     "childCommits": {
-      "apps/mock-timesheet-portal": "3fcb3090244163f0fba034f0611fee7fc8d2dcf7",
-      "apps/mock-code-workspace": "acf1fae4da475cfd9f72b97c1cef5b9c21dc9d0a",
-      "apps/mock-applicant-portal": "ca2298da6dfd291a8c27aedb94bcdd1a3530e606",
-      "apps/mock-vendor-portal": "7fc220b01646bca7f35b456e4cfd169efd604e03",
-      "apps/mock-counterorders": "24afd8dcf832e6a47a07bc02a33bfbe386908d42",
-      "apps/mock-issue-tracker": "1f8115073fb23129dc9b98d5638256762fa22553",
-      "apps/mock-bank": "99438709ee8a0eabe0f483233583be0eaebb391f",
-      "apps/mock-excel": "b8cf810591ecf4a384b553cbf7c9d85800e79b48",
-      "apps/mock-mail": "9cfdbf49928d110164b9eed3ea6f9e63c67ee3a0",
-      "apps/mock-coderpad": "f8246ff65b76e01bd5efad36a02efa599af31cae",
-      "apps/mock-supplier-portal": "1e6fec8c28a5deb713ed8d422e1e853f03106207",
-      "apps/mock-marketplace": "ddd70d08310d9c0a68e78cc30a06058e75d54a40",
-      "apps/mock-job-board": "fbb28295697589d5171f4a8153058c8fa067bf7b",
-      "apps/mock-interview-room": "a196a9b3befc3959c55aeef8cf8b3340ca3d9cf2",
-      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
-      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+      "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+      "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+      "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+      "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+      "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+      "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+      "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+      "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+      "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+      "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+      "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+      "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+      "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
       "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
-      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
       "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
-      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d",
-      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6"
+      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
     },
     "evidence": [
       "manifest.json",
@@ -377,12 +380,12 @@
       "checkpoint.json",
       "events.json",
       "browser-verification.json",
-      "cd9c3d19babbabe9d59c17b1cd67a365.webm",
-      "e619a429983d0d48948178cae12c3fb4.webm",
-      "78aff141e5810e243ed212144f32cb41.webm",
-      "ff53639827c7d6a7c482c6b9d98fb522.webm",
-      "result.png",
-      "independent-observer.png"
+      "d054f7ca39365d38dd214e1c9c4fdb26.webm",
+      "d580b0b1f907053c10f9fc39f15b04c9.webm",
+      "139d772d2b3d4cad5670902a37de6689.webm",
+      "a37dfaaa8307d3d658f6051959f789ef.webm",
+      "independent-observer.png",
+      "result.png"
     ],
     "fault": "normal",
     "result": {
@@ -390,10 +393,11 @@
       "pending": 4
     },
     "title": "Bill approved hours, flag the rest",
-    "label": "Staffing billing"
+    "label": "Staffing billing",
+    "recordedAtUTC": "2026-11-15T10:51:27.199557+00:00"
   },
   {
-    "runId": "vintage-returns-6f2cc861709c",
+    "runId": "vintage-returns-784a4bf6a100",
     "case": "vintage-returns",
     "outcome": "verified",
     "checks": {
@@ -412,63 +416,63 @@
     },
     "media": [
       {
-        "clip": "96f6b230d7ceb4f26efcd7f88cf8e7a6.webm",
-        "captions": "96f6b230d7ceb4f26efcd7f88cf8e7a6.vtt",
+        "clip": "52d96da0577f3850823642cf7dc52165.webm",
+        "captions": "52d96da0577f3850823642cf7dc52165.vtt",
         "poster": "poster-0.jpg",
-        "durationSeconds": 0.92
-      },
-      {
-        "clip": "34f293dfcabe6c69d570bf0e3fb6d1ae.webm",
-        "captions": "34f293dfcabe6c69d570bf0e3fb6d1ae.vtt",
-        "poster": "poster-1.jpg",
         "durationSeconds": 0.28
       },
       {
-        "clip": "0bc4b9a111f5834070d55174e6a20a07.webm",
-        "captions": "0bc4b9a111f5834070d55174e6a20a07.vtt",
-        "poster": "poster-2.jpg",
-        "durationSeconds": 0.4
+        "clip": "1ff74be6e0cf802fef6cd4da9cc6f455.webm",
+        "captions": "1ff74be6e0cf802fef6cd4da9cc6f455.vtt",
+        "poster": "poster-1.jpg",
+        "durationSeconds": 0.48
       },
       {
-        "clip": "a08a834ba43b2100b364c5428a02f93a.webm",
-        "captions": "a08a834ba43b2100b364c5428a02f93a.vtt",
+        "clip": "ede0c0c60ed667fa65153eff740550ee.webm",
+        "captions": "ede0c0c60ed667fa65153eff740550ee.vtt",
+        "poster": "poster-2.jpg",
+        "durationSeconds": 0.64
+      },
+      {
+        "clip": "058fbab848577cc73ab8260c5044039c.webm",
+        "captions": "058fbab848577cc73ab8260c5044039c.vtt",
         "poster": "poster-3.jpg",
-        "durationSeconds": 0.6
+        "durationSeconds": 0.88
       }
     ],
     "missing": [],
     "metrics": {
       "verifiedCompletions": 1,
-      "elapsedSeconds": 2.5789637565612793,
-      "attemptElapsedSeconds": 2.5789642333984375,
+      "elapsedSeconds": 1.8070573806762695,
+      "attemptElapsedSeconds": 1.8070576190948486,
       "operatorMinutes": null,
-      "scriptedOperatorMinutes": 0.0031200537999999996,
+      "scriptedOperatorMinutes": 0.0028379006833333335,
       "scriptedOperatorActions": 3,
       "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
     },
-    "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+    "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
     "childCommits": {
-      "apps/mock-timesheet-portal": "3fcb3090244163f0fba034f0611fee7fc8d2dcf7",
-      "apps/mock-code-workspace": "acf1fae4da475cfd9f72b97c1cef5b9c21dc9d0a",
-      "apps/mock-applicant-portal": "ca2298da6dfd291a8c27aedb94bcdd1a3530e606",
-      "apps/mock-vendor-portal": "7fc220b01646bca7f35b456e4cfd169efd604e03",
-      "apps/mock-counterorders": "24afd8dcf832e6a47a07bc02a33bfbe386908d42",
-      "apps/mock-issue-tracker": "1f8115073fb23129dc9b98d5638256762fa22553",
-      "apps/mock-bank": "99438709ee8a0eabe0f483233583be0eaebb391f",
-      "apps/mock-excel": "b8cf810591ecf4a384b553cbf7c9d85800e79b48",
-      "apps/mock-mail": "9cfdbf49928d110164b9eed3ea6f9e63c67ee3a0",
-      "apps/mock-coderpad": "f8246ff65b76e01bd5efad36a02efa599af31cae",
-      "apps/mock-supplier-portal": "1e6fec8c28a5deb713ed8d422e1e853f03106207",
-      "apps/mock-marketplace": "ddd70d08310d9c0a68e78cc30a06058e75d54a40",
-      "apps/mock-job-board": "fbb28295697589d5171f4a8153058c8fa067bf7b",
-      "apps/mock-interview-room": "a196a9b3befc3959c55aeef8cf8b3340ca3d9cf2",
-      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
-      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+      "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+      "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+      "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+      "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+      "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+      "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+      "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+      "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+      "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+      "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+      "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+      "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+      "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
       "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
-      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
       "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
-      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d",
-      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6"
+      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
     },
     "evidence": [
       "manifest.json",
@@ -477,12 +481,12 @@
       "checkpoint.json",
       "events.json",
       "browser-verification.json",
-      "96f6b230d7ceb4f26efcd7f88cf8e7a6.webm",
-      "34f293dfcabe6c69d570bf0e3fb6d1ae.webm",
-      "0bc4b9a111f5834070d55174e6a20a07.webm",
-      "a08a834ba43b2100b364c5428a02f93a.webm",
-      "result.png",
-      "independent-observer.png"
+      "52d96da0577f3850823642cf7dc52165.webm",
+      "1ff74be6e0cf802fef6cd4da9cc6f455.webm",
+      "ede0c0c60ed667fa65153eff740550ee.webm",
+      "058fbab848577cc73ab8260c5044039c.webm",
+      "independent-observer.png",
+      "result.png"
     ],
     "fault": "normal",
     "result": {
@@ -490,10 +494,11 @@
       "R2": "Pending"
     },
     "title": "A label is not a returned parcel",
-    "label": "Vintage returns"
+    "label": "Vintage returns",
+    "recordedAtUTC": "2026-11-15T10:51:29.006383+00:00"
   },
   {
-    "runId": "produce-packing-01672cbe1a06",
+    "runId": "produce-packing-64d8af09a1c5",
     "case": "produce-packing",
     "outcome": "verified",
     "checks": {
@@ -512,63 +517,63 @@
     },
     "media": [
       {
-        "clip": "08351027d3dce38658b585692ffd0036.webm",
-        "captions": "08351027d3dce38658b585692ffd0036.vtt",
+        "clip": "4795d18b251dd9eed5cd8b80bda214c3.webm",
+        "captions": "4795d18b251dd9eed5cd8b80bda214c3.vtt",
         "poster": "poster-0.jpg",
+        "durationSeconds": 0.32
+      },
+      {
+        "clip": "edfe99910c96e7bd67bf70758d311ff2.webm",
+        "captions": "edfe99910c96e7bd67bf70758d311ff2.vtt",
+        "poster": "poster-1.jpg",
+        "durationSeconds": 0.4
+      },
+      {
+        "clip": "401ff22269b3088fea52cf034e76bd6c.webm",
+        "captions": "401ff22269b3088fea52cf034e76bd6c.vtt",
+        "poster": "poster-2.jpg",
         "durationSeconds": 0.6
       },
       {
-        "clip": "6dfbe6730e1a6cd6409c24549fccbb3e.webm",
-        "captions": "6dfbe6730e1a6cd6409c24549fccbb3e.vtt",
-        "poster": "poster-1.jpg",
-        "durationSeconds": 0.92
-      },
-      {
-        "clip": "c8386c5c8780970d2ceac63e3cd1a8b1.webm",
-        "captions": "c8386c5c8780970d2ceac63e3cd1a8b1.vtt",
-        "poster": "poster-2.jpg",
-        "durationSeconds": 0.36
-      },
-      {
-        "clip": "bc4b039b9b82f99fc15559602278d87a.webm",
-        "captions": "bc4b039b9b82f99fc15559602278d87a.vtt",
+        "clip": "a1fea088b90abedea33a9ea3f54d8cdd.webm",
+        "captions": "a1fea088b90abedea33a9ea3f54d8cdd.vtt",
         "poster": "poster-3.jpg",
-        "durationSeconds": 0.28
+        "durationSeconds": 0.76
       }
     ],
     "missing": [],
     "metrics": {
       "verifiedCompletions": 1,
-      "elapsedSeconds": 2.5655341148376465,
-      "attemptElapsedSeconds": 2.5655343532562256,
+      "elapsedSeconds": 1.803781270980835,
+      "attemptElapsedSeconds": 1.8037817478179932,
       "operatorMinutes": null,
-      "scriptedOperatorMinutes": 0.002804045966666667,
+      "scriptedOperatorMinutes": 0.0023910226333333346,
       "scriptedOperatorActions": 3,
       "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
     },
-    "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+    "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
     "childCommits": {
-      "apps/mock-timesheet-portal": "3fcb3090244163f0fba034f0611fee7fc8d2dcf7",
-      "apps/mock-code-workspace": "acf1fae4da475cfd9f72b97c1cef5b9c21dc9d0a",
-      "apps/mock-applicant-portal": "ca2298da6dfd291a8c27aedb94bcdd1a3530e606",
-      "apps/mock-vendor-portal": "7fc220b01646bca7f35b456e4cfd169efd604e03",
-      "apps/mock-counterorders": "24afd8dcf832e6a47a07bc02a33bfbe386908d42",
-      "apps/mock-issue-tracker": "1f8115073fb23129dc9b98d5638256762fa22553",
-      "apps/mock-bank": "99438709ee8a0eabe0f483233583be0eaebb391f",
-      "apps/mock-excel": "b8cf810591ecf4a384b553cbf7c9d85800e79b48",
-      "apps/mock-mail": "9cfdbf49928d110164b9eed3ea6f9e63c67ee3a0",
-      "apps/mock-coderpad": "f8246ff65b76e01bd5efad36a02efa599af31cae",
-      "apps/mock-supplier-portal": "1e6fec8c28a5deb713ed8d422e1e853f03106207",
-      "apps/mock-marketplace": "ddd70d08310d9c0a68e78cc30a06058e75d54a40",
-      "apps/mock-job-board": "fbb28295697589d5171f4a8153058c8fa067bf7b",
-      "apps/mock-interview-room": "a196a9b3befc3959c55aeef8cf8b3340ca3d9cf2",
-      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
-      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+      "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+      "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+      "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+      "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+      "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+      "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+      "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+      "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+      "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+      "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+      "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+      "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+      "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
       "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
-      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
       "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
-      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d",
-      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6"
+      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
     },
     "evidence": [
       "manifest.json",
@@ -577,22 +582,23 @@
       "checkpoint.json",
       "events.json",
       "browser-verification.json",
-      "08351027d3dce38658b585692ffd0036.webm",
-      "6dfbe6730e1a6cd6409c24549fccbb3e.webm",
-      "c8386c5c8780970d2ceac63e3cd1a8b1.webm",
-      "bc4b039b9b82f99fc15559602278d87a.webm",
-      "result.png",
-      "independent-observer.png"
+      "4795d18b251dd9eed5cd8b80bda214c3.webm",
+      "edfe99910c96e7bd67bf70758d311ff2.webm",
+      "401ff22269b3088fea52cf034e76bd6c.webm",
+      "a1fea088b90abedea33a9ea3f54d8cdd.webm",
+      "independent-observer.png",
+      "result.png"
     ],
     "fault": "normal",
     "result": {
       "tomatoes": 6
     },
     "title": "Pack confirmed orders",
-    "label": "Produce packing"
+    "label": "Produce packing",
+    "recordedAtUTC": "2026-11-15T10:51:30.813846+00:00"
   },
   {
-    "runId": "consultancy-contract-4af256fb53e3",
+    "runId": "consultancy-contract-846eb798ca6a",
     "case": "consultancy-contract",
     "outcome": "verified",
     "checks": {
@@ -615,93 +621,93 @@
     },
     "media": [
       {
-        "clip": "da1b1057b6c240839eab5fc30053e9b8.webm",
-        "captions": "da1b1057b6c240839eab5fc30053e9b8.vtt",
+        "clip": "82bb24edc9d4fa0b528ac1b5ab1d5bb2.webm",
+        "captions": "82bb24edc9d4fa0b528ac1b5ab1d5bb2.vtt",
         "poster": "poster-0.jpg",
-        "durationSeconds": 2.28
-      },
-      {
-        "clip": "a8d3fb96e013896e20af33066a462c8e.webm",
-        "captions": "a8d3fb96e013896e20af33066a462c8e.vtt",
-        "poster": "poster-1.jpg",
-        "durationSeconds": 1.88
-      },
-      {
-        "clip": "adb51ae0f1882791a7a8fa21772e231b.webm",
-        "captions": "adb51ae0f1882791a7a8fa21772e231b.vtt",
-        "poster": "poster-2.jpg",
-        "durationSeconds": 3.0
-      },
-      {
-        "clip": "a2e628a3ae60670da95ddf6372b4f5d7.webm",
-        "captions": "a2e628a3ae60670da95ddf6372b4f5d7.vtt",
-        "poster": "poster-3.jpg",
-        "durationSeconds": 3.44
-      },
-      {
-        "clip": "5edc9300262aa67c990c5fbe6aea02af.webm",
-        "captions": "5edc9300262aa67c990c5fbe6aea02af.vtt",
-        "poster": "poster-4.jpg",
-        "durationSeconds": 1.16
-      },
-      {
-        "clip": "2cffb1f799fda15560614790976c9438.webm",
-        "captions": "2cffb1f799fda15560614790976c9438.vtt",
-        "poster": "poster-5.jpg",
         "durationSeconds": 0.28
       },
       {
-        "clip": "290aa264b07aa82fe41d5e948934dce7.webm",
-        "captions": "290aa264b07aa82fe41d5e948934dce7.vtt",
-        "poster": "poster-6.jpg",
+        "clip": "e4fc4d894ff72c4bef556c5be287a471.webm",
+        "captions": "e4fc4d894ff72c4bef556c5be287a471.vtt",
+        "poster": "poster-1.jpg",
         "durationSeconds": 0.4
       },
       {
-        "clip": "36cd230432dbb2570fb1ff5bf4b4b4dd.webm",
-        "captions": "36cd230432dbb2570fb1ff5bf4b4b4dd.vtt",
-        "poster": "poster-7.jpg",
-        "durationSeconds": 1.6
+        "clip": "7cb1769d0ec6d3d86876b18724a5df02.webm",
+        "captions": "7cb1769d0ec6d3d86876b18724a5df02.vtt",
+        "poster": "poster-2.jpg",
+        "durationSeconds": 0.6
       },
       {
-        "clip": "cce270189bd6d732a81c905a2ca70dd2.webm",
-        "captions": "cce270189bd6d732a81c905a2ca70dd2.vtt",
+        "clip": "d836b438004d48586091055f625b604b.webm",
+        "captions": "d836b438004d48586091055f625b604b.vtt",
+        "poster": "poster-3.jpg",
+        "durationSeconds": 1.08
+      },
+      {
+        "clip": "5d8bf3c6312fb2710cb1f86b95425930.webm",
+        "captions": "5d8bf3c6312fb2710cb1f86b95425930.vtt",
+        "poster": "poster-4.jpg",
+        "durationSeconds": 1.4
+      },
+      {
+        "clip": "3ce452bcbfd97851f7d3a09b6d7bc331.webm",
+        "captions": "3ce452bcbfd97851f7d3a09b6d7bc331.vtt",
+        "poster": "poster-5.jpg",
+        "durationSeconds": 1.64
+      },
+      {
+        "clip": "57ededcd66112e76d34bb9e7ca8aa675.webm",
+        "captions": "57ededcd66112e76d34bb9e7ca8aa675.vtt",
+        "poster": "poster-6.jpg",
+        "durationSeconds": 2.0
+      },
+      {
+        "clip": "aded74ffd411050f12ddda5a3a8b985d.webm",
+        "captions": "aded74ffd411050f12ddda5a3a8b985d.vtt",
+        "poster": "poster-7.jpg",
+        "durationSeconds": 2.44
+      },
+      {
+        "clip": "282f583e4be1feb53060bf9db403240c.webm",
+        "captions": "282f583e4be1feb53060bf9db403240c.vtt",
         "poster": "poster-8.jpg",
-        "durationSeconds": 0.64
+        "durationSeconds": 2.84
       }
     ],
     "missing": [],
     "metrics": {
       "verifiedCompletions": 1,
-      "elapsedSeconds": 5.844486474990845,
-      "attemptElapsedSeconds": 5.844486474990845,
+      "elapsedSeconds": 4.11231803894043,
+      "attemptElapsedSeconds": 4.112318277359009,
       "operatorMinutes": null,
-      "scriptedOperatorMinutes": 0.013705296783333324,
+      "scriptedOperatorMinutes": 0.011927299316666676,
       "scriptedOperatorActions": 13,
       "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
     },
-    "parentCommit": "085a776b2328862f30fe6539ef41ad1a3ed52eb4",
+    "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
     "childCommits": {
-      "apps/mock-timesheet-portal": "3fcb3090244163f0fba034f0611fee7fc8d2dcf7",
-      "apps/mock-code-workspace": "acf1fae4da475cfd9f72b97c1cef5b9c21dc9d0a",
-      "apps/mock-applicant-portal": "ca2298da6dfd291a8c27aedb94bcdd1a3530e606",
-      "apps/mock-vendor-portal": "7fc220b01646bca7f35b456e4cfd169efd604e03",
-      "apps/mock-counterorders": "24afd8dcf832e6a47a07bc02a33bfbe386908d42",
-      "apps/mock-issue-tracker": "1f8115073fb23129dc9b98d5638256762fa22553",
-      "apps/mock-bank": "99438709ee8a0eabe0f483233583be0eaebb391f",
-      "apps/mock-excel": "b8cf810591ecf4a384b553cbf7c9d85800e79b48",
-      "apps/mock-mail": "9cfdbf49928d110164b9eed3ea6f9e63c67ee3a0",
-      "apps/mock-coderpad": "f8246ff65b76e01bd5efad36a02efa599af31cae",
-      "apps/mock-supplier-portal": "1e6fec8c28a5deb713ed8d422e1e853f03106207",
-      "apps/mock-marketplace": "ddd70d08310d9c0a68e78cc30a06058e75d54a40",
-      "apps/mock-job-board": "fbb28295697589d5171f4a8153058c8fa067bf7b",
-      "apps/mock-interview-room": "a196a9b3befc3959c55aeef8cf8b3340ca3d9cf2",
-      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
-      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+      "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+      "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+      "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+      "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+      "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+      "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+      "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+      "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+      "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+      "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+      "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+      "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+      "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
       "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
-      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
       "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
-      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d",
-      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6"
+      "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+      "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+      "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+      "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+      "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
     },
     "evidence": [
       "manifest.json",
@@ -710,17 +716,17 @@
       "checkpoint.json",
       "events.json",
       "browser-verification.json",
-      "da1b1057b6c240839eab5fc30053e9b8.webm",
-      "a8d3fb96e013896e20af33066a462c8e.webm",
-      "adb51ae0f1882791a7a8fa21772e231b.webm",
-      "a2e628a3ae60670da95ddf6372b4f5d7.webm",
-      "5edc9300262aa67c990c5fbe6aea02af.webm",
-      "2cffb1f799fda15560614790976c9438.webm",
-      "290aa264b07aa82fe41d5e948934dce7.webm",
-      "36cd230432dbb2570fb1ff5bf4b4b4dd.webm",
-      "cce270189bd6d732a81c905a2ca70dd2.webm",
-      "result.png",
-      "independent-observer.png"
+      "82bb24edc9d4fa0b528ac1b5ab1d5bb2.webm",
+      "e4fc4d894ff72c4bef556c5be287a471.webm",
+      "7cb1769d0ec6d3d86876b18724a5df02.webm",
+      "d836b438004d48586091055f625b604b.webm",
+      "5d8bf3c6312fb2710cb1f86b95425930.webm",
+      "3ce452bcbfd97851f7d3a09b6d7bc331.webm",
+      "57ededcd66112e76d34bb9e7ca8aa675.webm",
+      "aded74ffd411050f12ddda5a3a8b985d.webm",
+      "282f583e4be1feb53060bf9db403240c.webm",
+      "independent-observer.png",
+      "result.png"
     ],
     "fault": "normal",
     "result": {
@@ -731,6 +737,7 @@
       "status": "Ready for review"
     },
     "title": "From contract to reviewed fix",
-    "label": "Consultancy contract"
+    "label": "Consultancy contract",
+    "recordedAtUTC": "2026-11-15T10:51:32.626229+00:00"
   }
 ]

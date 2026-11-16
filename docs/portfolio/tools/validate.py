@@ -9,8 +9,9 @@ import subprocess
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_CASES = {'bakery-prep', 'bookkeeper-deposit', 'subcontractor-invoices', 'staffing-billing',
-                  'vintage-returns', 'produce-packing', 'consultancy-contract'}
+from release import EXPECTED_CASES, load_release, release_url, download_url, safe_name
+from build import make_card, CASES
+
 
 
 def require(condition, message):
@@ -55,14 +56,18 @@ class Links(HTMLParser):
 
 
 def validate(root=ROOT, probe=False):
+    root = Path(root)
+    release = load_release(root)
     manifest = json.loads((root / 'checksums.json').read_text())
-    actual = {'index.html', 'styles.css', 'portfolio.js'} | {
-        p.relative_to(root).as_posix() for folder in ('data', 'media')
+    actual = {'index.html', 'styles.css', 'portfolio.js', 'release.json'} | {
+        p.relative_to(root).as_posix() for folder in ('data', 'media', 'excluded')
         for p in (root / folder).rglob('*') if p.is_file()
     }
     require(set(manifest) == actual, 'Untracked or missing portfolio payload')
     for name, expected in manifest.items():
-        path = (root / name).resolve()
+        original_path = root / name
+        require(not original_path.is_symlink(), 'Symlinked payload file')
+        path = original_path.resolve()
         require(path.is_relative_to(root.resolve()), 'Unsafe manifest path')
         require(path.is_file() and sha(path.read_bytes()) == expected, 'Hash mismatch: ' + name)
     parser = Links()
@@ -73,15 +78,23 @@ def validate(root=ROOT, probe=False):
     require(len(parser.ids) == len(set(parser.ids)), 'Duplicate HTML IDs')
     require(set(parser.fragments) <= set(parser.ids), 'Broken in-page anchor')
     for path in parser.local:
-        require((root / path).is_file(), 'Broken local link: ' + path)
+        target = (root / path).resolve()
+        require(target.is_relative_to(root.resolve()), 'Local link escapes portfolio')
+        require(target.is_file(), 'Broken local link: ' + path)
     for disclosure in ('No upstream Runspindle execution', 'not a complete human-paced walkthrough',
-                       'No claim that these archived runs used a local runner', 'No real accounts or payments'):
+                       'not GitHub Actions qualification', 'No real accounts or payments'):
         require(disclosure in html, 'Missing evidence disclosure: ' + disclosure)
     provenance = json.loads((root / 'data/provenance.json').read_text())
     source_hashes = json.loads((root / 'data/source-checksums.json').read_text())
     source_index = json.loads((root / 'data/source-evidence-index.json').read_text())
     require(provenance['fixtureOnly'] is True and provenance['upstreamExecuted'] is False, 'Invalid fixture boundary')
-    require(provenance['sourceRuns'] == len(source_index['runs']) == 24, 'Source run count differs')
+    require(provenance['sourceRuns'] == len(source_index['runs']) == release['sourceRunCount'], 'Source run count differs')
+    require(provenance['sourceRelease'] == release_url(release) and provenance['sourceArchiveURL'] == download_url(release) + '/presentation.zip', 'Release links differ')
+    for key in ('recordingCommit', 'packagingCommit', 'sourceIndexSHA256', 'sourceChecksumsSHA256', 'recordingContext', 'history'):
+        require(provenance[key] == release[key], 'Release descriptor mismatch: ' + key)
+    require(provenance['sourceArchiveSHA256'] == release['archiveSHA256'], 'Source archive pin differs')
+    require(provenance['reel']['portablePath'] == source_index['reel']['portablePath'] == 'combined-reel.webm', 'Portable reel absent')
+    require(release_url(release) in html and release['history']['portfolioCommit'] in html, 'Current release or immutable history link missing')
     require(sha((root / 'data/source-evidence-index.json').read_bytes()) == provenance['sourceIndexSHA256'], 'Source index changed')
     require(sha((root / 'data/source-checksums.json').read_bytes()) == provenance['sourceChecksumsSHA256'], 'Source checksums changed')
     require(source_hashes['evidence-index.json'] == provenance['sourceIndexSHA256'], 'Index differs from original release checksums')
@@ -90,11 +103,31 @@ def validate(root=ROOT, probe=False):
     runs = json.loads((root / 'data/runs.json').read_text())
     require({r['case'] for r in runs} == EXPECTED_CASES and len(runs) == 7, 'Normal workflow coverage differs')
     copied = provenance['copiedFiles']
-    require(set(copied) == {p for p in manifest if p.startswith('media/')}, 'Media provenance incomplete')
+    require(set(copied) == {p for p in manifest if p.startswith(('media/', 'excluded/', 'data/source-manifests/'))}, 'Copied evidence provenance incomplete')
     for name, source in copied.items():
         require(manifest[name] == source['sha256'] == source_hashes[source['archivePath']], 'Original byte provenance mismatch: ' + name)
+    source_manifests = {}
+    for source in source_index['runs']:
+        run_id = safe_name(source['runId'])
+        require(run_id not in source_manifests, 'Duplicate source run ID')
+        value = json.loads((root / 'data/source-manifests' / (run_id + '.json')).read_text())
+        require(value['runId'] == run_id and value['case'] == source['case'] and value['outcome'] == source['outcome'], 'Source manifest identity mismatch')
+        source_manifests[run_id] = value
+    expected_excluded = {key for key, value in source_manifests.items() if value.get('fault') == 'normal' and key not in release['normalRunIds'].values()}
+    excluded = json.loads((root / 'data/excluded-normal-runs.json').read_text())
+    require(excluded == provenance['excludedNormalRuns'], 'Excluded normal provenance differs')
+    require({r['runId'] for r in excluded} == expected_excluded and len(excluded) == len(expected_excluded), 'An excluded normal attempt was omitted or duplicated')
+    for run in excluded:
+        original = source_manifests[run['runId']]
+        require(run['case'] == original['case'] and run['outcome'] == original['outcome'], 'Excluded outcome relabeled')
+        require(run['runId'] in html and run['outcome'] in html, 'Excluded attempt not visible')
+        for link in run['evidence']:
+            require(link in copied and (root / link).is_file(), 'Excluded evidence missing')
     clips = []
-    for run in runs:
+    require([r['case'] for r in runs] == list(CASES), 'Workflow ordering differs')
+    for number, run in enumerate(runs, 1):
+        require(run['runId'] == release['normalRunIds'][run['case']], 'Selected run differs from reviewed descriptor')
+        require(make_card(run, number, root) in html, 'Displayed workflow differs from exact evidence')
         base = root / 'media' / run['runId']
         original = originals[run['runId']]
         run_manifest = json.loads((base / 'manifest.json').read_text())
@@ -106,7 +139,7 @@ def validate(root=ROOT, probe=False):
         require(all(v is True for v in verification['checks'].values()), 'A check did not pass')
         require(run['result'] == verification['result'], 'Result differs from exact verification')
         require(run['checks'] == verification['checks'] == original['checks'], 'Displayed checks differ')
-        require(run['parentCommit'] == run_manifest['parentCommit'] == provenance['parentCommit'], 'Source commit differs')
+        require(run['parentCommit'] == run_manifest['parentCommit'] == provenance['recordingCommit'], 'Source commit differs')
         require(run['media'] == original['media'], 'Original clip metadata differs')
         require(run['childCommits'] == run_manifest['childCommits'], 'Child source provenance differs')
         require(run_manifest['upstreamExecuted'] is False, 'Upstream integration cannot be claimed')
@@ -119,14 +152,14 @@ def validate(root=ROOT, probe=False):
                 actual_duration = float(json.loads(result)['format']['duration'])
                 require(abs(actual_duration - media['durationSeconds']) < .05, 'Media duration differs')
             clips.append(media)
-    require(len(clips) == 31, 'Expected 31 original clips')
-    return {'status': 'passed', 'normalRuns': len(runs), 'clips': len(clips), 'sourceMatchedFiles': len(copied),
+    require(len(clips) == release['selectedClipCount'], 'Clip count differs from release descriptor')
+    return {'status': 'passed', 'release': release['releaseTag'], 'sourceRuns': len(source_index['runs']), 'excludedNormalRuns': len(excluded), 'normalRuns': len(runs), 'clips': len(clips), 'sourceMatchedFiles': len(copied),
             'hashedFiles': len(manifest), 'localLinksChecked': len(parser.local), 'durationProbe': probe,
             'payloadBytes': sum((root / p).stat().st_size for p in manifest)}
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--probe', action='store_true', help='Also inspect all 31 clips with ffprobe')
+    parser.add_argument('--probe', action='store_true', help='Also inspect every selected clip with ffprobe')
     args = parser.parse_args()
     print(json.dumps(validate(probe=args.probe), indent=2))

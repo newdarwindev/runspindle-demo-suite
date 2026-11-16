@@ -1,0 +1,119 @@
+{
+  "runId": "bookkeeper-deposit-c8e608d47306",
+  "case": "bookkeeper-deposit",
+  "fault": "expired",
+  "seed": 107,
+  "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
+  "childCommits": {
+    "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+    "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+    "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+    "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+    "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+    "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+    "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+    "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+    "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+    "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+    "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+    "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+    "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+    "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
+    "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
+    "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
+    "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+    "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+    "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+    "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+    "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": 1794739896.7964766,
+      "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
+      "childCommits": {
+        "apps/mock-vendor-portal": "a5952374b4f3d6c66747e12164cd72c1ce888de7",
+        "apps/mock-timesheet-portal": "350c76bf57169c564c343c97b6e3c8e19a35438b",
+        "apps/mock-supplier-portal": "f7a9ea3716d6f0461fc184fff452c3794f2a9d37",
+        "apps/mock-marketplace": "d030f50a9a33de6bf39e4eb484f3a6dcf3a5d0b6",
+        "apps/mock-mail": "bd29373c5557c736813eae96d97739cbbac952ca",
+        "apps/mock-job-board": "9fd341ae9b8af5cdc36c164e6a1256c5fd767551",
+        "apps/mock-issue-tracker": "adee915ba5770440b3ef7a26fe4af4459e416c9f",
+        "apps/mock-interview-room": "d55b38f40935209d05f5c7ec255ccf431463d295",
+        "apps/mock-excel": "2bccbf7d6f07d501bdd38f074bce453f4fad50cc",
+        "apps/mock-counterorders": "4d17d80716ee51f6b50a7b5de9071a540638824b",
+        "apps/mock-coderpad": "303a99865bc55f180308917abacbff14b9233e36",
+        "apps/mock-code-workspace": "2a733816bdfbf1226dc333125059c015f5acdbaa",
+        "apps/mock-bank": "0d96f165069262cb36f45dd58071edbc16c9f3ae",
+        "apps/mock-applicant-portal": "e03b37da462fab914d4fde9fe954654debcfa074",
+        "workflows/vintage-returns": "1c6776b5c4cf847005af3acf3062834480409492",
+        "workflows/subcontractor-invoices": "f69e16b24ec149cf26c92fdaf0dd067e54614e56",
+        "workflows/staffing-billing": "8cd66188c5cb6be5ad7cf6c958fa52c05beacbea",
+        "workflows/produce-packing": "f51d8a8e3afcb71dd92238bc6be11ab7cba40ff6",
+        "workflows/consultancy-contract": "ee1715533a9da6df800331f52679398d47e6f2ce",
+        "workflows/bookkeeper-deposit": "da584ad25eadf6277b06dc5cfd241d8514ab1e2f",
+        "workflows/bakery-prep": "ee6c85d557fe644105a0b993db648e3efa49d98d"
+      },
+      "finishedAt": 1794739898.4847345,
+      "outcome": "verified",
+      "clips": [
+        "3dbe132ecb3fc5e28d2515387f1c3c8b.webm",
+        "439ab10c7027f18d931acfa764c4b433.webm",
+        "556ba9449cf70c89915833e88cead4d4.webm"
+      ]
+    }
+  ],
+  "adapter": "deterministic-browser-fixture",
+  "executionMode": "fixture",
+  "upstreamExecuted": false,
+  "outcome": "verified",
+  "startedAt": 1794739896.7964766,
+  "finishedAt": 1794739898.4848707,
+  "metrics": {
+    "verifiedCompletions": 1,
+    "elapsedSeconds": 1.6883947849273682,
+    "attemptElapsedSeconds": 1.6883952617645264,
+    "operatorMinutes": null,
+    "scriptedOperatorMinutes": 0.002550550649999998,
+    "scriptedOperatorActions": 3,
+    "operatorTimingNote": "Human operator time unmeasured. Scripted fixture operator duration sums browser clicks through response parsing, including failed attempts, across recorded attempts; excludes human decisions and is not staff-time savings."
+  },
+  "checks": {
+    "expected_result": true,
+    "actual_workbook_row": true,
+    "actual_table_cells": true,
+    "actual_table_totals": true,
+    "unrelated_table_rows_preserved": true,
+    "unrelated_preserved": true,
+    "single_case_row": true,
+    "saved_revision_matches": true,
+    "historical_notes_preserved": true,
+    "invoice_reference_match": true,
+    "independent_browser_readback": true,
+    "checkpoint_source_readback": true
+  },
+  "media": {
+    "clips": [
+      "3dbe132ecb3fc5e28d2515387f1c3c8b.webm",
+      "439ab10c7027f18d931acfa764c4b433.webm",
+      "556ba9449cf70c89915833e88cead4d4.webm"
+    ],
+    "screenshots": [
+      "independent-observer.png",
+      "result.png",
+      "handoff-mock-bank.png"
+    ]
+  },
+  "evidence": [
+    "verification.json",
+    "worker.json",
+    "checkpoint.json",
+    "events.json",
+    "browser-verification.json"
+  ],
+  "limitations": [
+    "Fixture only; upstream Runspindle does not execute.",
+    "Comparative staff-time savings untested."
+  ]
+}

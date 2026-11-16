@@ -12,10 +12,12 @@ from pathlib import Path, PurePosixPath
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-COMMIT = '085a776b2328862f30fe6539ef41ad1a3ed52eb4'
-RELEASE = 'https://github.com/newdarwindev/runspindle-demo-suite/releases/tag/demo-085a776b2328'
-DOWNLOAD = RELEASE.replace('/tag/', '/download/')
-ARCHIVE_SHA256 = 'dee8aebf13e0a9a48326645491ad76d754fd31b7df787ea4a1bf5bd06e78185a'
+from release import EXPECTED_CASES, REPOSITORY, safe_name, load_release, release_url, download_url
+import shutil
+import stat
+import tempfile
+from datetime import datetime, timezone
+
 CASES = {
     'bakery-prep': ('Bakery prep', 'Tomorrow, ready to bake', 'Turn paid orders and the fixture operator’s pickup choice into a prep workbook.', '3 loaves · 16 rolls'),
     'bookkeeper-deposit': ('Bookkeeping', 'One deposit, one paid invoice', 'Match a deposit reference to its invoice in a fictional business ledger.', 'Invoice 107 · Paid · amount 540'),
@@ -41,38 +43,72 @@ def esc(value):
     return html.escape(str(value), quote=True)
 
 
-def select_runs(archive):
-    index = json.loads(archive.read('evidence-index.json'))
+def read_source(archive, hashes, member):
+    parts = PurePosixPath(member).parts
+    if not parts or any(part in {'.', '..'} for part in parts) or member.startswith('/') or '\\' in member:
+        raise ValueError('Unsafe archive path')
+    info = archive.getinfo(member)
+    if info.is_dir() or stat.S_ISLNK(info.external_attr >> 16):
+        raise ValueError('Archive evidence must be a regular file')
+    raw = archive.read(member)
+    if digest(raw) != hashes.get(member):
+        raise ValueError('Release checksum mismatch: ' + member)
+    return raw
+
+
+def select_runs(archive, release, hashes):
+    index = json.loads(read_source(archive, hashes, 'evidence-index.json'))
     if index['fixtureOnly'] is not True or index['upstreamExecuted'] is not False:
         raise ValueError('Not a standalone fixture release')
+    if len(index['runs']) != release['sourceRunCount']:
+        raise ValueError('Source run count differs from descriptor')
     selected = {}
+    excluded = []
+    seen = set()
     for run in index['runs']:
-        manifest = json.loads(archive.read(run['runId'] + '/manifest.json'))
+        run_id = safe_name(run['runId'])
+        if run_id in seen:
+            raise ValueError('Duplicate source run identity')
+        seen.add(run_id)
+        manifest = json.loads(read_source(archive, hashes, run_id + '/manifest.json'))
         if manifest.get('fault') != 'normal':
             continue
         case = run['case']
-        if case not in CASES or case in selected:
-            raise ValueError('Unexpected or duplicate normal case: ' + case)
-        verify = json.loads(archive.read(run['runId'] + '/verification.json'))
-        observer = json.loads(archive.read(run['runId'] + '/browser-verification.json'))
-        if not (run['outcome'] == manifest['outcome'] == 'verified' and verify['passed'] is True
+        if manifest['runId'] != run_id or manifest['case'] != case or manifest['outcome'] != run['outcome']:
+            raise ValueError('Run identity or outcome mismatch')
+        if release['normalRunIds'].get(case) != run_id:
+            excluded.append({'runId': run_id, 'case': case, 'outcome': run['outcome'],
+                             'reason': 'Not a verified completion' if run['outcome'] != 'verified' else 'Not selected by the reviewed release descriptor'})
+            continue
+        if run['outcome'] != 'verified':
+            raise ValueError('Descriptor selects a nonverified normal attempt')
+        verify = json.loads(read_source(archive, hashes, run_id + '/verification.json'))
+        observer = json.loads(read_source(archive, hashes, run_id + '/browser-verification.json'))
+        if not (run['outcome'] == 'verified' and verify['passed'] is True and verify['checks']
                 and all(v is True for v in verify['checks'].values()) and observer['verified'] is True
-                and manifest['upstreamExecuted'] is False and manifest['parentCommit'] == COMMIT):
-            raise ValueError('Normal case did not meet the evidence boundary: ' + case)
+                and observer['case'] == case and manifest['upstreamExecuted'] is False
+                and manifest['parentCommit'] == run['parentCommit'] == release['recordingCommit']
+                and manifest['childCommits'] == run['childCommits'] and len(run['childCommits']) == 21
+                and manifest['checks'] == run['checks'] == verify['checks'] and run['media'] and not run['missing']):
+            raise ValueError('Selected normal case did not meet the evidence boundary: ' + case)
         selected[case] = {**run, 'fault': 'normal', 'result': verify['result'],
-                          'title': CASES[case][1], 'label': CASES[case][0]}
-    if set(selected) != set(CASES):
-        raise ValueError('Incomplete normal workflow coverage')
-    return index, [selected[case] for case in CASES]
+                          'title': CASES[case][1], 'label': CASES[case][0],
+                          'recordedAtUTC': datetime.fromtimestamp(manifest['startedAt'], timezone.utc).isoformat()}
+    if set(selected) != EXPECTED_CASES:
+        raise ValueError('Missing selected verified normal workflows')
+    if sum(len(r['media']) for r in selected.values()) != release['selectedClipCount']:
+        raise ValueError('Selected clip count differs from descriptor')
+    return index, [selected[case] for case in CASES], sorted(excluded, key=lambda r: r['runId'])
 
 
-def make_card(run, number):
+def make_card(run, number, output=ROOT):
     case = run['case']
-    label, title, description, outcome = CASES[case]
+    label, title, description, _ = CASES[case]
+    outcome = ' · '.join(f'{key}: {value}' for key, value in run['result'].items())
     base = 'media/' + run['runId'] + '/'
     clips = run['media']
     # Prefer a detailed original poster over a blank initial page. No frames are generated.
-    chosen = max(range(len(clips)), key=lambda i: (ROOT / base / clips[i]['poster']).stat().st_size)
+    chosen = max(range(len(clips)), key=lambda i: (output / base / clips[i]['poster']).stat().st_size)
     current = clips[chosen]
     options = '\n'.join(f'<option value="{i}"{(" selected" if i == chosen else "")}>Capture {i+1} · {m["durationSeconds"]:.2f}s original</option>' for i, m in enumerate(clips))
     links = ''.join(f'<li><a href="{base}{esc(m["clip"])}">Capture {i+1} ({m["durationSeconds"]:.2f}s)</a></li>' for i, m in enumerate(clips))
@@ -112,58 +148,113 @@ def make_card(run, number):
 </article>'''
 
 
-def build(zip_path):
-    source_bytes = zip_path.read_bytes()
-    if digest(source_bytes) != ARCHIVE_SHA256:
-        raise ValueError('Archive SHA256 differs from the verified release; review provenance before changing the pin')
-    copied = {}
-    with zipfile.ZipFile(zip_path) as archive:
-        source_hashes = json.loads(archive.read('checksums.json'))
-        index, runs = select_runs(archive)
-        for run in runs:
-            names = set(ALLOWED) & {PurePosixPath(n).name for n in archive.namelist() if n.startswith(run['runId'] + '/')}
-            for media in run['media']:
-                names.update(media[key] for key in ('clip', 'poster', 'captions'))
-            for name in sorted(names):
-                if PurePosixPath(name).name != name:
-                    raise ValueError('Unsafe archive member')
-                member = run['runId'] + '/' + name
-                raw = archive.read(member)
-                if digest(raw) != source_hashes[member]:
-                    raise ValueError('Release checksum mismatch: ' + member)
-                dest = ROOT / 'media' / member
-                dest.parent.mkdir(parents=True, exist_ok=True)
-                dest.write_bytes(raw)
-                copied[dest.relative_to(ROOT).as_posix()] = {'archivePath': member, 'sha256': digest(raw)}
-        data = ROOT / 'data'
-        data.mkdir(exist_ok=True)
-        (data / 'source-evidence-index.json').write_bytes(archive.read('evidence-index.json'))
-        (data / 'source-checksums.json').write_bytes(archive.read('checksums.json'))
-        (data / 'fault-matrix.json').write_bytes(archive.read('fault-matrix.json'))
-        (data / 'runs.json').write_text(encoded(runs))
-        provenance = {
-            'fixtureOnly': True, 'upstreamExecuted': False, 'sourceRelease': RELEASE,
-            'sourceArchiveURL': DOWNLOAD + '/presentation.zip', 'sourceArchiveSHA256': ARCHIVE_SHA256,
-            'parentCommit': COMMIT, 'selectedScenario': 'normal', 'selectedRuns': len(runs),
-            'sourceRuns': len(index['runs']), 'copiedFiles': copied,
-            'mediaTransformation': 'none; original archive bytes copied exactly',
-            'sourceIndexSHA256': digest(archive.read('evidence-index.json')),
-            'sourceChecksumsSHA256': digest(archive.read('checksums.json')),
-            'reel': {'url': DOWNLOAD + '/combined-reel.mp4', **index['reel']},
+def build(zip_path, root=ROOT):
+    root = Path(root).resolve()
+    release = load_release(root)
+    if digest(zip_path.read_bytes()) != release['archiveSHA256']:
+        raise ValueError('Archive SHA256 differs from the reviewed release descriptor')
+    # Reject symlinked destinations before replacing only the generated payload.
+    for name in ('media', 'data', 'excluded', 'index.html', 'checksums.json'):
+        target = root / name
+        if target.is_symlink() or (target.is_dir() and any(p.is_symlink() for p in target.rglob('*'))):
+            raise ValueError('Symlinked output is not allowed: ' + name)
+    with tempfile.TemporaryDirectory(prefix='.portfolio-build-', dir=root) as temp:
+        output = Path(temp)
+        copied = {}
+        with zipfile.ZipFile(zip_path) as archive:
+            if len(archive.namelist()) != len(set(archive.namelist())):
+                raise ValueError('Duplicate archive members')
+            hashes_raw = archive.read('checksums.json')
+            if digest(hashes_raw) != release['sourceChecksumsSHA256']:
+                raise ValueError('Source checksum document differs from descriptor')
+            hashes = json.loads(hashes_raw)
+            index, runs, excluded = select_runs(archive, release, hashes)
+            if digest(archive.read('evidence-index.json')) != release['sourceIndexSHA256']:
+                raise ValueError('Source index differs from descriptor')
+            def copy_member(member, destination):
+                raw = read_source(archive, hashes, member)
+                target = output / destination
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(raw)
+                copied[destination] = {'archivePath': member, 'sha256': digest(raw)}
+            for source_run in index['runs']:
+                member = safe_name(source_run['runId']) + '/manifest.json'
+                copy_member(member, 'data/source-manifests/' + source_run['runId'] + '.json')
+            for run in runs:
+                names = {name for name in ALLOWED if run['runId'] + '/' + name in hashes}
+                for media in run['media']:
+                    names.update(safe_name(media[key]) for key in ('clip', 'poster', 'captions'))
+                for name in sorted(names):
+                    member = run['runId'] + '/' + safe_name(name)
+                    copy_member(member, 'media/' + member)
+            for run in excluded:
+                run['evidence'] = []
+                for name in ('manifest.json', 'verification.json', 'worker.json'):
+                    member = run['runId'] + '/' + name
+                    if member in hashes:
+                        destination = 'excluded/' + member
+                        copy_member(member, destination)
+                        run['evidence'].append(destination)
+            data = output / 'data'
+            data.mkdir(exist_ok=True)
+            (data / 'source-evidence-index.json').write_bytes(read_source(archive, hashes, 'evidence-index.json'))
+            (data / 'source-checksums.json').write_bytes(hashes_raw)
+            (data / 'fault-matrix.json').write_bytes(read_source(archive, hashes, 'fault-matrix.json'))
+            (data / 'runs.json').write_text(encoded(runs))
+            (data / 'excluded-normal-runs.json').write_text(encoded(excluded))
+            provenance = {
+                'fixtureOnly': True, 'upstreamExecuted': False, 'sourceRelease': release_url(release),
+                'sourceArchiveURL': download_url(release) + '/presentation.zip', 'sourceArchiveSHA256': release['archiveSHA256'],
+                'recordingCommit': release['recordingCommit'], 'packagingCommit': release['packagingCommit'],
+                'selectedScenario': 'normal', 'selectionPolicy': 'Exact run IDs in reviewed release.json; all selected runs must independently verify',
+                'selectedRuns': len(runs), 'sourceRuns': len(index['runs']), 'copiedFiles': copied,
+                'excludedNormalRuns': excluded, 'recordingContext': release['recordingContext'], 'history': release['history'],
+                'mediaTransformation': 'none; original archive bytes copied exactly',
+                'sourceIndexSHA256': release['sourceIndexSHA256'], 'sourceChecksumsSHA256': release['sourceChecksumsSHA256'],
+                'reel': {'url': download_url(release) + '/' + index['reel']['path'],
+                         'portableURL': download_url(release) + '/' + index['reel']['portablePath'], **index['reel']},
+            }
+            (data / 'provenance.json').write_text(encoded(provenance))
+        nav = ''.join(f'<a href="#{case}"><span>{i:02}</span>{esc(values[0])}</a>' for i, (case, values) in enumerate(CASES.items(), 1))
+        excluded_html = ''.join('<li><strong>' + esc(r['runId']) + '</strong>: ' + esc(r['outcome']) + '. ' + esc(r['reason']) + '. ' + ' · '.join('<a href="'+esc(link)+'">'+esc(Path(link).name)+'</a>' for link in r['evidence']) + '</li>' for r in excluded)
+        durations = [m['durationSeconds'] for r in runs for m in r['media']]
+        replacements = {
+            'NAV': nav, 'CASES': '\n'.join(make_card(run, i, output) for i, run in enumerate(runs, 1)),
+            'RELEASE_URL': release_url(release), 'DOWNLOAD_URL': download_url(release),
+            'RELEASE_TAG': release['releaseTag'], 'SOURCE_RUNS': str(len(index['runs'])),
+            'CLIPS': str(len(durations)), 'DURATION_RANGE': f'{min(durations):.2f}–{max(durations):.2f}',
+            'EXCLUDED': excluded_html or '<li>No normal runs excluded.</li>',
+            'RECORDING_COMMIT': release['recordingCommit'], 'PACKAGING_COMMIT': release['packagingCommit'],
+            'RECORDING_SHORT': release['recordingCommit'][:12], 'PACKAGING_SHORT': release['packagingCommit'][:12],
+            'RECORDED_DATE': runs[0]['recordedAtUTC'][:10], 'HISTORY_TAG': release['history']['releaseTag'],
+            'HISTORY_COMMIT': release['history']['portfolioCommit'], 'RECORDING_CONTEXT': esc(release['recordingContext']),
         }
-        (data / 'provenance.json').write_text(encoded(provenance))
-    template = (ROOT / 'tools' / 'template.html').read_text()
-    nav = ''.join(f'<a href="#{case}"><span>{i:02}</span>{esc(values[0])}</a>' for i, (case, values) in enumerate(CASES.items(), 1))
-    page = template.replace('{{NAV}}', nav).replace('{{CASES}}', '\n'.join(make_card(run, i) for i, run in enumerate(runs, 1)))
-    (ROOT / 'index.html').write_text(page)
-    paths = [ROOT / name for name in ('index.html', 'styles.css', 'portfolio.js')]
-    paths += [p for folder in ('media', 'data') for p in (ROOT / folder).rglob('*') if p.is_file()]
-    manifest = {p.relative_to(ROOT).as_posix(): digest(p.read_bytes()) for p in sorted(paths)}
-    (ROOT / 'checksums.json').write_text(encoded(manifest))
-    print(encoded({'normalRuns': len(runs), 'clips': sum(len(r['media']) for r in runs), 'copiedEvidenceFiles': len(copied), 'totalBytes': sum(p.stat().st_size for p in paths)}))
+        page = (root / 'tools/template.html').read_text()
+        for key, value in replacements.items():
+            page = page.replace('{{' + key + '}}', value)
+        if '{{' in page:
+            raise ValueError('Unresolved template placeholder')
+        (output / 'index.html').write_text(page)
+        for name in ('styles.css', 'portfolio.js', 'release.json'):
+            (output / name).write_bytes((root / name).read_bytes())
+        paths = sorted(p for p in output.rglob('*') if p.is_file())
+        manifest = {p.relative_to(output).as_posix(): digest(p.read_bytes()) for p in paths}
+        (output / 'checksums.json').write_text(encoded(manifest))
+        for name in ('media', 'data', 'excluded'):
+            if (root / name).exists():
+                shutil.rmtree(root / name)
+            if (output / name).exists():
+                shutil.move(str(output / name), str(root / name))
+        for name in ('index.html', 'checksums.json'):
+            (root / name).write_bytes((output / name).read_bytes())
+    result = {'normalRuns': len(runs), 'sourceRuns': len(index['runs']), 'excludedNormalRuns': len(excluded),
+              'clips': len(durations), 'copiedEvidenceFiles': len(copied),
+              'totalBytes': sum((root / path).stat().st_size for path in manifest)}
+    print(encoded(result))
+    return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('zip', type=Path, help='Downloaded original presentation.zip for demo-085a776b2328')
+    parser.add_argument('zip', type=Path, help='Original presentation.zip matching the reviewed release.json')
     build(parser.parse_args().zip)

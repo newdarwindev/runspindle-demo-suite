@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "started",
+    "time": "2026-11-15T10:51:25.570Z",
+    "case": "subcontractor-invoices",
+    "adapter": "deterministic-browser-fixture",
+    "executionMode": "fixture",
+    "upstreamExecuted": false
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T10:51:25.683Z",
+    "case": "subcontractor-invoices",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T10:51:25.739Z",
+    "case": "subcontractor-invoices",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 56.09387600000002,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T10:51:25.789Z",
+    "case": "subcontractor-invoices",
+    "app": "mock-vendor-portal",
+    "account": "electric-company",
+    "scope": "GC-North/school"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T10:51:25.837Z",
+    "case": "subcontractor-invoices",
+    "app": "mock-vendor-portal",
+    "account": "electric-company",
+    "scope": "GC-North/school"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T10:51:25.920Z",
+    "case": "subcontractor-invoices",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T10:51:25.974Z",
+    "case": "subcontractor-invoices",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 54.31155699999999,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T10:51:26.022Z",
+    "case": "subcontractor-invoices",
+    "app": "mock-vendor-portal",
+    "account": "electric-company",
+    "scope": "GC-South/library"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T10:51:26.070Z",
+    "case": "subcontractor-invoices",
+    "app": "mock-vendor-portal",
+    "account": "electric-company",
+    "scope": "GC-South/library"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T10:51:26.107Z",
+    "case": "subcontractor-invoices",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T10:51:26.173Z",
+    "case": "subcontractor-invoices",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 65.75578800000005,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T10:51:26.222Z",
+    "case": "subcontractor-invoices",
+    "app": "mock-excel",
+    "account": "electric",
+    "scope": ""
+  },
+  {
+    "kind": "worker-finished",
+    "time": "2026-11-15T10:51:26.474Z",
+    "case": "subcontractor-invoices",
+    "result": {
+      "C-104": "Missing signed work ticket",
+      "C-112": "Approved"
+    }
+  }
+]

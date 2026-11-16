@@ -1,18 +1,25 @@
 {
-  "scope": "Bounded cloud-browser QA of this static portfolio and archived media only. This did not rerun fixture workflows and is not evidence of upstream integration or local-runner execution.",
-  "dateUTC": "2026-11-15",
+  "scope": "Bounded sandboxed Strix-browser QA of this static portfolio and archived media only. This did not rerun source fixture workflows and is not GitHub Actions runner qualification or evidence of upstream integration.",
+  "dateUTC": "2026-11-16",
   "offlineValidation": {
     "passed": true,
-    "originalFilesByteMatched": 138,
-    "hashedPayloadFiles": 146,
-    "localHTMLLinksChecked": 116,
+    "originalFilesByteMatched": 166,
+    "hashedPayloadFiles": 176,
+    "localHTMLLinksChecked": 121,
     "ffprobeDurationsMatched": 31,
-    "regressionTestsPassed": 8,
-    "deterministicRebuild": "identical checksums.json after two builds"
+    "regressionTestsPassed": 17,
+    "deterministicRebuild": "identical checksums.json after two builds",
+    "existingSuiteTestsPassed": 73
   },
   "status": "passed",
   "actualBrowser": true,
   "sandboxEnabled": true,
+  "browserVersion": "141.0.7390.37",
+  "release": "demo-193b07c4eae8",
+  "archiveSHA256": "8146bc89cfcc2744a77296e8ffa0c1d4db65a1b0b0c7d992bee9af116e069326",
+  "recordingCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
+  "packagingCommit": "193b07c4eae87c0d5ecf9db4d0de053d047b8399",
+  "mobileClipsPlayed": 31,
   "desktopViewport": [
     1440,
     1100
@@ -22,7 +29,7 @@
     844
   ],
   "clipsPlayed": 31,
-  "localLinksChecked": 88,
+  "localLinksChecked": 93,
   "repeatedReplay": true,
   "speedChanges": true,
   "evidenceDisclosure": true,
@@ -34,61 +41,61 @@
     {
       "case": "bakery-prep",
       "capture": 1,
-      "duration": 0.28,
+      "duration": 0.32,
       "played": true
     },
     {
       "case": "bakery-prep",
-      "capture": 2,
-      "duration": 1.16,
-      "played": true
-    },
-    {
-      "case": "bakery-prep",
-      "capture": 3,
-      "duration": 0.96,
-      "played": true
-    },
-    {
-      "case": "bookkeeper-deposit",
-      "capture": 1,
-      "duration": 0.64,
-      "played": true
-    },
-    {
-      "case": "bookkeeper-deposit",
-      "capture": 2,
-      "duration": 0.28,
-      "played": true
-    },
-    {
-      "case": "bookkeeper-deposit",
-      "capture": 3,
-      "duration": 0.4,
-      "played": true
-    },
-    {
-      "case": "subcontractor-invoices",
-      "capture": 1,
-      "duration": 0.28,
-      "played": true
-    },
-    {
-      "case": "subcontractor-invoices",
       "capture": 2,
       "duration": 0.6,
       "played": true
     },
     {
+      "case": "bakery-prep",
+      "capture": 3,
+      "duration": 0.72,
+      "played": true
+    },
+    {
+      "case": "bookkeeper-deposit",
+      "capture": 1,
+      "duration": 0.24,
+      "played": true
+    },
+    {
+      "case": "bookkeeper-deposit",
+      "capture": 2,
+      "duration": 0.48,
+      "played": true
+    },
+    {
+      "case": "bookkeeper-deposit",
+      "capture": 3,
+      "duration": 0.72,
+      "played": true
+    },
+    {
+      "case": "subcontractor-invoices",
+      "capture": 1,
+      "duration": 0.32,
+      "played": true
+    },
+    {
+      "case": "subcontractor-invoices",
+      "capture": 2,
+      "duration": 0.44,
+      "played": true
+    },
+    {
       "case": "subcontractor-invoices",
       "capture": 3,
-      "duration": 0.36,
+      "duration": 0.64,
       "played": true
     },
     {
       "case": "subcontractor-invoices",
       "capture": 4,
-      "duration": 0.88,
+      "duration": 0.92,
       "played": true
     },
     {
@@ -100,13 +107,13 @@
     {
       "case": "staffing-billing",
       "capture": 2,
-      "duration": 0.52,
+      "duration": 0.4,
       "played": true
     },
     {
       "case": "staffing-billing",
       "capture": 3,
-      "duration": 0.36,
+      "duration": 0.6,
       "played": true
     },
     {
@@ -118,103 +125,103 @@
     {
       "case": "vintage-returns",
       "capture": 1,
-      "duration": 0.92,
-      "played": true
-    },
-    {
-      "case": "vintage-returns",
-      "capture": 2,
       "duration": 0.28,
       "played": true
     },
     {
       "case": "vintage-returns",
+      "capture": 2,
+      "duration": 0.48,
+      "played": true
+    },
+    {
+      "case": "vintage-returns",
       "capture": 3,
+      "duration": 0.64,
+      "played": true
+    },
+    {
+      "case": "vintage-returns",
+      "capture": 4,
+      "duration": 0.88,
+      "played": true
+    },
+    {
+      "case": "produce-packing",
+      "capture": 1,
+      "duration": 0.32,
+      "played": true
+    },
+    {
+      "case": "produce-packing",
+      "capture": 2,
       "duration": 0.4,
       "played": true
     },
     {
-      "case": "vintage-returns",
-      "capture": 4,
-      "duration": 0.6,
-      "played": true
-    },
-    {
-      "case": "produce-packing",
-      "capture": 1,
-      "duration": 0.6,
-      "played": true
-    },
-    {
-      "case": "produce-packing",
-      "capture": 2,
-      "duration": 0.92,
-      "played": true
-    },
-    {
       "case": "produce-packing",
       "capture": 3,
-      "duration": 0.36,
+      "duration": 0.6,
       "played": true
     },
     {
       "case": "produce-packing",
       "capture": 4,
+      "duration": 0.76,
+      "played": true
+    },
+    {
+      "case": "consultancy-contract",
+      "capture": 1,
       "duration": 0.28,
       "played": true
     },
     {
       "case": "consultancy-contract",
-      "capture": 1,
-      "duration": 2.28,
-      "played": true
-    },
-    {
-      "case": "consultancy-contract",
       "capture": 2,
-      "duration": 1.88,
+      "duration": 0.4,
       "played": true
     },
     {
       "case": "consultancy-contract",
       "capture": 3,
-      "duration": 3,
+      "duration": 0.6,
       "played": true
     },
     {
       "case": "consultancy-contract",
       "capture": 4,
-      "duration": 3.44,
+      "duration": 1.08,
       "played": true
     },
     {
       "case": "consultancy-contract",
       "capture": 5,
-      "duration": 1.16,
+      "duration": 1.4,
       "played": true
     },
     {
       "case": "consultancy-contract",
       "capture": 6,
-      "duration": 0.28,
+      "duration": 1.64,
       "played": true
     },
     {
       "case": "consultancy-contract",
       "capture": 7,
-      "duration": 0.4,
+      "duration": 2,
       "played": true
     },
     {
       "case": "consultancy-contract",
       "capture": 8,
-      "duration": 1.6,
+      "duration": 2.44,
       "played": true
     },
     {
       "case": "consultancy-contract",
       "capture": 9,
-      "duration": 0.64,
+      "duration": 2.84,
       "played": true
     }
   ]

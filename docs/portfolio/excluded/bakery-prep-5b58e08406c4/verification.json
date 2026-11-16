@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "expected_result": false,
+    "actual_workbook_row": false,
+    "actual_table_cells": false,
+    "actual_table_totals": false,
+    "unrelated_table_rows_preserved": true,
+    "unrelated_preserved": true,
+    "single_case_row": false,
+    "saved_revision_matches": false,
+    "historical_notes_preserved": false,
+    "pack_size_total": false,
+    "owner_choice_applied": false
+  },
+  "passed": false,
+  "observedAt": 1794739385.8196115,
+  "observer": "independent persisted workbook cells, totals, notes and revision readback",
+  "result": {}
+}

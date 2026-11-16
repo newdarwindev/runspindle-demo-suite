@@ -1,0 +1,79 @@
+[
+  {
+    "kind": "started",
+    "time": "2026-11-15T10:51:23.899Z",
+    "case": "bookkeeper-deposit",
+    "adapter": "deterministic-browser-fixture",
+    "executionMode": "fixture",
+    "upstreamExecuted": false
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T10:51:24.023Z",
+    "case": "bookkeeper-deposit",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T10:51:24.071Z",
+    "case": "bookkeeper-deposit",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 47.48440999999997,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T10:51:24.122Z",
+    "case": "bookkeeper-deposit",
+    "app": "mock-bank",
+    "account": "ledger-business",
+    "scope": "invoice-107"
+  },
+  {
+    "kind": "source-observed",
+    "time": "2026-11-15T10:51:24.170Z",
+    "case": "bookkeeper-deposit",
+    "app": "mock-bank",
+    "account": "ledger-business",
+    "scope": "invoice-107"
+  },
+  {
+    "kind": "operator-handoff-requested",
+    "time": "2026-11-15T10:51:24.236Z",
+    "case": "bookkeeper-deposit",
+    "control": "signin",
+    "actor": "fixture operator"
+  },
+  {
+    "kind": "scripted-operator-duration",
+    "time": "2026-11-15T10:51:24.303Z",
+    "case": "bookkeeper-deposit",
+    "actor": "fixture operator",
+    "control": "signin",
+    "durationMilliseconds": 67.101587,
+    "responseObserved": true,
+    "measurement": "browser click through response parsing; excludes human decision time"
+  },
+  {
+    "kind": "fresh-identity-check",
+    "time": "2026-11-15T10:51:24.355Z",
+    "case": "bookkeeper-deposit",
+    "app": "mock-excel",
+    "account": "ledger",
+    "scope": ""
+  },
+  {
+    "kind": "worker-finished",
+    "time": "2026-11-15T10:51:24.660Z",
+    "case": "bookkeeper-deposit",
+    "result": {
+      "invoice": "107",
+      "status": "Paid",
+      "depositId": "deposit-107",
+      "amount": 540
+    }
+  }
+]

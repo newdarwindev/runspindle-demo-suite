@@ -8,6 +8,8 @@ const {chromium} = require('playwright');
 const root = path.resolve(__dirname, '..');
 const output = path.resolve(process.env.PORTFOLIO_QA_DIR || '/tmp/runspindle-portfolio-qa');
 const runs = JSON.parse(fs.readFileSync(path.join(root, 'data/runs.json')));
+const release = JSON.parse(fs.readFileSync(path.join(root, 'release.json')));
+const expectedClips = runs.reduce((total, run) => total + run.media.length, 0);
 const types = {'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.webm':'video/webm','.png':'image/png','.jpg':'image/jpeg','.vtt':'text/vtt'};
 const server = http.createServer((req, res) => {
   const relative = decodeURIComponent(new URL(req.url, 'http://localhost').pathname).replace(/^\/+/, '') || 'index.html';
@@ -101,14 +103,38 @@ const getStatus = url => new Promise((resolve, reject) => {
     assert(new URL(page.url()).hash === '#staffing-billing');
     await page.locator('#staffing-billing').scrollIntoViewIfNeeded();
     await page.screenshot({path:path.join(output,'mobile-workflow.png'), fullPage:false});
+    let mobileClipsPlayed = 0;
+    for (const run of runs) {
+      const card = page.locator(`#${run.case}`);
+      for (let i = 0; i < run.media.length; i++) {
+        await card.locator('.clip-select').selectOption(String(i));
+        const result = await card.locator('video').evaluate(async video => {
+          video.load();
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(Error('Mobile metadata timeout')), 10000);
+            video.addEventListener('loadedmetadata', () => { clearTimeout(timer); resolve(); }, {once:true});
+            video.addEventListener('error', () => { clearTimeout(timer); reject(Error('Mobile media error')); }, {once:true});
+          });
+          await video.play();
+          await new Promise(resolve => setTimeout(resolve, 120));
+          const result = {duration:video.duration, played:video.currentTime > 0};
+          video.pause();
+          return result;
+        });
+        assert(result.played, 'Mobile capture did not play');
+        assert(Math.abs(result.duration - run.media[i].durationSeconds) < .05);
+        mobileClipsPlayed++;
+      }
+    }
+    assert.equal(mobileClipsPlayed, expectedClips);
     assert.deepEqual(errors, []);
     // No-JS access retains the case content and direct video/evidence links.
     const nojs = await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});
     await nojs.goto(origin);
     assert.equal(await nojs.locator('video[controls]').count(), 7);
-    assert.equal(await nojs.locator('.download-list a').count(),31);
+    assert.equal(await nojs.locator('.download-list a').count(),expectedClips);
     await nojs.close();
-    const report = {status:'passed', actualBrowser:true, sandboxEnabled:true, desktopViewport:[1440,1100], mobileViewport:[390,844],
+    const report = {status:'passed', actualBrowser:true, sandboxEnabled:true, browserVersion:browser.version(), release:release.releaseTag, archiveSHA256:release.archiveSHA256, recordingCommit:release.recordingCommit, packagingCommit:release.packagingCommit, mobileClipsPlayed, desktopViewport:[1440,1100], mobileViewport:[390,844],
       clipsPlayed:clips.length, localLinksChecked:links.length, repeatedReplay:true, speedChanges:true,
       evidenceDisclosure:true, mobileNoOverflow:true, backForward:true, noJavaScriptFallback:true, pageErrors:errors, clips};
     fs.writeFileSync(path.join(output,'browser-verification.json'),JSON.stringify(report,null,2)+'\n');

@@ -1,0 +1,46 @@
+{
+  "runId": "bakery-evaluation-ed3928d568b0",
+  "case": "bakery-evaluation",
+  "seed": 107,
+  "parentCommit": "1c6e0745549f7f66621999267fcc14de930ca90e",
+  "childCommits": {},
+  "adapter": "deterministic-browser-fixture",
+  "executionMode": "fixture",
+  "upstreamExecuted": false,
+  "outcome": "verified",
+  "startedAt": 1794739928.093,
+  "finishedAt": 1794739928.798,
+  "checks": {
+    "notActivatedByComparison": true,
+    "unapprovedActivationBlocked": true,
+    "feedbackExactOutput": true,
+    "approvedExactRevision": true,
+    "rollbackRestored": true,
+    "sameHeldOutCases": true,
+    "candidateExpectedOutcomes": true
+  },
+  "metrics": {
+    "verifiedCompletions": 1,
+    "elapsedSeconds": 0.7050001621246338,
+    "operatorMinutes": null,
+    "operatorTimingNote": "Scripted fixture operator; not a human productivity measurement."
+  },
+  "media": {
+    "clips": [
+      "266e37b368b8993b4df1daafe1de9f38.webm"
+    ],
+    "screenshots": [
+      "candidate-approved.png",
+      "rollback.png"
+    ]
+  },
+  "evidence": [
+    "evaluation-verification.json",
+    "events.json",
+    "comparison.json"
+  ],
+  "limitations": [
+    "Fixture comparison only; no production activation.",
+    "Comparative savings untested."
+  ]
+}
