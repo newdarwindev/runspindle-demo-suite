@@ -1,6 +1,7 @@
 """Fixture-only app server. Worker API is UI-equivalent; harness has separate capability."""
 import hashlib,json,os,secrets,threading,time,csv,io,copy,subprocess,sys
 from pathlib import Path
+from workspace_ui import enhance
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 ROOT=Path(__file__).resolve().parents[1]; STATE=ROOT/'.state'; LOCK=threading.RLock()
 APPS=json.loads((ROOT/'contracts/apps.json').read_text())
@@ -86,7 +87,7 @@ def render_ui(app):
   content=content.replace('<section id="rich-controls">','<section><h2>Application and written screening</h2><label>Availability and maintenance experience<textarea id="application-answer">We are two consultants available five hours weekly.</textarea></label><button id="application-draft">Save application draft</button><button id="written-screening">Complete written screening from submitted answer</button></section><section id="rich-controls">')
   extra+="$('application-draft').onclick=()=>call('application-draft',{answer:$('application-answer').value});$('written-screening').onclick=()=>call('written-screening');"
  if app=='mock-bank':content=content.replace('Tenant / record scope','Authorized invoice reference')
- return content.replace('</script>',extra+'</script>')
+ return enhance(content.replace('</script>',extra+'</script>'), app)
 
 def fixture(case): return json.loads((ROOT/'workflows'/case/'fixtures.json').read_text())
 def load(case): return json.loads((STATE/(case+'.json')).read_text())
