@@ -25,9 +25,11 @@ python3 -m unittest discover -s docs/portfolio/tools -p 'test_*.py' -v
 node docs/portfolio/tools/check-browser.cjs # repository's locked Playwright, supported sandboxed Chromium
 ```
 
-Browser QA starts a bounded localhost-only file server, plays all 31 clips on desktop and again at a mobile viewport, checks links, speed/replay controls, evidence disclosures, mobile overflow, history navigation and no-JS fallback, then closes the server/browser. Reports and review screenshots go to `/tmp/runspindle-portfolio-qa` by default (`PORTFOLIO_QA_DIR` can override). Set `PLAYWRIGHT_BROWSERS_PATH` or `BROWSER_CHANNEL` only for an already supported installed browser. Do not disable the browser sandbox.
+Browser QA starts a bounded localhost-only file server at the GitHub Pages project path. It opens `/runspindle-demo-suite/`, follows the entry redirect, and plays all 31 clips from their expected URLs on desktop and again at a mobile viewport. It also checks links, speed/replay controls, evidence disclosures, mobile overflow, history navigation and no-JS fallback, then closes the server and browser. Reports and review screenshots go to `/tmp/runspindle-portfolio-qa` by default (`PORTFOLIO_QA_DIR` can override). Set `PLAYWRIGHT_BROWSERS_PATH` or `BROWSER_CHANNEL` only for an already supported installed browser. Keep the browser sandbox enabled.
 
 The checked-in [QA report](QA.json) records bounded sandboxed Strix browser review of this static page, not a new execution of the source fixture workflows.
+
+The Pages-path checks on base `74be7a23aa1580d6d255b319158b238776659da6` verified 178 local HTTP responses against the checkout, including the project entry page, the portfolio, its checksum index and every payload file. Sandboxed Chrome 158.0.8127.36 followed the entry redirect, checked 93 links and played all 31 clips at both desktop and mobile viewports. A JavaScript-disabled browser also reached the portfolio and found all direct clip links. The public project entry point returned HTTP 404 on 2026-11-20.
 
 ## Reproduce the copied evidence
 
@@ -57,6 +59,12 @@ No Pages configuration, deployment workflow, persistent runner, schedule or serv
 1. Open this repository's **Settings → Pages**.
 2. Choose **Deploy from a branch**, branch **main**, folder **/docs**, and save.
 3. Wait for GitHub's Pages publication to complete.
-4. Open the resulting Pages URL and its `/portfolio/` path, then confirm media playback and provenance links.
+4. From the checkout of the published revision, verify the public entry point and portfolio payload:
+
+   ```sh
+   python3 docs/portfolio/tools/verify_pages.py
+   ```
+
+   The read-only check compares every served asset with the validated checkout and checks the media content types. A missing page, redirected request or changed response fails the check. Open the resulting portfolio to confirm playback and provenance links in the browser.
 
 `docs/index.html` redirects to `portfolio/`, with a visible fallback link. `docs/.nojekyll` keeps this static payload out of Jekyll processing. The expected URL after owner activation is `https://newdarwindev.github.io/runspindle-demo-suite/portfolio/`; it is not claimed live until checked. Keep the hosting issue open until the live portfolio is independently reachable and verified. The built-in GitHub Pages publication process, when enabled by the owner, is separate from the demo's fixture CI and does not run a business workflow.
