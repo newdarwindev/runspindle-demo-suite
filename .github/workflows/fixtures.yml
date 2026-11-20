@@ -1,16 +1,15 @@
 name: Fixture verification and presentation
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: [main, 'ci/*']
 permissions:
   contents: read
 concurrency:
-  group: runspindle-demo-local
+  group: runspindle-demo-local-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   verify:
-    runs-on: [self-hosted, linux, x64, runspindle-isolated, strix]
+    runs-on: ["${{ format('runspindle-strix-direct-{0}-{1}-verify', github.run_id, github.run_attempt) }}"]
     timeout-minutes: 14
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -27,12 +26,10 @@ jobs:
           test "$(uname -s)" = Linux
           test "$(uname -m)" = x86_64
           echo "Using the provisioned disposable local runner; no host or image changes."
-          echo "PLAYWRIGHT_BROWSERS_PATH=$RUNNER_TEMP/runspindle-demo-browsers" >> "$GITHUB_ENV"
-          echo "npm_config_cache=$RUNNER_TEMP/runspindle-demo-npm" >> "$GITHUB_ENV"
+          echo "PLAYWRIGHT_BROWSERS_PATH=/home/runner/preparation/demo/browsers" >> "$GITHUB_ENV"
+          echo "npm_config_cache=/home/runner/preparation/demo/npm" >> "$GITHUB_ENV"
       - name: Install locked browser dependency
-        run: npm ci
-      - name: Install pinned browser
-        run: npx playwright install chromium
+        run: npm ci --offline --no-audit --no-fund
       - name: Contract tests
         run: python3 tools/demo.py test
       - name: Distinct branding desktop and mobile gate
@@ -83,7 +80,7 @@ jobs:
   publish-presentation:
     needs: verify
     if: github.ref == 'refs/heads/main'
-    runs-on: [self-hosted, linux, x64, runspindle-isolated, strix]
+    runs-on: ["${{ format('runspindle-strix-direct-{0}-{1}-publish-presentation', github.run_id, github.run_attempt) }}"]
     timeout-minutes: 10
     permissions:
       actions: read
