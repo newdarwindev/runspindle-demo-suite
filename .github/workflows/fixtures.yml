@@ -1,16 +1,15 @@
 name: Fixture verification and presentation
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: [main, 'ci/*']
 permissions:
   contents: read
 concurrency:
-  group: runspindle-demo-local
+  group: runspindle-demo-local-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   verify:
-    runs-on: [self-hosted, linux, x64, runspindle-isolated, strix]
+    runs-on: ["${{ format('runspindle-strix-direct-{0}-{1}-verify', github.run_id, github.run_attempt) }}"]
     timeout-minutes: 14
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -27,12 +26,10 @@ jobs:
           test "$(uname -s)" = Linux
           test "$(uname -m)" = x86_64
           echo "Using the provisioned disposable local runner; no host or image changes."
-          echo "PLAYWRIGHT_BROWSERS_PATH=$RUNNER_TEMP/runspindle-demo-browsers" >> "$GITHUB_ENV"
-          echo "npm_config_cache=$RUNNER_TEMP/runspindle-demo-npm" >> "$GITHUB_ENV"
+          echo "PLAYWRIGHT_BROWSERS_PATH=/home/runner/preparation/demo/browsers" >> "$GITHUB_ENV"
+          echo "npm_config_cache=/home/runner/preparation/demo/npm" >> "$GITHUB_ENV"
       - name: Install locked browser dependency
-        run: npm ci
-      - name: Install pinned browser
-        run: npx playwright install chromium
+        run: npm ci --offline --no-audit --no-fund
       - name: Contract tests
         run: python3 tools/demo.py test
       - name: Distinct branding desktop and mobile gate
@@ -43,6 +40,10 @@ jobs:
           echo "$!" > "$RUNNER_TEMP/fixture-server.pid"
           for attempt in $(seq 1 30); do curl --fail http://localhost:4300/health && break; sleep 1; done
           curl --fail http://localhost:4300/health
+      - name: Fourteen live workspace visual and interaction checks
+        run: |
+          for case in $(python3 -c 'import json; print(" ".join(json.load(open("contracts/cases.json"))))'); do python3 tools/demo.py reset "$case"; done
+          node tools/check-workspaces.cjs
       - name: Manual handoff browser contract
         run: |
           python3 tools/demo.py reset bookkeeper-deposit --fault expired
@@ -79,7 +80,7 @@ jobs:
   publish-presentation:
     needs: verify
     if: github.ref == 'refs/heads/main'
-    runs-on: [self-hosted, linux, x64, runspindle-isolated, strix]
+    runs-on: ["${{ format('runspindle-strix-direct-{0}-{1}-publish-presentation', github.run_id, github.run_attempt) }}"]
     timeout-minutes: 10
     permissions:
       actions: read
@@ -95,7 +96,7 @@ jobs:
       - name: Publish durable fixture preview
         run: |
           tag="demo-${GITHUB_SHA:0:12}"
-          assets=(package/presentation.zip package/gallery-verification.json package/gallery-verified.png)
+          assets=(package/workspaces/workspace-tour.mp4 package/workspaces/verification.json package/presentation.zip package/gallery-verification.json package/gallery-verified.png)
           if test -f package/presentation-package/combined-reel.mp4; then assets+=(package/presentation-package/combined-reel.mp4); fi
           if test -f package/presentation-package/combined-reel.webm; then assets+=(package/presentation-package/combined-reel.webm); fi
           gh release create "$tag" "${assets[@]}" \
