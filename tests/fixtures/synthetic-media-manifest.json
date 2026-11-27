@@ -1,0 +1,21 @@
+{
+  "bundle_sha256": "880772af15a273b5a44a086d365968fd28fabb7ecbfc4db6ea10bd82426ae447",
+  "malformed_fixture_sha256": "d1c17c3271cecf1a6d40b6318e830532614e2a6bf257a1eb739e786ed12bf191",
+  "wav": {
+    "channels": 1,
+    "sample_width": 1,
+    "frame_rate": 8000,
+    "frames": 8,
+    "compression": "NONE"
+  },
+  "decoded_bytes": [
+    128,
+    160,
+    192,
+    160,
+    128,
+    96,
+    64,
+    96
+  ]
+}
